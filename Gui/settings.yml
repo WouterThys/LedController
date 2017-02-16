@@ -1,0 +1,6 @@
+UartSettings:
+  baud_rate: 19200
+  com_port: /dev/ttyUSB0
+  data_bits: 8
+  parity: N
+  stop_bits: 1
