@@ -34,8 +34,10 @@ void pwmColors(uint8_t birghtness);
 void handleState(void);
 void flash(void);
 void strobe(void);
+void strobe2(void);
 void fade(void);
 void smooth(void);
+
 
 void setRGB(uint8_t r, uint8_t g, uint8_t b) {
     D_PWM_SetDuty(PWM_R, r);
@@ -118,6 +120,26 @@ void strobe(void) {
     }
     
     setRGB(cnt, cnt, cnt);
+}
+
+void strobe2(void) {
+    static uint8_t cnt;
+    static uint8_t on_cnt;
+    static bool on;
+    
+    if (cnt < ((scale<<6)+1)) {
+        if (on_cnt < 2) {
+            setRGB(255,255,255);
+        } else {
+            setRGB(0,0,0);
+        }
+        
+        on_cnt++;
+        if (on_cnt >= 20) {
+            on_cnt = 0;
+        }
+    } 
+    cnt += ((scale<<6) + 1);
 }
 
 void fade(void) {
@@ -226,7 +248,7 @@ void handleState() {
             
         case Strobe:
             if (cnt == 0) {
-                strobe();
+                strobe2();
             }
             pwmColors(0);
             break;

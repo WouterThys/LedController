@@ -46,53 +46,53 @@ Smooth 4
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "31 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/PORT_Driver.c
 [v _D_PORT_Init D_PORT_Init `(v  1 e 1 0 ]
-"40 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/PWM_Driver.c
+"42 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/PWM_Driver.c
 [v _setRGB setRGB `(v  1 e 1 0 ]
 [v i2_setRGB setRGB `(v  1 e 1 0 ]
-"46
+"48
 [v _pwmColors pwmColors `(v  1 e 1 0 ]
-"72
+"74
 [v _flash flash `(v  1 e 1 0 ]
-"103
-[v _strobe strobe `(v  1 e 1 0 ]
-"123
+"125
+[v _strobe2 strobe2 `(v  1 e 1 0 ]
+"145
 [v _fade fade `(v  1 e 1 0 ]
-"173
+"195
 [v _smooth smooth `(v  1 e 1 0 ]
-"212
+"234
 [v _handleState handleState `(v  1 e 1 0 ]
-"257
+"279
 [v _D_PWM_Init D_PWM_Init `(v  1 e 1 0 ]
-"281
+"303
 [v _D_PWM_Enable D_PWM_Enable `(v  1 e 1 0 ]
-"285
+"307
 [v _D_PWM_SetDuty D_PWM_SetDuty `(v  1 e 1 0 ]
 [v i2_D_PWM_SetDuty D_PWM_SetDuty `(v  1 e 1 0 ]
-"301
+"323
 [v _D_PWM_SetRGB D_PWM_SetRGB `(v  1 e 1 0 ]
-"306
+"328
 [v _D_PWM_GetRed D_PWM_GetRed `(uc  1 e 1 0 ]
-"310
+"332
 [v _D_PWM_GetGreen D_PWM_GetGreen `(uc  1 e 1 0 ]
-"314
+"336
 [v _D_PWM_GetBlue D_PWM_GetBlue `(uc  1 e 1 0 ]
-"318
+"340
 [v _D_PWM_ScaleDown D_PWM_ScaleDown `(v  1 e 1 0 ]
-"324
-[v _D_PWM_ScaleUp D_PWM_ScaleUp `(v  1 e 1 0 ]
-"330
-[v _D_PWM_GetScale D_PWM_GetScale `(uc  1 e 1 0 ]
-"334
-[v _D_PWM_GetState D_PWM_GetState `(uc  1 e 1 0 ]
-"338
-[v _D_PWM_Flash D_PWM_Flash `(v  1 e 1 0 ]
-"342
-[v _D_PWM_Strobe D_PWM_Strobe `(v  1 e 1 0 ]
 "346
+[v _D_PWM_ScaleUp D_PWM_ScaleUp `(v  1 e 1 0 ]
+"352
+[v _D_PWM_GetScale D_PWM_GetScale `(uc  1 e 1 0 ]
+"356
+[v _D_PWM_GetState D_PWM_GetState `(uc  1 e 1 0 ]
+"360
+[v _D_PWM_Flash D_PWM_Flash `(v  1 e 1 0 ]
+"364
+[v _D_PWM_Strobe D_PWM_Strobe `(v  1 e 1 0 ]
+"368
 [v _D_PWM_Fade D_PWM_Fade `(v  1 e 1 0 ]
-"350
+"372
 [v _D_PWM_Smooth D_PWM_Smooth `(v  1 e 1 0 ]
-"357
+"379
 [v _HighISR HighISR `IIH(v  1 e 1 0 ]
 "30 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/TIMER0_Driver.c
 [v _D_TIMER0_Init D_TIMER0_Init `(v  1 e 1 0 ]
@@ -481,9 +481,9 @@ Smooth 4
 [v _main main `(v  1 e 1 0 ]
 {
 "79
-[v main@i i `uc  1 a 1 40 ]
+[v main@i i `uc  1 a 1 77 ]
 "75
-[v main@length length `uc  1 a 1 41 ]
+[v main@length length `uc  1 a 1 78 ]
 "87
 } 0
 "46
@@ -494,58 +494,58 @@ Smooth 4
 "271 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/UART_Driver.c
 [v _D_UART_Write D_UART_Write `(v  1 e 1 0 ]
 {
-[v D_UART_Write@command command `*.25Cuc  1 p 2 28 ]
-[v D_UART_Write@data data `*.25Cuc  1 p 2 30 ]
+[v D_UART_Write@command command `*.25Cuc  1 p 2 65 ]
+[v D_UART_Write@data data `*.25Cuc  1 p 2 67 ]
 "283
 } 0
 "233
 [v _D_UART_Init D_UART_Init `(v  1 e 1 0 ]
 {
-[v D_UART_Init@name name `*.25Cuc  1 p 2 14 ]
-[v D_UART_Init@baud baud `ui  1 p 2 16 ]
-[v D_UART_Init@interrupts interrupts `uc  1 p 1 18 ]
+[v D_UART_Init@name name `*.25Cuc  1 p 2 51 ]
+[v D_UART_Init@baud baud `ui  1 p 2 53 ]
+[v D_UART_Init@interrupts interrupts `uc  1 p 1 55 ]
 "269
 } 0
 "8 /opt/microchip/xc8/v1.40/sources/common/aldiv.c
 [v ___aldiv __aldiv `(l  1 e 4 0 ]
 {
 "11
-[v ___aldiv@quotient quotient `l  1 a 4 10 ]
+[v ___aldiv@quotient quotient `l  1 a 4 47 ]
 "12
-[v ___aldiv@sign sign `uc  1 a 1 9 ]
-[v ___aldiv@counter counter `uc  1 a 1 8 ]
+[v ___aldiv@sign sign `uc  1 a 1 46 ]
+[v ___aldiv@counter counter `uc  1 a 1 45 ]
 "8
-[v ___aldiv@dividend dividend `l  1 p 4 0 ]
-[v ___aldiv@divisor divisor `l  1 p 4 4 ]
+[v ___aldiv@dividend dividend `l  1 p 4 37 ]
+[v ___aldiv@divisor divisor `l  1 p 4 41 ]
 "42
 } 0
-"257 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/PWM_Driver.c
+"279 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/PWM_Driver.c
 [v _D_PWM_Init D_PWM_Init `(v  1 e 1 0 ]
 {
-"279
+"301
 } 0
 "30 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/TIMER0_Driver.c
 [v _D_TIMER0_Init D_TIMER0_Init `(v  1 e 1 0 ]
 {
 [v D_TIMER0_Init@prescale prescale `uc  1 a 1 wreg ]
 [v D_TIMER0_Init@prescale prescale `uc  1 a 1 wreg ]
-[v D_TIMER0_Init@prescale prescale `uc  1 a 1 1 ]
+[v D_TIMER0_Init@prescale prescale `uc  1 a 1 38 ]
 "59
 } 0
-"281 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/PWM_Driver.c
+"303 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/PWM_Driver.c
 [v _D_PWM_Enable D_PWM_Enable `(v  1 e 1 0 ]
 {
 [v D_PWM_Enable@enable enable `uc  1 a 1 wreg ]
 [v D_PWM_Enable@enable enable `uc  1 a 1 wreg ]
-[v D_PWM_Enable@enable enable `uc  1 a 1 1 ]
-"283
+[v D_PWM_Enable@enable enable `uc  1 a 1 38 ]
+"305
 } 0
 "61 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/TIMER0_Driver.c
 [v _D_TIMER0_Enable D_TIMER0_Enable `(v  1 e 1 0 ]
 {
 [v D_TIMER0_Enable@enable enable `uc  1 a 1 wreg ]
 [v D_TIMER0_Enable@enable enable `uc  1 a 1 wreg ]
-[v D_TIMER0_Enable@enable enable `uc  1 a 1 0 ]
+[v D_TIMER0_Enable@enable enable `uc  1 a 1 37 ]
 "71
 } 0
 "31 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/PORT_Driver.c
@@ -557,56 +557,56 @@ Smooth 4
 [v _handle_message handle_message `(v  1 e 1 0 ]
 {
 [s S280 . 6 `*.39Cuc 1 sender 2 0 `*.39Cuc 1 command 2 2 `*.39Cuc 1 message 2 4 ]
-[v handle_message@msg msg `S280  1 p 6 33 ]
+[v handle_message@msg msg `S280  1 p 6 70 ]
 "158
 } 0
 "33 /opt/microchip/xc8/v1.40/sources/common/strcmp.c
 [v _strcmp strcmp `(i  1 e 2 0 ]
 {
 "35
-[v strcmp@r r `c  1 a 1 5 ]
+[v strcmp@r r `c  1 a 1 42 ]
 "33
-[v strcmp@s1 s1 `*.39Cuc  1 p 2 0 ]
-[v strcmp@s2 s2 `*.25Cuc  1 p 2 2 ]
+[v strcmp@s1 s1 `*.39Cuc  1 p 2 37 ]
+[v strcmp@s2 s2 `*.25Cuc  1 p 2 39 ]
 "42
 } 0
 "160 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/main.c
 [v _strToInt strToInt `(uc  1 e 1 0 ]
 {
 "161
-[v strToInt@val val `uc  1 a 1 4 ]
+[v strToInt@val val `uc  1 a 1 41 ]
 "163
-[v strToInt@shift shift `uc  1 a 1 3 ]
+[v strToInt@shift shift `uc  1 a 1 40 ]
 "162
-[v strToInt@tmp tmp `uc  1 a 1 2 ]
+[v strToInt@tmp tmp `uc  1 a 1 39 ]
 "160
-[v strToInt@str str `*.39Cuc  1 p 2 0 ]
+[v strToInt@str str `*.39Cuc  1 p 2 37 ]
 "174
 } 0
 "285 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/UART_Driver.c
 [v _D_UART_WriteInt D_UART_WriteInt `(v  1 e 1 0 ]
 {
-[v D_UART_WriteInt@command command `*.25Cuc  1 p 2 28 ]
-[v D_UART_WriteInt@data data `i  1 p 2 30 ]
+[v D_UART_WriteInt@command command `*.25Cuc  1 p 2 65 ]
+[v D_UART_WriteInt@data data `i  1 p 2 67 ]
 "297
 } 0
 "464 /opt/microchip/xc8/v1.40/sources/common/doprnt.c
 [v _printf printf `(i  1 e 2 0 ]
 {
 "1500
-[v printf@idx idx `uc  1 a 1 20 ]
+[v printf@idx idx `uc  1 a 1 57 ]
 "528
-[v printf@val val `ui  1 a 2 25 ]
+[v printf@val val `ui  1 a 2 62 ]
 "466
-[v printf@ap ap `[1]*.39v  1 a 2 21 ]
+[v printf@ap ap `[1]*.39v  1 a 2 58 ]
 "499
-[v printf@c c `c  1 a 1 27 ]
+[v printf@c c `c  1 a 1 64 ]
 "508
-[v printf@flag flag `uc  1 a 1 24 ]
+[v printf@flag flag `uc  1 a 1 61 ]
 "506
-[v printf@prec prec `c  1 a 1 23 ]
+[v printf@prec prec `c  1 a 1 60 ]
 "464
-[v printf@f f `*.33Cuc  1 p 3 12 ]
+[v printf@f f `*.33Cuc  1 p 3 49 ]
 "1541
 } 0
 "353 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/UART_Driver.c
@@ -614,7 +614,7 @@ Smooth 4
 {
 [v putch@data data `uc  1 a 1 wreg ]
 [v putch@data data `uc  1 a 1 wreg ]
-[v putch@data data `uc  1 a 1 2 ]
+[v putch@data data `uc  1 a 1 39 ]
 "355
 } 0
 "84
@@ -622,7 +622,7 @@ Smooth 4
 {
 [v writeByte@data data `uc  1 a 1 wreg ]
 [v writeByte@data data `uc  1 a 1 wreg ]
-[v writeByte@data data `uc  1 a 1 1 ]
+[v writeByte@data data `uc  1 a 1 38 ]
 "88
 } 0
 "319
@@ -630,114 +630,114 @@ Smooth 4
 {
 [v D_UART_Enable@enable enable `uc  1 a 1 wreg ]
 [v D_UART_Enable@enable enable `uc  1 a 1 wreg ]
-[v D_UART_Enable@enable enable `uc  1 a 1 0 ]
+[v D_UART_Enable@enable enable `uc  1 a 1 37 ]
 "333
 } 0
 "8 /opt/microchip/xc8/v1.40/sources/common/lwmod.c
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]
 {
 "11
-[v ___lwmod@counter counter `uc  1 a 1 11 ]
+[v ___lwmod@counter counter `uc  1 a 1 48 ]
 "8
-[v ___lwmod@dividend dividend `ui  1 p 2 7 ]
-[v ___lwmod@divisor divisor `ui  1 p 2 9 ]
+[v ___lwmod@dividend dividend `ui  1 p 2 44 ]
+[v ___lwmod@divisor divisor `ui  1 p 2 46 ]
 "26
 } 0
 "8 /opt/microchip/xc8/v1.40/sources/common/lwdiv.c
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
 {
 "11
-[v ___lwdiv@quotient quotient `ui  1 a 2 5 ]
+[v ___lwdiv@quotient quotient `ui  1 a 2 41 ]
 "12
-[v ___lwdiv@counter counter `uc  1 a 1 4 ]
+[v ___lwdiv@counter counter `uc  1 a 1 43 ]
 "8
-[v ___lwdiv@dividend dividend `ui  1 p 2 0 ]
-[v ___lwdiv@divisor divisor `ui  1 p 2 2 ]
+[v ___lwdiv@dividend dividend `ui  1 p 2 37 ]
+[v ___lwdiv@divisor divisor `ui  1 p 2 39 ]
 "31
 } 0
-"342 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/PWM_Driver.c
+"364 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/PWM_Driver.c
 [v _D_PWM_Strobe D_PWM_Strobe `(v  1 e 1 0 ]
 {
-"344
+"366
 } 0
-"350
+"372
 [v _D_PWM_Smooth D_PWM_Smooth `(v  1 e 1 0 ]
 {
-"352
+"374
 } 0
-"301
+"323
 [v _D_PWM_SetRGB D_PWM_SetRGB `(v  1 e 1 0 ]
 {
 [v D_PWM_SetRGB@r r `uc  1 a 1 wreg ]
 [v D_PWM_SetRGB@r r `uc  1 a 1 wreg ]
-[v D_PWM_SetRGB@g g `uc  1 p 1 5 ]
-[v D_PWM_SetRGB@b b `uc  1 p 1 6 ]
-[v D_PWM_SetRGB@r r `uc  1 a 1 7 ]
-"304
+[v D_PWM_SetRGB@g g `uc  1 p 1 42 ]
+[v D_PWM_SetRGB@b b `uc  1 p 1 43 ]
+[v D_PWM_SetRGB@r r `uc  1 a 1 44 ]
+"326
 } 0
-"40
+"42
 [v _setRGB setRGB `(v  1 e 1 0 ]
 {
 [v setRGB@r r `uc  1 a 1 wreg ]
 [v setRGB@r r `uc  1 a 1 wreg ]
-[v setRGB@g g `uc  1 p 1 2 ]
-[v setRGB@b b `uc  1 p 1 3 ]
-[v setRGB@r r `uc  1 a 1 4 ]
-"44
+[v setRGB@g g `uc  1 p 1 39 ]
+[v setRGB@b b `uc  1 p 1 40 ]
+[v setRGB@r r `uc  1 a 1 41 ]
+"46
 } 0
-"285
+"307
 [v _D_PWM_SetDuty D_PWM_SetDuty `(v  1 e 1 0 ]
 {
 [v D_PWM_SetDuty@which which `uc  1 a 1 wreg ]
 [v D_PWM_SetDuty@which which `uc  1 a 1 wreg ]
-[v D_PWM_SetDuty@duty duty `uc  1 p 1 0 ]
-[v D_PWM_SetDuty@which which `uc  1 a 1 1 ]
-"299
-} 0
-"324
-[v _D_PWM_ScaleUp D_PWM_ScaleUp `(v  1 e 1 0 ]
-{
-"328
-} 0
-"318
-[v _D_PWM_ScaleDown D_PWM_ScaleDown `(v  1 e 1 0 ]
-{
-"322
-} 0
-"334
-[v _D_PWM_GetState D_PWM_GetState `(uc  1 e 1 0 ]
-{
-"336
-} 0
-"330
-[v _D_PWM_GetScale D_PWM_GetScale `(uc  1 e 1 0 ]
-{
-"332
-} 0
-"306
-[v _D_PWM_GetRed D_PWM_GetRed `(uc  1 e 1 0 ]
-{
-"308
-} 0
-"310
-[v _D_PWM_GetGreen D_PWM_GetGreen `(uc  1 e 1 0 ]
-{
-"312
-} 0
-"314
-[v _D_PWM_GetBlue D_PWM_GetBlue `(uc  1 e 1 0 ]
-{
-"316
-} 0
-"338
-[v _D_PWM_Flash D_PWM_Flash `(v  1 e 1 0 ]
-{
-"340
+[v D_PWM_SetDuty@duty duty `uc  1 p 1 37 ]
+[v D_PWM_SetDuty@which which `uc  1 a 1 38 ]
+"321
 } 0
 "346
+[v _D_PWM_ScaleUp D_PWM_ScaleUp `(v  1 e 1 0 ]
+{
+"350
+} 0
+"340
+[v _D_PWM_ScaleDown D_PWM_ScaleDown `(v  1 e 1 0 ]
+{
+"344
+} 0
+"356
+[v _D_PWM_GetState D_PWM_GetState `(uc  1 e 1 0 ]
+{
+"358
+} 0
+"352
+[v _D_PWM_GetScale D_PWM_GetScale `(uc  1 e 1 0 ]
+{
+"354
+} 0
+"328
+[v _D_PWM_GetRed D_PWM_GetRed `(uc  1 e 1 0 ]
+{
+"330
+} 0
+"332
+[v _D_PWM_GetGreen D_PWM_GetGreen `(uc  1 e 1 0 ]
+{
+"334
+} 0
+"336
+[v _D_PWM_GetBlue D_PWM_GetBlue `(uc  1 e 1 0 ]
+{
+"338
+} 0
+"360
+[v _D_PWM_Flash D_PWM_Flash `(v  1 e 1 0 ]
+{
+"362
+} 0
+"368
 [v _D_PWM_Fade D_PWM_Fade `(v  1 e 1 0 ]
 {
-"348
+"370
 } 0
 "45 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/UART_Driver.h
 [s S280 . 6 `*.39Cuc 1 sender 2 0 `*.39Cuc 1 command 2 2 `*.39Cuc 1 message 2 4 ]
@@ -747,10 +747,10 @@ Smooth 4
 [v D_UART_ReadBlock@cnt cnt `uc  1 a 1 wreg ]
 [s S266 . 17 `[5]uc 1 command 5 0 `uc 1 commandCnt 1 5 `[10]uc 1 message 10 6 `uc 1 messageCnt 1 16 ]
 "308
-[v D_UART_ReadBlock@cm cm `S266  1 a 17 8 ]
+[v D_UART_ReadBlock@cm cm `S266  1 a 17 45 ]
 "307
 [v D_UART_ReadBlock@cnt cnt `uc  1 a 1 wreg ]
-[v D_UART_ReadBlock@cnt cnt `uc  1 a 1 7 ]
+[v D_UART_ReadBlock@cnt cnt `uc  1 a 1 44 ]
 "313
 } 0
 "45 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/UART_Driver.h
@@ -760,7 +760,7 @@ Smooth 4
 {
 [s S266 . 17 `[5]uc 1 command 5 0 `uc 1 commandCnt 1 5 `[10]uc 1 message 10 6 `uc 1 messageCnt 1 16 ]
 "300
-[v D_UART_Read@cm cm `S266  1 a 17 6 ]
+[v D_UART_Read@cm cm `S266  1 a 17 43 ]
 "305
 } 0
 "315
@@ -785,10 +785,10 @@ Smooth 4
 {
 [v fillDataBuffer@data data `uc  1 a 1 wreg ]
 "179
-[v fillDataBuffer@i i `uc  1 a 1 17 ]
+[v fillDataBuffer@i i `uc  1 a 1 33 ]
 "107
 [v fillDataBuffer@data data `uc  1 a 1 wreg ]
-[v fillDataBuffer@data data `uc  1 a 1 18 ]
+[v fillDataBuffer@data data `uc  1 a 1 34 ]
 "218
 } 0
 "220
@@ -799,13 +799,13 @@ Smooth 4
 "464 /opt/microchip/xc8/v1.40/sources/common/doprnt.c
 [v i1_printf printf `(i  1 e 2 0 ]
 {
-[v i1printf@val printf `ui  1 a 2 14 ]
-[v i1printf@ap printf `[1]*.39v  1 a 2 10 ]
-[v i1printf@c printf `c  1 a 1 16 ]
-[v i1printf@flag printf `uc  1 a 1 13 ]
-[v i1printf@prec printf `c  1 a 1 12 ]
-[v i1printf@idx printf `uc  1 a 1 9 ]
-[v i1printf@f f `*.33Cuc  1 p 3 1 ]
+[v i1printf@val printf `ui  1 a 2 17 ]
+[v i1printf@ap printf `[1]*.39v  1 a 2 13 ]
+[v i1printf@c printf `c  1 a 1 19 ]
+[v i1printf@flag printf `uc  1 a 1 16 ]
+[v i1printf@prec printf `c  1 a 1 15 ]
+[v i1printf@idx printf `uc  1 a 1 12 ]
+[v i1printf@f f `*.33Cuc  1 p 3 4 ]
 "1541
 } 0
 "353 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/UART_Driver.c
@@ -835,9 +835,9 @@ Smooth 4
 "8 /opt/microchip/xc8/v1.40/sources/common/lwmod.c
 [v i1___lwmod __lwmod `(ui  1 e 2 0 ]
 {
-[v i1___lwmod@counter __lwmod `uc  1 a 1 0 ]
-[v i1___lwmod@dividend dividend `ui  1 p 2 32 ]
-[v i1___lwmod@divisor divisor `ui  1 p 2 34 ]
+[v i1___lwmod@counter __lwmod `uc  1 a 1 32 ]
+[v i1___lwmod@dividend dividend `ui  1 p 2 0 ]
+[v i1___lwmod@divisor divisor `ui  1 p 2 2 ]
 "26
 } 0
 "8 /opt/microchip/xc8/v1.40/sources/common/lwdiv.c
@@ -849,72 +849,72 @@ Smooth 4
 [v i1___lwdiv@divisor divisor `ui  1 p 2 27 ]
 "31
 } 0
-"357 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/PWM_Driver.c
+"379 /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/Drivers/PWM_Driver.c
 [v _HighISR HighISR `IIH(v  1 e 1 0 ]
 {
-"364
+"386
 } 0
-"212
+"234
 [v _handleState handleState `(v  1 e 1 0 ]
 {
-"213
+"235
 [v handleState@cnt cnt `uc  1 s 1 cnt ]
-"252
+"274
 } 0
-"103
-[v _strobe strobe `(v  1 e 1 0 ]
+"125
+[v _strobe2 strobe2 `(v  1 e 1 0 ]
 {
-"104
-[v strobe@cnt cnt `uc  1 s 1 cnt ]
-"105
-[v strobe@up up `uc  1 s 1 up ]
-"121
+"126
+[v strobe2@cnt cnt `uc  1 s 1 cnt ]
+"127
+[v strobe2@on_cnt on_cnt `uc  1 s 1 on_cnt ]
+"143
 } 0
-"173
+"195
 [v _smooth smooth `(v  1 e 1 0 ]
 {
-"174
+"196
 [v smooth@count count `uc  1 s 1 count ]
-"175
+"197
 [v smooth@color color `uc  1 s 1 color ]
-"210
+"232
 } 0
-"46
+"48
 [v _pwmColors pwmColors `(v  1 e 1 0 ]
 {
 [v pwmColors@birghtness birghtness `uc  1 a 1 wreg ]
 [v pwmColors@birghtness birghtness `uc  1 a 1 wreg ]
-"48
+"50
 [v pwmColors@birghtness birghtness `uc  1 a 1 2 ]
-"70
-} 0
 "72
+} 0
+"74
 [v _flash flash `(v  1 e 1 0 ]
 {
-"73
+"75
 [v flash@count count `uc  1 s 1 count ]
-"74
+"76
 [v flash@color color `uc  1 s 1 color ]
-"101
+"103
 } 0
-"123
+"145
 [v _fade fade `(v  1 e 1 0 ]
 {
-"124
+"146
 [v fade@r_cnt r_cnt `uc  1 s 1 r_cnt ]
-"125
+"147
 [v fade@g_cnt g_cnt `uc  1 s 1 g_cnt ]
-"126
+"148
 [v fade@b_cnt b_cnt `uc  1 s 1 b_cnt ]
-"127
+"149
 [v fade@r_up r_up `uc  1 s 1 r_up ]
-"128
+"150
 [v fade@g_up g_up `uc  1 s 1 g_up ]
-"129
+"151
 [v fade@b_up b_up `uc  1 s 1 b_up ]
-"171
+"193
 } 0
-"40
+"42
 [v i2_setRGB setRGB `(v  1 e 1 0 ]
 {
 [v i2setRGB@r r `uc  1 a 1 wreg ]
@@ -922,14 +922,14 @@ Smooth 4
 [v i2setRGB@g g `uc  1 p 1 2 ]
 [v i2setRGB@b b `uc  1 p 1 3 ]
 [v i2setRGB@r r `uc  1 a 1 4 ]
-"44
+"46
 } 0
-"285
+"307
 [v i2_D_PWM_SetDuty D_PWM_SetDuty `(v  1 e 1 0 ]
 {
 [v i2D_PWM_SetDuty@which which `uc  1 a 1 wreg ]
 [v i2D_PWM_SetDuty@which which `uc  1 a 1 wreg ]
 [v i2D_PWM_SetDuty@duty duty `uc  1 p 1 0 ]
 [v i2D_PWM_SetDuty@which which `uc  1 a 1 1 ]
-"299
+"321
 } 0
