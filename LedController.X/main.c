@@ -55,9 +55,9 @@ void initialize() {
     D_PWM_Enable(true);
     
     // Local variables
-    r = 128;
-    g = 128;
-    b = 128;
+    r = 255;
+    g = 0;
+    b = 0;
     
     D_UART_Write("I", "init");
 }
@@ -66,7 +66,7 @@ void main(void) {
     
     initialize();
     
-    D_PWM_SetRGB(0xff, 0xff, 0xff);
+    D_PWM_SetRGB(r, g, b);
     
     while(1) {
         

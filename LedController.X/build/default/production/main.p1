@@ -3327,15 +3327,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 55: D_PWM_Enable(1);
 "55
 [e ( _D_PWM_Enable (1 -> -> 1 `i `uc ]
-[; ;main.c: 58: r = 128;
+[; ;main.c: 58: r = 255;
 "58
-[e = _r -> -> 128 `i `uc ]
-[; ;main.c: 59: g = 128;
+[e = _r -> -> 255 `i `uc ]
+[; ;main.c: 59: g = 0;
 "59
-[e = _g -> -> 128 `i `uc ]
-[; ;main.c: 60: b = 128;
+[e = _g -> -> 0 `i `uc ]
+[; ;main.c: 60: b = 0;
 "60
-[e = _b -> -> 128 `i `uc ]
+[e = _b -> -> 0 `i `uc ]
 [; ;main.c: 62: D_UART_Write("I", "init");
 "62
 [e ( _D_UART_Write (2 , :s 2C :s 3C ]
@@ -3352,9 +3352,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 67: initialize();
 "67
 [e ( _initialize ..  ]
-[; ;main.c: 69: D_PWM_SetRGB(0xff, 0xff, 0xff);
+[; ;main.c: 69: D_PWM_SetRGB(r, g, b);
 "69
-[e ( _D_PWM_SetRGB (3 , , -> -> 255 `i `uc -> -> 255 `i `uc -> -> 255 `i `uc ]
+[e ( _D_PWM_SetRGB (3 , , _r _g _b ]
 [; ;main.c: 71: while(1) {
 "71
 [e :U 328 ]

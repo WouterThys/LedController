@@ -4531,13 +4531,13 @@ void D_TIMER0_Init(uint8_t prescale);
 # 25
 void D_TIMER0_Enable(bool enable);
 
-# 24 "Drivers/PWM_Driver.c"
+# 25 "Drivers/PWM_Driver.c"
 static pwm_t PWM_Red, PWM_Green, PWM_Blue;
 static uint8_t scale;
 typedef enum {Color, Flash, Strobe, Fade, Smooth} states_t;
 static states_t state;
 
-# 32
+# 33
 void setRGB(uint8_t r, uint8_t g, uint8_t b);
 void pwmColors(uint8_t birghtness);
 void handleState(void);
@@ -4556,19 +4556,19 @@ D_PWM_SetDuty(2, b);
 
 void pwmColors(uint8_t birghtness) {
 
-if (PWM_Red.duty_cnt >= (PWM_Red.duty_val >> birghtness)) {
+if (PWM_Red.duty_cnt >= (PWM_Red.duty_val >> (7-birghtness))) {
 PORTBbits.RB2 = 0;
 } else {
 PORTBbits.RB2 = 1;
 }
 
-if (PWM_Green.duty_cnt >= (PWM_Green.duty_val >> birghtness)) {
+if (PWM_Green.duty_cnt >= (PWM_Green.duty_val >> (7-birghtness))) {
 PORTBbits.RB3 = 0;
 } else {
 PORTBbits.RB3 = 1;
 }
 
-if (PWM_Blue.duty_cnt >= (PWM_Blue.duty_val >> birghtness)) {
+if (PWM_Blue.duty_cnt >= (PWM_Blue.duty_val >> (7-birghtness))) {
 PORTBbits.RB1 = 0;
 } else {
 PORTBbits.RB1 = 1;
@@ -4658,6 +4658,10 @@ static uint8_t b_cnt = 0xFF;
 static bool r_up;
 static bool g_up;
 static bool b_up;
+static bool fade;
+
+if (fade) {
+fade = 0;
 
 if (r_cnt > 0xF7) {
 r_up = 0;
@@ -4696,6 +4700,9 @@ if (b_up) {
 b_cnt+=(scale+1);
 } else {
 b_cnt-=(scale+1);
+}
+} else {
+fade = 1;
 }
 
 setRGB(r_cnt, g_cnt, b_cnt);
@@ -4752,28 +4759,28 @@ case Flash:
 if (cnt == 0) {
 flash();
 }
-pwmColors(0);
+pwmColors(7);
 break;
 
 case Strobe:
 if (cnt == 0) {
 strobe2();
 }
-pwmColors(0);
+pwmColors(7);
 break;
 
 case Fade:
 if (cnt == 0) {
 fade();
 }
-pwmColors(0);
+pwmColors(7);
 break;
 
 case Smooth:
 if (cnt == 0) {
 smooth();
 }
-pwmColors(0);
+pwmColors(7);
 break;
 
 default:
@@ -4782,7 +4789,7 @@ break;
 cnt++;
 }
 
-# 279
+# 287
 void D_PWM_Init(void) {
 
 PWM_Red.duty_cnt = 0;
@@ -4845,14 +4852,14 @@ return PWM_Blue.duty_cnt;
 }
 
 void D_PWM_ScaleDown(void) {
-if (scale < 7) {
-scale++;
+if (scale > 0) {
+scale--;
 }
 }
 
 void D_PWM_ScaleUp(void) {
-if (scale > 0) {
-scale--;
+if (scale < 7) {
+scale++;
 }
 }
 
@@ -4880,7 +4887,7 @@ void D_PWM_Smooth(void) {
 state = Smooth;
 }
 
-# 379
+# 387
 void interrupt high_priority HighISR(void) {
 if (INTCONbits.TMR0IF) {
 TMR0L = 0;

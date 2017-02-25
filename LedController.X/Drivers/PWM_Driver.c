@@ -12,7 +12,8 @@
 /*******************************************************************************
  *          DEFINES
  ******************************************************************************/
-
+#define BRIGHTNESS_MAX  7
+#define BRIGHTNESS_MIN  0
 
 /*******************************************************************************
  *          MACRO FUNCTIONS
@@ -47,19 +48,19 @@ void setRGB(uint8_t r, uint8_t g, uint8_t b) {
 
 void pwmColors(uint8_t birghtness) {
     // Duty checks
-    if (PWM_Red.duty_cnt >= (PWM_Red.duty_val >> birghtness)) {
+    if (PWM_Red.duty_cnt >= (PWM_Red.duty_val >> (BRIGHTNESS_MAX-birghtness))) {
         R_PORT = 0;
     } else {
         R_PORT = 1;
     }
     
-    if (PWM_Green.duty_cnt >= (PWM_Green.duty_val >> birghtness)) {
+    if (PWM_Green.duty_cnt >= (PWM_Green.duty_val >> (BRIGHTNESS_MAX-birghtness))) {
         G_PORT = 0;
     } else {
         G_PORT = 1;
     }
     
-    if (PWM_Blue.duty_cnt >= (PWM_Blue.duty_val >> birghtness)) {
+    if (PWM_Blue.duty_cnt >= (PWM_Blue.duty_val >> (BRIGHTNESS_MAX-birghtness))) {
         B_PORT = 0;
     } else {
         B_PORT = 1;
@@ -149,44 +150,51 @@ void fade(void) {
     static bool r_up;
     static bool g_up;
     static bool b_up;
+    static bool fade;
     
-    if (r_cnt > 0xF7) {
-        r_up = false;
-    }
-    if (r_cnt < 8) {
-        r_up = true;
-    }
-    
-    if (g_cnt > 0xF7) {
-        g_up = false;
-    }
-    if (g_cnt < 8) {
-        g_up = true;
-    }
-    
-    if (b_cnt > 0xF7) {
-        b_up = false;
-    }
-    if (b_cnt < 8) {
-        b_up = true;
-    }
-    
-    if (r_up) {
-        r_cnt+=(scale+1);
+    if (fade) {
+        fade = false;
+        
+        if (r_cnt > 0xF7) {
+            r_up = false;
+        }
+        if (r_cnt < 8) {
+            r_up = true;
+        }
+
+        if (g_cnt > 0xF7) {
+            g_up = false;
+        }
+        if (g_cnt < 8) {
+            g_up = true;
+        }
+
+        if (b_cnt > 0xF7) {
+            b_up = false;
+        }
+        if (b_cnt < 8) {
+            b_up = true;
+        }
+
+        if (r_up) {
+            r_cnt+=(scale+1);
+        } else {
+            r_cnt-=(scale+1);
+        }
+
+        if (g_up) {
+            g_cnt+=(scale+1);
+        } else {
+            g_cnt-=(scale+1);
+        }
+
+        if (b_up) {
+            b_cnt+=(scale+1);
+        } else {
+            b_cnt-=(scale+1);
+        }
     } else {
-        r_cnt-=(scale+1);
-    }
-    
-    if (g_up) {
-        g_cnt+=(scale+1);
-    } else {
-        g_cnt-=(scale+1);
-    }
-    
-    if (b_up) {
-        b_cnt+=(scale+1);
-    } else {
-        b_cnt-=(scale+1);
+        fade = true;
     }
     
     setRGB(r_cnt, g_cnt, b_cnt);
@@ -243,28 +251,28 @@ void handleState() {
             if (cnt == 0) {
                 flash();
             }
-            pwmColors(0);
+            pwmColors(BRIGHTNESS_MAX);
             break;
             
         case Strobe:
             if (cnt == 0) {
                 strobe2();
             }
-            pwmColors(0);
+            pwmColors(BRIGHTNESS_MAX);
             break;
             
         case Fade:
             if (cnt == 0) {
                 fade();
             }
-            pwmColors(0);
+            pwmColors(BRIGHTNESS_MAX);
             break;
             
         case Smooth:
             if (cnt == 0) {
                 smooth();
             }
-            pwmColors(0);
+            pwmColors(BRIGHTNESS_MAX);
             break;
             
         default:
@@ -338,14 +346,14 @@ uint8_t D_PWM_GetBlue(void) {
 }
 
 void D_PWM_ScaleDown(void) {
-    if (scale < 7) {
-        scale++;
+    if (scale > 0) {
+        scale--;
     }
 }
     
 void D_PWM_ScaleUp(void) {
-    if (scale > 0) {
-        scale--;
+    if (scale < 7) {
+        scale++;
     }
 }
 

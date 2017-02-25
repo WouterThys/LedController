@@ -1,6 +1,6 @@
 from Tkinter import *
 
-from SupaCircle import MyCircle
+from GuiShapes.SupaCircle import MyCircle
 
 
 class ExtrasPanel(Frame):

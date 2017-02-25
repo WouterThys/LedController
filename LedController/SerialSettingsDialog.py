@@ -1,11 +1,11 @@
 import tkMessageBox
 import tkSimpleDialog
 import ttk
-
-from SerialInterface import serial_ports
-from Settings import read_settings, UART_SETTINGS, write_settings
-from serial import Serial
 from Tkinter import *
+from serial import Serial
+
+from Serial.SerialInterface import serial_ports
+from Serial.Settings import read_settings, UART_SETTINGS, write_settings
 
 
 class SerialSettingsDialog(tkSimpleDialog.Dialog):

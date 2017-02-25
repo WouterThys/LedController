@@ -1,7 +1,7 @@
 from Tkinter import *
 
-from SupaCanvas import SupaCanvas
-from SupaCircle import MyCircle
+from GuiShapes.SupaCanvas import SupaCanvas
+from GuiShapes.SupaCircle import MyCircle
 
 
 def hex_to_rgb(value):
@@ -91,7 +91,11 @@ class ColorPanel(Frame):
         circle_sm.draw(self.canvas, fill="DimGray", activefill="DarkGray", btn_click=on_smooth_btn_click)
 
     def get_rgb_from_click(self, event):
-        if self.canvas.find_withtag(CURRENT):
-            conf = self.canvas.itemconfig(CURRENT)
-            return hex_to_rgb(conf["fill"][4])
+        cur = self.canvas.find_withtag(CURRENT)
+        cur_val = cur[0]
+
+        if cur_val % 2 != 0:
+            return hex_to_rgb(self.canvas.itemcget(cur, "fill"))
+        else:
+            return hex_to_rgb(self.canvas.itemcget((cur_val-1), "fill"))
 

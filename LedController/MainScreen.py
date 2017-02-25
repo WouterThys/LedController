@@ -1,7 +1,8 @@
-from BrightnessPanel import BrightnessPanel
-from ColorPanel import ColorPanel
-from OnOffPanel import OnOffPanel
-from StatusPanel import StatusPanel
+from GuiPanels.BrightnessPanel import BrightnessPanel
+from GuiPanels.ColorPanel import ColorPanel
+from GuiPanels.OnOffPanel import OnOffPanel
+from GuiPanels.StatusPanel import StatusPanel
+from Serial.SerialInterface import convert_input_message
 
 MESSAGE = "message"  # Message type
 ACKNOWLEDGE = "ack"  # Acknowledge
@@ -78,9 +79,9 @@ class MainScreen:
             if read:
                 msg = None
                 try:
-                    msg = self.manager.my_serial.convert(read)
-                except:
-                    pass
+                    msg = convert_input_message(read)
+                except StandardError as e:
+                    print "Error in MainScreen: my_serial.convert(read): %s" % e.message
 
                 if msg is not None:
                     if msg.type == MESSAGE:
@@ -89,7 +90,7 @@ class MainScreen:
                             if self.state > 0:
                                 self.status_panel.set_info_2("Speed: " + msg.message)
                             else:
-                                self.status_panel.set_info_2("Brightness: " + str(8-self.scale))
+                                self.status_panel.set_info_2("Brightness: " + str(self.scale))
 
                         elif msg.command == COMMAND_R_STA:
                             self.state = int(msg.message)
@@ -99,7 +100,7 @@ class MainScreen:
                             else:
                                 self.status_panel.set_info_1(
                                     "R: " + str(self.R) + ", G: " + str(self.G) + " B: " + str(self.B))
-                                self.status_panel.set_info_2("Brightness: " + str(8 - self.scale))
+                                self.status_panel.set_info_2("Brightness: " + str(self.scale))
 
                         else:
                             if msg.command == COMMAND_R:
@@ -119,17 +120,17 @@ class MainScreen:
                         try:
                             ack_type = int(msg.message)
                             self.manager.my_serial.acknowledge_message(ack_type)
-                            if ack_type == ACK_W_RGB:
-                                self.status_panel.set_info_1(
-                                    "R: " + str(self.R) + ", G: " + str(self.G) + " B: " + str(self.B))
-                            elif ack_type == ACK_W_SCALE:
-                                self.read_scale()
-                            else:
-                                if not ack_type == ACK_R_STATE:
-                                    self.read_state()
+                        except ValueError as e:
+                            print "Error in MainScreen: exception in acknowledge message ==> %s\n" % e.message
 
-                        except Exception as e:
-                            print e
+                        if ack_type == ACK_W_RGB:
+                            self.status_panel.set_info_1(
+                                "R: " + str(self.R) + ", G: " + str(self.G) + " B: " + str(self.B))
+                        elif ack_type == ACK_W_SCALE:
+                            self.read_scale()
+                        else:
+                            if not ack_type == ACK_R_STATE:
+                                self.read_state()
 
     def set_rgb(self, r, g, b):
         self.R = r
@@ -153,25 +154,37 @@ class MainScreen:
     def read_state(self):
         self.manager.my_serial.serial_write_message(COMMAND_R_STA, "", ACK_R_STATE)
 
+    def write_flash(self):
+        self.manager.my_serial.serial_write_message(COMMAND_FL, "", ACK_W_FLASH)
+
+    def write_strobe(self):
+        self.manager.my_serial.serial_write_message(COMMAND_ST, "", ACK_W_STROBE)
+
+    def write_fade(self):
+        self.manager.my_serial.serial_write_message(COMMAND_FA, "", ACK_W_FADE)
+
+    def write_smooth(self):
+        self.manager.my_serial.serial_write_message(COMMAND_SM, "", ACK_W_SMOOTH)
+
     def set_color_panel(self, master):
         def on_btn_click(event):
             try:
                 (self.R, self.G, self.B) = self.color_panel.get_rgb_from_click(event)
                 self.write_rgb()
             except Exception as e:
-                print e.message
+                print "Error in MainScreen: exception in set_color_panel ==> %s\n" % e.message
 
         def on_flash_btn_click(event):
-            self.manager.my_serial.serial_write_message(COMMAND_FL, "", ACK_W_FLASH)
+            self.write_flash()
 
         def on_strobe_btn_click(event):
-            self.manager.my_serial.serial_write_message(COMMAND_ST, "", ACK_W_STROBE)
+            self.write_strobe()
 
         def on_fade_btn_click(event):
-            self.manager.my_serial.serial_write_message(COMMAND_FA, "", ACK_W_FADE)
+            self.write_fade()
 
         def on_smooth_btn_click(event):
-            self.manager.my_serial.serial_write_message(COMMAND_SM, "", ACK_W_SMOOTH)
+            self.write_smooth()
 
         color_panel = ColorPanel(master,
                                  btn_click=on_btn_click,
@@ -184,22 +197,31 @@ class MainScreen:
         return color_panel
 
     def set_brightness_panel(self, master):
-        def on_br_on_btn_click(event):
+        def on_br_up_btn_click(event):
             self.manager.my_serial.serial_write_message(COMMAND_S, MESSAGE_U, ACK_W_SCALE)
 
-        def on_br_off_btn_click(event):
+        def on_br_do_btn_click(event):
             self.manager.my_serial.serial_write_message(COMMAND_S, MESSAGE_D, ACK_W_SCALE)
 
         main_panel = BrightnessPanel(master,
-                               br_on_btn_click=on_br_on_btn_click,
-                               br_off_btn_click=on_br_off_btn_click)
+                               br_on_btn_click=on_br_up_btn_click,
+                               br_off_btn_click=on_br_do_btn_click)
 
         return main_panel
 
     def set_onoff_panel(self, master):
         def on_on_btn_click(event):
-            self.set_rgb(self.R, self.G, self.B)
-            self.write_rgb()
+            if self.state == 0:  # Colors
+                self.set_rgb(self.R, self.G, self.B)
+                self.write_rgb()
+            elif self.state == 1:  # Flash
+                self.write_flash()
+            elif self.state == 2:  # Strobe
+                self.write_strobe()
+            elif self.state == 3:  # Fade
+                self.write_fade()
+            elif self.state == 4:  # Smooth
+                self.write_smooth()
 
         def on_off_btn_click(event):
             mes = [0, 0, 0]

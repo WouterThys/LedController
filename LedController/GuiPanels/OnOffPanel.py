@@ -1,7 +1,7 @@
 from Tkinter import *
 
-from SupaCanvas import SupaCanvas
-from SupaCircle import MyCircle
+from GuiShapes.SupaCanvas import SupaCanvas
+from GuiShapes.SupaCircle import MyCircle
 
 
 class OnOffPanel(Frame):
