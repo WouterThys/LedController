@@ -1,6 +1,7 @@
 import tkMessageBox
 
 from MainScreen import MainScreen
+from Serial.SerialExeptions import SerialError
 from Serial.SerialInterface import SerialInterface
 
 
@@ -13,7 +14,8 @@ class Manager:
         try:
             self.my_serial.serial_configure()
             self.my_serial.serial_clear()
-        except Exception as e:
+        except SerialError as e:
+            print e.message
             tkMessageBox.showerror("Serial Error", e.message)
 
         self.my_serial.enable_read_thread(True)

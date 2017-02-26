@@ -25,7 +25,7 @@ class ExtrasPanel(Frame):
         circle_fade = MyCircle(50, 230, 35, text='Fade')
         circle_smooth = MyCircle(50, 330, 35, text='Smooth')
 
-        circle_flash.draw(self.canvas, fill="DarkGray", activefill="Gray", btn_click=flash_btn_click)
-        circle_strobe.draw(self.canvas, fill="DarkGray", activefill="Gray", btn_click=strobe_btn_click)
-        circle_fade.draw(self.canvas, fill="DarkGray", activefill="Gray", btn_click=fade_btn_click)
-        circle_smooth.draw(self.canvas, fill="DarkGray", activefill="Gray", btn_click=smooth_btn_click)
+        circle_flash.draw(self.canvas, fill="DarkGray", activefill="Gray", left_btn_click=flash_btn_click)
+        circle_strobe.draw(self.canvas, fill="DarkGray", activefill="Gray", left_btn_click=strobe_btn_click)
+        circle_fade.draw(self.canvas, fill="DarkGray", activefill="Gray", left_btn_click=fade_btn_click)
+        circle_smooth.draw(self.canvas, fill="DarkGray", activefill="Gray", left_btn_click=smooth_btn_click)

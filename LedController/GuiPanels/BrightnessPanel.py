@@ -23,5 +23,5 @@ class BrightnessPanel(Frame):
         circle_br_on = MyCircle(45, 45, 35, text="Up")
         circle_br_off = MyCircle(135, 45, 35, text="Down")
 
-        circle_br_on.draw(self.canvas, fill="White", activefill="Gainsboro", btn_click=br_on_btn_click, textcolor="Black")
-        circle_br_off.draw(self.canvas, fill="White", activefill="Gainsboro", btn_click=br_off_btn_click, textcolor="Black")
+        circle_br_on.draw(self.canvas, fill="White", activefill="Gainsboro", left_btn_click=br_on_btn_click, textcolor="Black")
+        circle_br_off.draw(self.canvas, fill="White", activefill="Gainsboro", left_btn_click=br_off_btn_click, textcolor="Black")

@@ -1,0 +1,23 @@
+CirclePwmColors:
+  circle_11: (255, 127, 10)
+  circle_12: (107, 214, 119)
+  circle_13: (10, 214, 119)
+  circle_21: (255, 160, 10)
+  circle_22: (110, 220, 220)
+  circle_23: (25, 0, 51)
+  circle_31: (255, 36, 3)
+  circle_32: (46, 204, 201)
+  circle_33: (129, 11, 47)
+  circle_41: (255, 76, 1)
+  circle_42: (28, 127, 142)
+  circle_43: (0, 0, 0)
+  circle_b: (0,0,255)
+  circle_g: (0, 255, 0)
+  circle_r: (255, 0, 0)
+  circle_w: (255, 255, 255)
+UartSettings:
+  baud_rate: 19200
+  com_port: /dev/ttyUSB0
+  data_bits: 8
+  parity: N
+  stop_bits: 1

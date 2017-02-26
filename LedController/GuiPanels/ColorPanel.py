@@ -1,7 +1,12 @@
 from Tkinter import *
+from ast import literal_eval
+from tkColorChooser import askcolor
+from random import randint
 
+from GuiPanels.ColorDialog import ColorDialog
 from GuiShapes.SupaCanvas import SupaCanvas
 from GuiShapes.SupaCircle import MyCircle
+from Settings import CIRCLE_PWM_COLORS, read_settings, write_settings
 
 
 def hex_to_rgb(value):
@@ -12,18 +17,27 @@ def hex_to_rgb(value):
 
 
 def to_rgb(rgb):
-    return "#%02x%02x%02x" % rgb
+    try:
+        return "#%02x%02x%02x" % rgb
+    except TypeError as e:
+        print e.message
 
 
 class ColorPanel(Frame):
     def __init__(self, master,
-                 btn_click=None,
+                 btn_click_left=None,
+                 btn_click_right=None,
                  on_flash_btn_click=None,
                  on_strobe_btn_click=None,
                  on_fade_btn_click=None,
                  on_smooth_btn_click=None,
+                 on_test_btn_click=None,
                  *args, **kwargs):
         Frame.__init__(self, master, *args, **kwargs)
+
+        self.master = master
+        self.on_test_btn_click = on_test_btn_click
+        self.cur_val = 0
 
         # Panel settings
         self.config(borderwidth=0, relief=FLAT)
@@ -67,35 +81,93 @@ class ColorPanel(Frame):
         circle_fa = MyCircle(315, 315, 35, text="FADE")
         circle_sm = MyCircle(315, 405, 35, text="SMOOTH")
 
-        circle_r.draw(self.canvas, fill=to_rgb((255, 0, 0)), activefill=to_rgb((245, 10, 10)), btn_click=btn_click)
-        circle_g.draw(self.canvas, fill=to_rgb((0, 255, 0)), activefill=to_rgb((10, 245, 10)), btn_click=btn_click)
-        circle_b.draw(self.canvas, fill=to_rgb((0, 0, 255)), activefill=to_rgb((10, 10, 245)), btn_click=btn_click)
-        circle_w.draw(self.canvas, fill=to_rgb((255, 255, 255)), activefill=to_rgb((245, 245, 245)), btn_click=btn_click, textcolor="black")
+        self.colors_dict = read_settings(CIRCLE_PWM_COLORS)
 
-        circle_11.draw(self.canvas, fill=to_rgb((255, 127, 0)), activefill=to_rgb((245, 117, 0)), btn_click=btn_click)
-        circle_12.draw(self.canvas, fill=to_rgb((107, 214, 119)), activefill=to_rgb((97 , 204, 119)), btn_click=btn_click)
-        circle_13.draw(self.canvas, fill=to_rgb((10, 42, 255)), activefill=to_rgb((0, 32, 245)), btn_click=btn_click)
-        circle_21.draw(self.canvas, fill=to_rgb((255, 160, 0)), activefill=to_rgb((245, 150, 0)), btn_click=btn_click)
-        circle_22.draw(self.canvas, fill=to_rgb((110, 220, 220)), activefill=to_rgb((100, 210, 210)), btn_click=btn_click)
-        circle_23.draw(self.canvas, fill=to_rgb((129, 11, 147)), activefill=to_rgb((119, 1, 137)), btn_click=btn_click)
-        circle_31.draw(self.canvas, fill=to_rgb((255, 200, 0)), activefill=to_rgb((245, 190, 0)), btn_click=btn_click)
-        circle_32.draw(self.canvas, fill=to_rgb((46, 204, 201)), activefill=to_rgb((36, 194, 191)), btn_click=btn_click)
-        circle_33.draw(self.canvas, fill=to_rgb((255, 0, 0)), activefill=to_rgb((0, 255, 0)), btn_click=btn_click)
-        circle_41.draw(self.canvas, fill=to_rgb((255, 233, 0)), activefill=to_rgb((245, 223, 0)), btn_click=btn_click)
-        circle_42.draw(self.canvas, fill=to_rgb((28, 127, 142)), activefill=to_rgb((18, 127, 132)), btn_click=btn_click)
-        circle_43.draw(self.canvas, fill=to_rgb((0, 0, 0)), activefill=to_rgb((10, 10, 10)), btn_click=btn_click)
+        circle_r.draw(self.canvas, fill=to_rgb((255, 0, 0)), activefill=to_rgb((245, 10, 10)),
+                      left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                      pwm_color=to_rgb(literal_eval(self.colors_dict['circle_r'])), tags='circle_r')
+        circle_g.draw(self.canvas, fill=to_rgb((0, 255, 0)), activefill=to_rgb((10, 245, 10)),
+                      left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                      pwm_color=to_rgb(literal_eval(self.colors_dict['circle_g'])), tags='circle_g')
+        circle_b.draw(self.canvas, fill=to_rgb((0, 0, 255)), activefill=to_rgb((10, 10, 245)),
+                      left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                      pwm_color=to_rgb(literal_eval(self.colors_dict['circle_b'])), tags='circle_b')
+        circle_w.draw(self.canvas, fill=to_rgb((255, 255, 255)), activefill=to_rgb((245, 245, 245)), textcolor="black",
+                      left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                      pwm_color=to_rgb(literal_eval(self.colors_dict['circle_w'])), tags='circle_w')
 
-        circle_fl.draw(self.canvas, fill="DimGray", activefill="DarkGray", btn_click=on_flash_btn_click)
-        circle_st.draw(self.canvas, fill="DimGray", activefill="DarkGray", btn_click=on_strobe_btn_click)
-        circle_fa.draw(self.canvas, fill="DimGray", activefill="DarkGray", btn_click=on_fade_btn_click)
-        circle_sm.draw(self.canvas, fill="DimGray", activefill="DarkGray", btn_click=on_smooth_btn_click)
+        circle_11.draw(self.canvas, fill=to_rgb((255, 127, 0)), activefill=to_rgb((245, 117, 0)),
+                       left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                       pwm_color=to_rgb(literal_eval(self.colors_dict['circle_11'])), tags='circle_11')
+        circle_12.draw(self.canvas, fill=to_rgb((107, 214, 119)), activefill=to_rgb((97, 204, 119)),
+                       left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                       pwm_color=to_rgb(literal_eval(self.colors_dict['circle_12'])), tags='circle_12')
+        circle_13.draw(self.canvas, fill=to_rgb((10, 42, 255)), activefill=to_rgb((0, 32, 245)),
+                       left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                       pwm_color=to_rgb(literal_eval(self.colors_dict['circle_13'])), tags='circle_13')
+        circle_21.draw(self.canvas, fill=to_rgb((255, 160, 0)), activefill=to_rgb((245, 150, 0)),
+                       left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                       pwm_color=to_rgb(literal_eval(self.colors_dict['circle_21'])), tags='circle_21')
+        circle_22.draw(self.canvas, fill=to_rgb((110, 220, 220)), activefill=to_rgb((100, 210, 210)),
+                       left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                       pwm_color=to_rgb(literal_eval(self.colors_dict['circle_22'])), tags='circle_22')
+        circle_23.draw(self.canvas, fill=to_rgb((25, 0, 51)), activefill=to_rgb((15, 1, 41)),
+                       left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                       pwm_color=to_rgb(literal_eval(self.colors_dict['circle_23'])), tags='circle_23')
+        circle_31.draw(self.canvas, fill=to_rgb((255, 200, 0)), activefill=to_rgb((245, 190, 0)),
+                       left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                       pwm_color=to_rgb(literal_eval(self.colors_dict['circle_31'])), tags='circle_31')
+        circle_32.draw(self.canvas, fill=to_rgb((46, 204, 201)), activefill=to_rgb((36, 194, 191)),
+                       left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                       pwm_color=to_rgb(literal_eval(self.colors_dict['circle_32'])), tags='circle_32')
+        circle_33.draw(self.canvas, fill=to_rgb((129, 11, 147)), activefill=to_rgb((119, 1, 137)),
+                       left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                       pwm_color=to_rgb(literal_eval(self.colors_dict['circle_33'])), tags='circle_33')
+        circle_41.draw(self.canvas, fill=to_rgb((255, 233, 0)), activefill=to_rgb((245, 223, 0)),
+                       left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                       pwm_color=to_rgb(literal_eval(self.colors_dict['circle_41'])), tags='circle_41')
+        circle_42.draw(self.canvas, fill=to_rgb((28, 127, 142)), activefill=to_rgb((18, 127, 132)),
+                       left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                       pwm_color=to_rgb(literal_eval(self.colors_dict['circle_42'])), tags='circle_42')
+        circle_43.draw(self.canvas, fill=to_rgb((255, 0, 0)), activefill=to_rgb((0, 255, 0)),
+                       left_btn_click=btn_click_left, right_btn_click=btn_click_right,
+                       pwm_color=to_rgb(literal_eval(self.colors_dict['circle_43'])), tags='circle_43')
+
+        circle_fl.draw(self.canvas, fill="DimGray", activefill="DarkGray", left_btn_click=on_flash_btn_click)
+        circle_st.draw(self.canvas, fill="DimGray", activefill="DarkGray", left_btn_click=on_strobe_btn_click)
+        circle_fa.draw(self.canvas, fill="DimGray", activefill="DarkGray", left_btn_click=on_fade_btn_click)
+        circle_sm.draw(self.canvas, fill="DimGray", activefill="DarkGray", left_btn_click=on_smooth_btn_click)
 
     def get_rgb_from_click(self, event):
         cur = self.canvas.find_withtag(CURRENT)
-        cur_val = cur[0]
+        self.cur_val = cur[0]
 
-        if cur_val % 2 != 0:
-            return hex_to_rgb(self.canvas.itemcget(cur, "fill"))
+        if self.cur_val % 2 != 0:
+            color = self.canvas.gettags(self.cur_val)[0]
+            if color == '#000000':
+                return randint(0, 255), randint(0, 255), randint(0, 255)
+            else:
+                return hex_to_rgb(color)
         else:
-            return hex_to_rgb(self.canvas.itemcget((cur_val-1), "fill"))
+            color = self.canvas.gettags(self.cur_val - 1)[0]
+            return hex_to_rgb(color)
 
+    def set_rgb_from_click(self, event):
+        colors = self.get_rgb_from_click(event)
+        d = ColorDialog(self.master,
+                        current_red=str(colors[0]),
+                        current_green=str(colors[1]),
+                        current_blue=str(colors[2]),
+                        test_btn_click=self.on_test_btn_click,
+                        title="Adjust PWM value")
+
+        if d.result is not None:
+            if self.cur_val % 2 == 0:
+                self.cur_val -= 1
+
+            t = self.canvas.gettags(self.cur_val)
+            t0 = to_rgb(d.result)
+            t1 = t[1]
+            self.canvas.itemconfigure(self.cur_val, tags=(t0, t1))
+            self.colors_dict[str(t1)] = str(d.result)
+            write_settings(CIRCLE_PWM_COLORS, self.colors_dict)

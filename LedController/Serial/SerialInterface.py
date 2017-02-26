@@ -1,6 +1,5 @@
 import serial
 import time
-
 from Queue import Queue
 from threading import Event
 
@@ -44,22 +43,29 @@ class SerialInterface:
             )
             self.serial_clear()
         except Exception as e:
-            SerialInitialisationException("Error initialising serial interface", e.message)
+            print e.strerror
+            raise SerialInitialisationException("Error initialising serial interface", e.strerror)
 
     def enable_read_thread(self, enable):
         if enable:
-            self.reading_thread = None
-            self.read_event.clear()
-            self.reading_thread = ReadThread(self.read_event, self.read_queue, self)
-            self.reading_thread.setDaemon(True)
-            self.reading_thread.start()
-            print "Read thread started"
+            if (self.my_serial is not None) and self.my_serial.isOpen:
+                self.reading_thread = None
+                self.read_event.clear()
+                self.reading_thread = ReadThread(self.read_event, self.read_queue, self)
+                self.reading_thread.setDaemon(True)
+                self.reading_thread.start()
+                print "Read thread started"
+            else:
+                print "Read thread not started because serial is not open"
         else:
-            self.read_event.set()
-            self.reading_thread.join(5)
-            with self.read_queue.mutex:
-                self.read_queue.queue.clear()
-            self.my_serial.serial_clear()
+            try:
+                self.read_event.set()
+                self.reading_thread.join(5)
+                with self.read_queue.mutex:
+                    self.read_queue.queue.clear()
+                self.my_serial.serial_clear()
+            except RuntimeError as e:
+                print e.message
             print "Read thread stopped"
 
     def has_input(self):
@@ -69,7 +75,7 @@ class SerialInterface:
             pass
 
     def serial_clear(self):
-        if self.my_serial.isOpen():
+        if (self.my_serial is not None) and self.my_serial.isOpen:
             try:
                 self.my_serial.flushInput()
                 self.my_serial.flushOutput()
@@ -85,7 +91,7 @@ class SerialInterface:
             self.my_serial = None
 
     def serial_read(self):
-        if self.my_serial.isOpen():
+        if (self.my_serial is not None) and self.my_serial.isOpen:
             out = ""
             c = ''
             cnt = 0
@@ -117,7 +123,7 @@ class SerialInterface:
             SerialWriteException("Error writing to output", e.message)
 
     def serial_write_message_block(self, command, message, count, ack_id):
-        if self.my_serial.isOpen():
+        if (self.my_serial is not None) and self.my_serial.isOpen:
             if len(self.write_buffer) > 9:
                 self.serial_reset_buffer()  # TODO: Throw
                 print "Serial buffer was full, emptied it"
@@ -138,7 +144,7 @@ class SerialInterface:
         self.can_write = True
 
     def serial_write_message(self, command, message, ack_id):
-        if self.my_serial.isOpen:
+        if (self.my_serial is not None) and self.my_serial.isOpen:
             if len(self.write_buffer) > 9:
                 return -1  # TODO: throw
             self.ack_id = ack_id

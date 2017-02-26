@@ -2,6 +2,7 @@ from GuiPanels.BrightnessPanel import BrightnessPanel
 from GuiPanels.ColorPanel import ColorPanel
 from GuiPanels.OnOffPanel import OnOffPanel
 from GuiPanels.StatusPanel import StatusPanel
+from Serial.SerialExeptions import SerialError
 from Serial.SerialInterface import convert_input_message
 
 MESSAGE = "message"  # Message type
@@ -143,36 +144,75 @@ class MainScreen:
         mes.append(self.R)
         mes.append(self.G)
         mes.append(self.B)
-        self.manager.my_serial.serial_write_message_block(com, mes, 3, ACK_W_RGB)
+        try:
+            self.manager.my_serial.serial_write_message_block(com, mes, 3, ACK_W_RGB)
+        except SerialError as e:
+            self.set_error(e.message)
+
+    def test_rgb(self, r, g, b):
+        mes = []
+        com = ["R", "G", "B"]
+        mes.append(r)
+        mes.append(g)
+        mes.append(b)
+        try:
+            self.manager.my_serial.serial_write_message_block(com, mes, 3, ACK_W_RGB)
+        except SerialError as e:
+            self.set_error(e.message)
 
     def read_rgb(self):
-        self.manager.my_serial.serial_write_message(COMMAND_R_RGB, "", ACK_R_RGB)
+        try:
+            self.manager.my_serial.serial_write_message(COMMAND_R_RGB, "", ACK_R_RGB)
+        except SerialError as e:
+            self.set_error(e.message)
 
     def read_scale(self):
-        self.manager.my_serial.serial_write_message(COMMAND_R_SCA, "", ACK_R_SCALE)
+        try:
+            self.manager.my_serial.serial_write_message(COMMAND_R_SCA, "", ACK_R_SCALE)
+        except SerialError as e:
+            self.set_error(e.message)
 
     def read_state(self):
-        self.manager.my_serial.serial_write_message(COMMAND_R_STA, "", ACK_R_STATE)
+        try:
+            self.manager.my_serial.serial_write_message(COMMAND_R_STA, "", ACK_R_STATE)
+        except SerialError as e:
+            self.set_error(e.message)
 
     def write_flash(self):
-        self.manager.my_serial.serial_write_message(COMMAND_FL, "", ACK_W_FLASH)
+        try:
+            self.manager.my_serial.serial_write_message(COMMAND_FL, "", ACK_W_FLASH)
+        except SerialError as e:
+            self.set_error(e.message)
 
     def write_strobe(self):
-        self.manager.my_serial.serial_write_message(COMMAND_ST, "", ACK_W_STROBE)
+        try:
+            self.manager.my_serial.serial_write_message(COMMAND_ST, "", ACK_W_STROBE)
+        except SerialError as e:
+            self.set_error(e.message)
 
     def write_fade(self):
-        self.manager.my_serial.serial_write_message(COMMAND_FA, "", ACK_W_FADE)
+        try:
+            self.manager.my_serial.serial_write_message(COMMAND_FA, "", ACK_W_FADE)
+        except SerialError as e:
+            self.set_error(e.message)
 
     def write_smooth(self):
-        self.manager.my_serial.serial_write_message(COMMAND_SM, "", ACK_W_SMOOTH)
+        try:
+            self.manager.my_serial.serial_write_message(COMMAND_SM, "", ACK_W_SMOOTH)
+        except SerialError as e:
+            self.set_error(e.message)
 
     def set_color_panel(self, master):
-        def on_btn_click(event):
+        def on_left_btn_click(event):
             try:
                 (self.R, self.G, self.B) = self.color_panel.get_rgb_from_click(event)
                 self.write_rgb()
             except Exception as e:
                 print "Error in MainScreen: exception in set_color_panel ==> %s\n" % e.message
+
+        def on_right_btn_click(event):
+            on_left_btn_click(None)
+            self.color_panel.set_rgb_from_click(event)
 
         def on_flash_btn_click(event):
             self.write_flash()
@@ -186,22 +226,35 @@ class MainScreen:
         def on_smooth_btn_click(event):
             self.write_smooth()
 
+        def on_test_btn_click(r, g, b):
+            self.test_rgb(r, g, b)
+
         color_panel = ColorPanel(master,
-                                 btn_click=on_btn_click,
+                                 btn_click_left=on_left_btn_click,
+                                 btn_click_right=on_right_btn_click,
                                  on_flash_btn_click=on_flash_btn_click,
                                  on_strobe_btn_click=on_strobe_btn_click,
                                  on_fade_btn_click=on_fade_btn_click,
-                                 on_smooth_btn_click=on_smooth_btn_click
+                                 on_smooth_btn_click=on_smooth_btn_click,
+                                 on_test_btn_click=on_test_btn_click,
                                  )
 
         return color_panel
 
     def set_brightness_panel(self, master):
         def on_br_up_btn_click(event):
-            self.manager.my_serial.serial_write_message(COMMAND_S, MESSAGE_U, ACK_W_SCALE)
+            if self.scale < 7:
+                try :
+                    self.manager.my_serial.serial_write_message(COMMAND_S, MESSAGE_U, ACK_W_SCALE)
+                except SerialError as e:
+                    self.set_error(e.message)
 
         def on_br_do_btn_click(event):
-            self.manager.my_serial.serial_write_message(COMMAND_S, MESSAGE_D, ACK_W_SCALE)
+            if self.scale > 0:
+                try :
+                    self.manager.my_serial.serial_write_message(COMMAND_S, MESSAGE_D, ACK_W_SCALE)
+                except SerialError as e:
+                    self.set_error(e.message)
 
         main_panel = BrightnessPanel(master,
                                br_on_btn_click=on_br_up_btn_click,
@@ -226,10 +279,16 @@ class MainScreen:
         def on_off_btn_click(event):
             mes = [0, 0, 0]
             com = ["R", "G", "B"]
-            self.manager.my_serial.serial_write_message_block(com, mes, 3, ACK_W_RGB)
+            try:
+                self.manager.my_serial.serial_write_message_block(com, mes, 3, ACK_W_RGB)
+            except SerialError as e:
+                self.set_error(e.message)
 
         main_panel = OnOffPanel(master,
                                on_btn_click=on_on_btn_click,
                                off_btn_click=on_off_btn_click)
 
         return main_panel
+
+    def set_error(self, error):
+        self.status_panel.set_error(error)

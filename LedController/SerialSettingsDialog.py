@@ -5,7 +5,7 @@ from Tkinter import *
 from serial import Serial
 
 from Serial.SerialInterface import serial_ports
-from Serial.Settings import read_settings, UART_SETTINGS, write_settings
+from Settings import read_settings, UART_SETTINGS, write_settings
 
 
 class SerialSettingsDialog(tkSimpleDialog.Dialog):

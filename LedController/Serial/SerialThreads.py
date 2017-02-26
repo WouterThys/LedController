@@ -1,6 +1,8 @@
 import time
 from threading import Event, Thread
 
+from Serial.SerialExeptions import SerialReadThreadException
+
 
 class ReadThread(Thread):
     def __init__(self, event, queue, serial_interface, read_interval=0.1):
@@ -20,7 +22,8 @@ class ReadThread(Thread):
                     self.queue.put(msg)
                     print "Input: " + msg  # TODO: Logs
             except Exception as e:
-                print "EXCEPTION IN THREAD: " + e.message  # TODO: Logs
+                self.serial_interface.enable_read_thread(False)
+                #raise SerialReadThreadException("Exception in thread: " + e.message)
 
             time_delta = time.time() - start_time
             if time_delta < self.read_interval:

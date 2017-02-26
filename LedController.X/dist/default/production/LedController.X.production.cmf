@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$/tmp/xcX0Xlakd.obj
+$/tmp/xcXQtCexU.obj
 idloc IDLOC 0 200000 200000 8 1
 init CODE 0 B4 B4 4 1
 reset_vec CODE 0 0 0 4 1
@@ -846,58 +846,58 @@ B82 text10 CODE >156:/home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedCont
 1916 text0 CODE >80:/home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/main.c
 191E text0 CODE >81:/home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/main.c
 1940 text0 CODE >80:/home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController.X/main.c
-1CC2 cinit CODE >2399:/tmp/xcXWlTkma
-1CC2 cinit CODE >2401:/tmp/xcXWlTkma
-1CC2 cinit CODE >2404:/tmp/xcXWlTkma
-1CC2 cinit CODE >2543:/tmp/xcXWlTkma
-1CC4 cinit CODE >2544:/tmp/xcXWlTkma
-1CC6 cinit CODE >2545:/tmp/xcXWlTkma
-1CC8 cinit CODE >2546:/tmp/xcXWlTkma
-1CCA cinit CODE >2547:/tmp/xcXWlTkma
-1CCC cinit CODE >2548:/tmp/xcXWlTkma
-1CCE cinit CODE >2549:/tmp/xcXWlTkma
-1CD0 cinit CODE >2550:/tmp/xcXWlTkma
-1CD4 cinit CODE >2551:/tmp/xcXWlTkma
-1CD6 cinit CODE >2552:/tmp/xcXWlTkma
-1CDA cinit CODE >2556:/tmp/xcXWlTkma
-1CDC cinit CODE >2557:/tmp/xcXWlTkma
-1CDE cinit CODE >2558:/tmp/xcXWlTkma
-1CE0 cinit CODE >2559:/tmp/xcXWlTkma
-1CE2 cinit CODE >2560:/tmp/xcXWlTkma
-1CE4 cinit CODE >2561:/tmp/xcXWlTkma
-1CE6 cinit CODE >2562:/tmp/xcXWlTkma
-1CEA cinit CODE >2563:/tmp/xcXWlTkma
-1CEE cinit CODE >2564:/tmp/xcXWlTkma
-1CEE cinit CODE >2565:/tmp/xcXWlTkma
-1CF0 cinit CODE >2566:/tmp/xcXWlTkma
-1CF4 cinit CODE >2567:/tmp/xcXWlTkma
-1CF6 cinit CODE >2568:/tmp/xcXWlTkma
-1CF8 cinit CODE >2569:/tmp/xcXWlTkma
-1CFA cinit CODE >2573:/tmp/xcXWlTkma
-1CFE cinit CODE >2574:/tmp/xcXWlTkma
-1D00 cinit CODE >2575:/tmp/xcXWlTkma
-1D00 cinit CODE >2576:/tmp/xcXWlTkma
-1D02 cinit CODE >2577:/tmp/xcXWlTkma
-1D04 cinit CODE >2578:/tmp/xcXWlTkma
-1D06 cinit CODE >2581:/tmp/xcXWlTkma
-1D0A cinit CODE >2582:/tmp/xcXWlTkma
-1D0C cinit CODE >2583:/tmp/xcXWlTkma
-1D0C cinit CODE >2584:/tmp/xcXWlTkma
-1D0E cinit CODE >2585:/tmp/xcXWlTkma
-1D10 cinit CODE >2586:/tmp/xcXWlTkma
-1D12 cinit CODE >2589:/tmp/xcXWlTkma
-1D16 cinit CODE >2590:/tmp/xcXWlTkma
-1D18 cinit CODE >2591:/tmp/xcXWlTkma
-1D18 cinit CODE >2592:/tmp/xcXWlTkma
-1D1A cinit CODE >2593:/tmp/xcXWlTkma
-1D1C cinit CODE >2594:/tmp/xcXWlTkma
-1D1E cinit CODE >2600:/tmp/xcXWlTkma
-1D1E cinit CODE >2602:/tmp/xcXWlTkma
-1D20 cinit CODE >2603:/tmp/xcXWlTkma
-1D22 cinit CODE >2605:/tmp/xcXWlTkma
-1D24 cinit CODE >2606:/tmp/xcXWlTkma
-1D26 cinit CODE >2607:/tmp/xcXWlTkma
-1D28 cinit CODE >2608:/tmp/xcXWlTkma
+1CC2 cinit CODE >2399:/tmp/xcX926irK
+1CC2 cinit CODE >2401:/tmp/xcX926irK
+1CC2 cinit CODE >2404:/tmp/xcX926irK
+1CC2 cinit CODE >2543:/tmp/xcX926irK
+1CC4 cinit CODE >2544:/tmp/xcX926irK
+1CC6 cinit CODE >2545:/tmp/xcX926irK
+1CC8 cinit CODE >2546:/tmp/xcX926irK
+1CCA cinit CODE >2547:/tmp/xcX926irK
+1CCC cinit CODE >2548:/tmp/xcX926irK
+1CCE cinit CODE >2549:/tmp/xcX926irK
+1CD0 cinit CODE >2550:/tmp/xcX926irK
+1CD4 cinit CODE >2551:/tmp/xcX926irK
+1CD6 cinit CODE >2552:/tmp/xcX926irK
+1CDA cinit CODE >2556:/tmp/xcX926irK
+1CDC cinit CODE >2557:/tmp/xcX926irK
+1CDE cinit CODE >2558:/tmp/xcX926irK
+1CE0 cinit CODE >2559:/tmp/xcX926irK
+1CE2 cinit CODE >2560:/tmp/xcX926irK
+1CE4 cinit CODE >2561:/tmp/xcX926irK
+1CE6 cinit CODE >2562:/tmp/xcX926irK
+1CEA cinit CODE >2563:/tmp/xcX926irK
+1CEE cinit CODE >2564:/tmp/xcX926irK
+1CEE cinit CODE >2565:/tmp/xcX926irK
+1CF0 cinit CODE >2566:/tmp/xcX926irK
+1CF4 cinit CODE >2567:/tmp/xcX926irK
+1CF6 cinit CODE >2568:/tmp/xcX926irK
+1CF8 cinit CODE >2569:/tmp/xcX926irK
+1CFA cinit CODE >2573:/tmp/xcX926irK
+1CFE cinit CODE >2574:/tmp/xcX926irK
+1D00 cinit CODE >2575:/tmp/xcX926irK
+1D00 cinit CODE >2576:/tmp/xcX926irK
+1D02 cinit CODE >2577:/tmp/xcX926irK
+1D04 cinit CODE >2578:/tmp/xcX926irK
+1D06 cinit CODE >2581:/tmp/xcX926irK
+1D0A cinit CODE >2582:/tmp/xcX926irK
+1D0C cinit CODE >2583:/tmp/xcX926irK
+1D0C cinit CODE >2584:/tmp/xcX926irK
+1D0E cinit CODE >2585:/tmp/xcX926irK
+1D10 cinit CODE >2586:/tmp/xcX926irK
+1D12 cinit CODE >2589:/tmp/xcX926irK
+1D16 cinit CODE >2590:/tmp/xcX926irK
+1D18 cinit CODE >2591:/tmp/xcX926irK
+1D18 cinit CODE >2592:/tmp/xcX926irK
+1D1A cinit CODE >2593:/tmp/xcX926irK
+1D1C cinit CODE >2594:/tmp/xcX926irK
+1D1E cinit CODE >2600:/tmp/xcX926irK
+1D1E cinit CODE >2602:/tmp/xcX926irK
+1D20 cinit CODE >2603:/tmp/xcX926irK
+1D22 cinit CODE >2605:/tmp/xcX926irK
+1D24 cinit CODE >2606:/tmp/xcX926irK
+1D26 cinit CODE >2607:/tmp/xcX926irK
+1D28 cinit CODE >2608:/tmp/xcX926irK
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -928,7 +928,7 @@ __end_of_initialize 1D8E 0 CODE 0 text1 dist/default/production/LedController.X.
 D_TIMER0_Enable@enable 87 0 BANK0 1 cstackBANK0 dist/default/production/LedController.X.production.obj
 _PWM_Red CC 0 BANK0 1 bssBANK0 dist/default/production/LedController.X.production.obj
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production/LedController.X.production.obj
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst /tmp/xcX0Xlakd.obj
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst /tmp/xcXQtCexU.obj
 _D_TIMER0_Flag 28 0 COMRAM 1 bssCOMRAM dist/default/production/LedController.X.production.obj
 _D_TIMER0_Init 181C 0 CODE 0 text6 dist/default/production/LedController.X.production.obj
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/LedController.X.production.obj
@@ -939,13 +939,13 @@ i1___lwdiv@divisor 1C 0 COMRAM 1 cstackCOMRAM dist/default/production/LedControl
 __end_of_LowISR B4 0 CODE 0 intcodelo dist/default/production/LedController.X.production.obj
 main@i AF 0 BANK0 1 cstackBANK0 dist/default/production/LedController.X.production.obj
 __Lsmallconst 800 0 SMALLCONST 0 smallconst dist/default/production/LedController.X.production.obj
-___sp 0 0 STACK 2 stack /tmp/xcX0Xlakd.obj
+___sp 0 0 STACK 2 stack /tmp/xcXQtCexU.obj
 _baud 29 0 COMRAM 1 bssCOMRAM dist/default/production/LedController.X.production.obj
 _fade 19E0 0 CODE 0 text53 dist/default/production/LedController.X.production.obj
 _main 18BC 0 CODE 0 text0 dist/default/production/LedController.X.production.obj
 _read 22 0 COMRAM 1 bssCOMRAM dist/default/production/LedController.X.production.obj
 btemp 45 0 COMRAM 1 temp dist/default/production/LedController.X.production.obj
-start B4 0 CODE 0 init /tmp/xcX0Xlakd.obj
+start B4 0 CODE 0 init /tmp/xcXQtCexU.obj
 setRGB@b 8A 0 BANK0 1 cstackBANK0 dist/default/production/LedController.X.production.obj
 setRGB@g 89 0 BANK0 1 cstackBANK0 dist/default/production/LedController.X.production.obj
 setRGB@r 8B 0 BANK0 1 cstackBANK0 dist/default/production/LedController.X.production.obj
@@ -968,11 +968,11 @@ __HdataCOMRAM 0 0 ABS 0 dataCOMRAM dist/default/production/LedController.X.produ
 __size_of_strToInt 0 0 ABS 0 - dist/default/production/LedController.X.production.obj
 __end_of_D_UART_WriteInt 151E 0 CODE 0 text13 dist/default/production/LedController.X.production.obj
 __size_of_D_PWM_ScaleUp 0 0 ABS 0 - dist/default/production/LedController.X.production.obj
-__accesstop 60 0 ABS 0 - /tmp/xcX0Xlakd.obj
-intlevel0 0 0 CODE 0 text /tmp/xcX0Xlakd.obj
-intlevel1 0 0 CODE 0 text /tmp/xcX0Xlakd.obj
-intlevel2 0 0 CODE 0 text /tmp/xcX0Xlakd.obj
-intlevel3 0 0 CODE 0 text /tmp/xcX0Xlakd.obj
+__accesstop 60 0 ABS 0 - /tmp/xcXQtCexU.obj
+intlevel0 0 0 CODE 0 text /tmp/xcXQtCexU.obj
+intlevel1 0 0 CODE 0 text /tmp/xcXQtCexU.obj
+intlevel2 0 0 CODE 0 text /tmp/xcXQtCexU.obj
+intlevel3 0 0 CODE 0 text /tmp/xcXQtCexU.obj
 __size_ofi1_writeByte 0 0 ABS 0 - dist/default/production/LedController.X.production.obj
 i1___lwdiv@quotient 1F 0 COMRAM 1 cstackCOMRAM dist/default/production/LedController.X.production.obj
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production/LedController.X.production.obj
@@ -1008,8 +1008,8 @@ _D_PORT_Init 2168 0 CODE 0 text9 dist/default/production/LedController.X.product
 i2setRGB@b 4 0 COMRAM 1 cstackCOMRAM dist/default/production/LedController.X.production.obj
 i2setRGB@g 3 0 COMRAM 1 cstackCOMRAM dist/default/production/LedController.X.production.obj
 i2setRGB@r 5 0 COMRAM 1 cstackCOMRAM dist/default/production/LedController.X.production.obj
-___inthi_sp 0 0 STACK 2 stack /tmp/xcX0Xlakd.obj
-___intlo_sp 0 0 STACK 2 stack /tmp/xcX0Xlakd.obj
+___inthi_sp 0 0 STACK 2 stack /tmp/xcXQtCexU.obj
+___intlo_sp 0 0 STACK 2 stack /tmp/xcXQtCexU.obj
 D_UART_Write@data A5 0 BANK0 1 cstackBANK0 dist/default/production/LedController.X.production.obj
 __LdataCOMRAM 0 0 ABS 0 dataCOMRAM dist/default/production/LedController.X.production.obj
 __end_of_D_PWM_ScaleUp 21F6 0 CODE 0 text25 dist/default/production/LedController.X.production.obj
@@ -1133,7 +1133,7 @@ __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production/LedController.X.production
 __Hbigram 0 0 ABS 0 bigram dist/default/production/LedController.X.production.obj
 _D_PWM_GetScale 223E 0 CODE 0 text28 dist/default/production/LedController.X.production.obj
 _D_PWM_GetState 223A 0 CODE 0 text27 dist/default/production/LedController.X.production.obj
-__smallconst 800 0 SMALLCONST 0 smallconst /tmp/xcX0Xlakd.obj
+__smallconst 800 0 SMALLCONST 0 smallconst /tmp/xcXQtCexU.obj
 __end_ofi2_D_PWM_SetDuty 2090 0 CODE 0 text55 dist/default/production/LedController.X.production.obj
 _D_PWM_Fade 222E 0 CODE 0 text33 dist/default/production/LedController.X.production.obj
 _D_PWM_Init 1FFA 0 CODE 0 text5 dist/default/production/LedController.X.production.obj
@@ -1386,8 +1386,8 @@ __end_of_D_PWM_Enable 21D4 0 CODE 0 text7 dist/default/production/LedController.
 _D_TIMER0_Enable 2104 0 CODE 0 text8 dist/default/production/LedController.X.production.obj
 ?_D_UART_ReadBlock 87 0 BANK0 1 cstackBANK0 dist/default/production/LedController.X.production.obj
 __size_of_writeByte 0 0 ABS 0 - dist/default/production/LedController.X.production.obj
-stackhi 7FF 0 ABS 0 - /tmp/xcX0Xlakd.obj
-stacklo 13F 0 ABS 0 - /tmp/xcX0Xlakd.obj
+stackhi 7FF 0 ABS 0 - /tmp/xcXQtCexU.obj
+stacklo 13F 0 ABS 0 - /tmp/xcXQtCexU.obj
 __Lintcode 8 0 CODE 0 intcode dist/default/production/LedController.X.production.obj
 __end_of_D_PWM_GetRed 221C 0 CODE 0 text29 dist/default/production/LedController.X.production.obj
 __Lintret 0 0 ABS 0 intret dist/default/production/LedController.X.production.obj
@@ -1487,7 +1487,7 @@ __Ltext53 0 0 ABS 0 text53 dist/default/production/LedController.X.production.ob
 __Ltext54 0 0 ABS 0 text54 dist/default/production/LedController.X.production.obj
 __Ltext55 0 0 ABS 0 text55 dist/default/production/LedController.X.production.obj
 main@length B0 0 BANK0 1 cstackBANK0 dist/default/production/LedController.X.production.obj
-__ramtop 800 0 RAM 0 ramtop /tmp/xcX0Xlakd.obj
+__ramtop 800 0 RAM 0 ramtop /tmp/xcXQtCexU.obj
 ___aldiv@dividend 87 0 BANK0 1 cstackBANK0 dist/default/production/LedController.X.production.obj
 __size_ofi1_D_UART_Enable 0 0 ABS 0 - dist/default/production/LedController.X.production.obj
 _HighISR 8 0 CODE 0 intcode dist/default/production/LedController.X.production.obj

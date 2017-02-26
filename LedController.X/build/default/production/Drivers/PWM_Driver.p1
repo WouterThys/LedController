@@ -4285,9 +4285,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PWM_Driver.c: 336: uint8_t D_PWM_GetRed(void) {
 [e :U _D_PWM_GetRed ]
 [f ]
-[; ;PWM_Driver.c: 337: return PWM_Red.duty_cnt;
+[; ;PWM_Driver.c: 337: return PWM_Red.duty_val;
 "337
-[e ) . _PWM_Red 0 ]
+[e ) . _PWM_Red 1 ]
 [e $UE 403  ]
 [; ;PWM_Driver.c: 338: }
 "338
@@ -4299,9 +4299,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PWM_Driver.c: 340: uint8_t D_PWM_GetGreen(void) {
 [e :U _D_PWM_GetGreen ]
 [f ]
-[; ;PWM_Driver.c: 341: return PWM_Green.duty_cnt;
+[; ;PWM_Driver.c: 341: return PWM_Green.duty_val;
 "341
-[e ) . _PWM_Green 0 ]
+[e ) . _PWM_Green 1 ]
 [e $UE 404  ]
 [; ;PWM_Driver.c: 342: }
 "342
@@ -4313,9 +4313,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PWM_Driver.c: 344: uint8_t D_PWM_GetBlue(void) {
 [e :U _D_PWM_GetBlue ]
 [f ]
-[; ;PWM_Driver.c: 345: return PWM_Blue.duty_cnt;
+[; ;PWM_Driver.c: 345: return PWM_Blue.duty_val;
 "345
-[e ) . _PWM_Blue 0 ]
+[e ) . _PWM_Blue 1 ]
 [e $UE 405  ]
 [; ;PWM_Driver.c: 346: }
 "346

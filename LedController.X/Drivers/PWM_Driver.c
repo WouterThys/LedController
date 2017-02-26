@@ -334,15 +334,15 @@ void D_PWM_SetRGB(uint8_t r, uint8_t g, uint8_t b) {
 }
 
 uint8_t D_PWM_GetRed(void) {
-    return PWM_Red.duty_cnt;
+    return PWM_Red.duty_val;
 }
 
 uint8_t D_PWM_GetGreen(void) {
-    return PWM_Green.duty_cnt;    
+    return PWM_Green.duty_val;    
 }
     
 uint8_t D_PWM_GetBlue(void) {
-    return PWM_Blue.duty_cnt;  
+    return PWM_Blue.duty_val;  
 }
 
 void D_PWM_ScaleDown(void) {

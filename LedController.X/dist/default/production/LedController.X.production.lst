@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC18 LITE Macro Assembler V1.40 build -251452761 
-                                                                                               Fri Feb 24 18:56:39 2017
+                                                                                               Sat Feb 25 21:04:27 2017
 
 Microchip Technology Omniscient Code Generator v1.40 (Free mode) build 201612010151
      1                           	processor	18F2550
@@ -5158,11 +5158,11 @@ Microchip Technology Omniscient Code Generator v1.40 (Free mode) build 201612010
   5144  002216                     _D_PWM_GetRed:
   5145                           	opt stack 17
   5146                           
-  5147                           ;PWM_Driver.c: 337: return PWM_Red.duty_cnt;
+  5147                           ;PWM_Driver.c: 337: return PWM_Red.duty_val;
   5148                           
   5149                           ;incstack = 0
   5150  002216  0100               	movlb	0	; () banked
-  5151  002218  51CC               	movf	_PWM_Red& (0+255),w,b
+  5151  002218  51CD               	movf	(_PWM_Red+1)& (0+255),w,b
   5152  00221A  0012               	return	
   5153  00221C                     __end_of_D_PWM_GetRed:
   5154                           	opt stack 0
@@ -5225,12 +5225,12 @@ Microchip Technology Omniscient Code Generator v1.40 (Free mode) build 201612010
   5211  00221C                     _D_PWM_GetGreen:
   5212                           	opt stack 17
   5213                           
-  5214                           ;PWM_Driver.c: 341: return PWM_Green.duty_cnt;
+  5214                           ;PWM_Driver.c: 341: return PWM_Green.duty_val;
   5215                           
   5216                           ; BSR set to: 0
   5217                           ;incstack = 0
   5218  00221C  0100               	movlb	0	; () banked
-  5219  00221E  51CA               	movf	_PWM_Green& (0+255),w,b
+  5219  00221E  51CB               	movf	(_PWM_Green+1)& (0+255),w,b
   5220  002220  0012               	return	
   5221  002222                     __end_of_D_PWM_GetGreen:
   5222                           	opt stack 0
@@ -5293,12 +5293,12 @@ Microchip Technology Omniscient Code Generator v1.40 (Free mode) build 201612010
   5279  002222                     _D_PWM_GetBlue:
   5280                           	opt stack 17
   5281                           
-  5282                           ;PWM_Driver.c: 345: return PWM_Blue.duty_cnt;
+  5282                           ;PWM_Driver.c: 345: return PWM_Blue.duty_val;
   5283                           
   5284                           ; BSR set to: 0
   5285                           ;incstack = 0
   5286  002222  0100               	movlb	0	; () banked
-  5287  002224  51C8               	movf	_PWM_Blue& (0+255),w,b
+  5287  002224  51C9               	movf	(_PWM_Blue+1)& (0+255),w,b
   5288  002226  0012               	return	
   5289  002228                     __end_of_D_PWM_GetBlue:
   5290                           	opt stack 0
@@ -10106,7 +10106,7 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V1.40 build -251452761 
-Symbol Table                                                                                   Fri Feb 24 18:56:39 2017
+Symbol Table                                                                                   Sat Feb 25 21:04:27 2017
 
                           _b 00CF                            _g 00D0                            _r 00D1  
                          l50 211C                           l46 1868                           l39 182E  

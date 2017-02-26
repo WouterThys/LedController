@@ -23,5 +23,5 @@ class OnOffPanel(Frame):
         circle_off = MyCircle(45, 45, 35, text="OFF")
         circle_on = MyCircle(135, 45, 35, text="ON")
 
-        circle_on.draw(self.canvas, fill="Red", activefill="FireBrick", btn_click=on_btn_click)
-        circle_off.draw(self.canvas, fill="Black", activefill="SlateGray", btn_click=off_btn_click)
+        circle_on.draw(self.canvas, fill="Red", activefill="FireBrick", left_btn_click=on_btn_click)
+        circle_off.draw(self.canvas, fill="Black", activefill="SlateGray", left_btn_click=off_btn_click)

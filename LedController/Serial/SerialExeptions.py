@@ -86,3 +86,15 @@ class SerialMessageConversionException(SerialError):
         if self.reason is not None:
             ret += "[REASON] %s\n" % str(self.reason)
         return ret
+
+
+class SerialReadThreadException(SerialError):
+    def __init__(self, message, reason=None):
+        self.message = message
+        self.reason = reason
+
+    def __str__(self):
+        ret = "[ACK ERROR] %s\n" % str(self.message)
+        if self.reason is not None:
+            ret += "[REASON] %s\n" % str(self.reason)
+        return ret
