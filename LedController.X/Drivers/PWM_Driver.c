@@ -24,8 +24,8 @@
  ******************************************************************************/
 static pwm_t PWM_Red, PWM_Green, PWM_Blue;
 static uint8_t scale;
-typedef enum {Color, Flash, Strobe, Fade, Smooth} states_t;
-static states_t state;
+typedef enum {Color, Flash, Strobe, Fade, Smooth, Disabled} states_t;
+static states_t state, saved_state;
 
 /*******************************************************************************
  *          BASIC FUNCTIONS
@@ -48,28 +48,34 @@ void setRGB(uint8_t r, uint8_t g, uint8_t b) {
 
 void pwmColors(uint8_t birghtness) {
     // Duty checks
-    if (PWM_Red.duty_cnt >= (PWM_Red.duty_val >> (BRIGHTNESS_MAX-birghtness))) {
+    if (state != Disabled) {
+        if (PWM_Red.duty_cnt >= (PWM_Red.duty_val >> (BRIGHTNESS_MAX-birghtness))) {
+            R_PORT = 0;
+        } else {
+            R_PORT = 1;
+        }
+
+        if (PWM_Green.duty_cnt >= (PWM_Green.duty_val >> (BRIGHTNESS_MAX-birghtness))) {
+            G_PORT = 0;
+        } else {
+            G_PORT = 1;
+        }
+
+        if (PWM_Blue.duty_cnt >= (PWM_Blue.duty_val >> (BRIGHTNESS_MAX-birghtness))) {
+            B_PORT = 0;
+        } else {
+            B_PORT = 1;
+        }
+
+        // Duty counts
+        PWM_Red.duty_cnt++;
+        PWM_Green.duty_cnt++;
+        PWM_Blue.duty_cnt++;
+    } else {
         R_PORT = 0;
-    } else {
-        R_PORT = 1;
-    }
-    
-    if (PWM_Green.duty_cnt >= (PWM_Green.duty_val >> (BRIGHTNESS_MAX-birghtness))) {
         G_PORT = 0;
-    } else {
-        G_PORT = 1;
-    }
-    
-    if (PWM_Blue.duty_cnt >= (PWM_Blue.duty_val >> (BRIGHTNESS_MAX-birghtness))) {
         B_PORT = 0;
-    } else {
-        B_PORT = 1;
     }
-    
-    // Duty counts
-    PWM_Red.duty_cnt++;
-    PWM_Green.duty_cnt++;
-    PWM_Blue.duty_cnt++;
 }
 
 void flash(void) {
@@ -245,6 +251,7 @@ void handleState() {
     switch(state) {
         case Color:
             pwmColors(scale);
+            cnt++;
             break;
             
         case Flash:
@@ -252,6 +259,7 @@ void handleState() {
                 flash();
             }
             pwmColors(BRIGHTNESS_MAX);
+            cnt++;
             break;
             
         case Strobe:
@@ -259,6 +267,7 @@ void handleState() {
                 strobe2();
             }
             pwmColors(BRIGHTNESS_MAX);
+            cnt++;
             break;
             
         case Fade:
@@ -266,6 +275,7 @@ void handleState() {
                 fade();
             }
             pwmColors(BRIGHTNESS_MAX);
+            cnt++;
             break;
             
         case Smooth:
@@ -273,12 +283,16 @@ void handleState() {
                 smooth();
             }
             pwmColors(BRIGHTNESS_MAX);
+            cnt++;
+            break;
+            
+        case Disabled:
             break;
             
         default:
             break;
     }
-    cnt++;
+    
 }
 
 /*******************************************************************************
@@ -295,8 +309,9 @@ void D_PWM_Init(void) {
     PWM_Blue.duty_cnt = 0;
     PWM_Blue.duty_val = 0xFF;
     
-    scale = 0;
+    scale = BRIGHTNESS_MAX;
     state = Color;
+    saved_state = state;
     
     // Timer 0
     D_TIMER0_Init(0);
@@ -309,6 +324,13 @@ void D_PWM_Init(void) {
 }
     
 void D_PWM_Enable(bool enable) {
+    if (enable) {
+        state = saved_state;
+    } else {
+        saved_state = state;
+        state = Disabled;
+        pwmColors(scale);
+    }
     D_TIMER0_Enable(enable);
 }
     
@@ -330,7 +352,9 @@ void D_PWM_SetDuty(uint8_t which, uint8_t duty) {
 
 void D_PWM_SetRGB(uint8_t r, uint8_t g, uint8_t b) {
     setRGB(r, g, b);
-    state = Color;
+    if (state != Disabled) {
+        state = Color;
+    }
 }
 
 uint8_t D_PWM_GetRed(void) {
@@ -366,19 +390,27 @@ uint8_t D_PWM_GetState(void) {
 }
 
 void D_PWM_Flash(void) {
-    state = Flash;
+    if (state != Disabled) {
+        state = Flash;
+    }
 }
     
 void D_PWM_Strobe(void) {
-    state = Strobe;
+    if (state != Disabled) {
+        state = Strobe;
+    }
 }
     
 void D_PWM_Fade(void) {
-    state = Fade;
+    if (state != Disabled) {
+        state = Fade;
+    }
 }
     
 void D_PWM_Smooth(void) {
-    state = Smooth;
+    if (state != Disabled) {
+        state = Smooth;
+    }
 }
 
 /*******************************************************************************

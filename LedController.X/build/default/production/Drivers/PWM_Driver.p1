@@ -3,8 +3,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [s S327 `uc 1 `uc 1 ]
 [n S327 . duty_cnt duty_val ]
 "28 Drivers/PWM_Driver.c
-[c E3719 0 1 2 3 4 .. ]
-[n E3719 . Color Flash Strobe Fade Smooth  ]
+[c E3719 0 1 2 3 4 5 .. ]
+[n E3719 . Color Flash Strobe Fade Smooth Disabled  ]
 "55 Drivers/PWM_Driver.h
 [v _D_PWM_SetDuty `(v ~T0 @X0 0 ef2`uc`uc ]
 "2231 /opt/microchip/xc8/v1.40/include/pic18f2550.h
@@ -3354,10 +3354,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "26
 [v _scale `uc ~T0 @X0 1 s ]
 [; ;PWM_Driver.c: 26: static uint8_t scale;
-[; ;PWM_Driver.c: 27: typedef enum {Color, Flash, Strobe, Fade, Smooth} states_t;
+[; ;PWM_Driver.c: 27: typedef enum {Color, Flash, Strobe, Fade, Smooth, Disabled} states_t;
 "28
 [v _state `E3719 ~T0 @X0 1 s ]
-[; ;PWM_Driver.c: 28: static states_t state;
+[v _saved_state `E3719 ~T0 @X0 1 s ]
+[; ;PWM_Driver.c: 28: static states_t state, saved_state;
 [; ;PWM_Driver.c: 33: void setRGB(uint8_t r, uint8_t g, uint8_t b);
 [; ;PWM_Driver.c: 34: void pwmColors(uint8_t birghtness);
 [; ;PWM_Driver.c: 35: void handleState(void);
@@ -3395,676 +3396,682 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _pwmColors ]
 [v _birghtness `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;PWM_Driver.c: 51: if (PWM_Red.duty_cnt >= (PWM_Red.duty_val >> (7-birghtness))) {
+[; ;PWM_Driver.c: 51: if (state != Disabled) {
 "51
-[e $ ! >= -> . _PWM_Red 0 `i >> -> . _PWM_Red 1 `i - -> 7 `i -> _birghtness `i 330  ]
+[e $ ! != -> _state `i -> . `E3719 5 `i 330  ]
 {
-[; ;PWM_Driver.c: 52: PORTBbits.RB2 = 0;
+[; ;PWM_Driver.c: 52: if (PWM_Red.duty_cnt >= (PWM_Red.duty_val >> (7-birghtness))) {
 "52
-[e = . . _PORTBbits 0 2 -> -> 0 `i `uc ]
+[e $ ! >= -> . _PWM_Red 0 `i >> -> . _PWM_Red 1 `i - -> 7 `i -> _birghtness `i 331  ]
+{
+[; ;PWM_Driver.c: 53: PORTBbits.RB2 = 0;
 "53
+[e = . . _PORTBbits 0 2 -> -> 0 `i `uc ]
+"54
 }
-[; ;PWM_Driver.c: 53: } else {
-[e $U 331  ]
+[; ;PWM_Driver.c: 54: } else {
+[e $U 332  ]
+[e :U 331 ]
+{
+[; ;PWM_Driver.c: 55: PORTBbits.RB2 = 1;
+"55
+[e = . . _PORTBbits 0 2 -> -> 1 `i `uc ]
+"56
+}
+[e :U 332 ]
+[; ;PWM_Driver.c: 56: }
+[; ;PWM_Driver.c: 58: if (PWM_Green.duty_cnt >= (PWM_Green.duty_val >> (7-birghtness))) {
+"58
+[e $ ! >= -> . _PWM_Green 0 `i >> -> . _PWM_Green 1 `i - -> 7 `i -> _birghtness `i 333  ]
+{
+[; ;PWM_Driver.c: 59: PORTBbits.RB3 = 0;
+"59
+[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
+"60
+}
+[; ;PWM_Driver.c: 60: } else {
+[e $U 334  ]
+[e :U 333 ]
+{
+[; ;PWM_Driver.c: 61: PORTBbits.RB3 = 1;
+"61
+[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
+"62
+}
+[e :U 334 ]
+[; ;PWM_Driver.c: 62: }
+[; ;PWM_Driver.c: 64: if (PWM_Blue.duty_cnt >= (PWM_Blue.duty_val >> (7-birghtness))) {
+"64
+[e $ ! >= -> . _PWM_Blue 0 `i >> -> . _PWM_Blue 1 `i - -> 7 `i -> _birghtness `i 335  ]
+{
+[; ;PWM_Driver.c: 65: PORTBbits.RB1 = 0;
+"65
+[e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
+"66
+}
+[; ;PWM_Driver.c: 66: } else {
+[e $U 336  ]
+[e :U 335 ]
+{
+[; ;PWM_Driver.c: 67: PORTBbits.RB1 = 1;
+"67
+[e = . . _PORTBbits 0 1 -> -> 1 `i `uc ]
+"68
+}
+[e :U 336 ]
+[; ;PWM_Driver.c: 68: }
+[; ;PWM_Driver.c: 71: PWM_Red.duty_cnt++;
+"71
+[e ++ . _PWM_Red 0 -> -> 1 `i `uc ]
+[; ;PWM_Driver.c: 72: PWM_Green.duty_cnt++;
+"72
+[e ++ . _PWM_Green 0 -> -> 1 `i `uc ]
+[; ;PWM_Driver.c: 73: PWM_Blue.duty_cnt++;
+"73
+[e ++ . _PWM_Blue 0 -> -> 1 `i `uc ]
+"74
+}
+[; ;PWM_Driver.c: 74: } else {
+[e $U 337  ]
 [e :U 330 ]
 {
-[; ;PWM_Driver.c: 54: PORTBbits.RB2 = 1;
-"54
-[e = . . _PORTBbits 0 2 -> -> 1 `i `uc ]
-"55
-}
-[e :U 331 ]
-[; ;PWM_Driver.c: 55: }
-[; ;PWM_Driver.c: 57: if (PWM_Green.duty_cnt >= (PWM_Green.duty_val >> (7-birghtness))) {
-"57
-[e $ ! >= -> . _PWM_Green 0 `i >> -> . _PWM_Green 1 `i - -> 7 `i -> _birghtness `i 332  ]
-{
-[; ;PWM_Driver.c: 58: PORTBbits.RB3 = 0;
-"58
-[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
-"59
-}
-[; ;PWM_Driver.c: 59: } else {
-[e $U 333  ]
-[e :U 332 ]
-{
-[; ;PWM_Driver.c: 60: PORTBbits.RB3 = 1;
-"60
-[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
-"61
-}
-[e :U 333 ]
-[; ;PWM_Driver.c: 61: }
-[; ;PWM_Driver.c: 63: if (PWM_Blue.duty_cnt >= (PWM_Blue.duty_val >> (7-birghtness))) {
-"63
-[e $ ! >= -> . _PWM_Blue 0 `i >> -> . _PWM_Blue 1 `i - -> 7 `i -> _birghtness `i 334  ]
-{
-[; ;PWM_Driver.c: 64: PORTBbits.RB1 = 0;
-"64
-[e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
-"65
-}
-[; ;PWM_Driver.c: 65: } else {
-[e $U 335  ]
-[e :U 334 ]
-{
-[; ;PWM_Driver.c: 66: PORTBbits.RB1 = 1;
-"66
-[e = . . _PORTBbits 0 1 -> -> 1 `i `uc ]
-"67
-}
-[e :U 335 ]
-[; ;PWM_Driver.c: 67: }
-[; ;PWM_Driver.c: 70: PWM_Red.duty_cnt++;
-"70
-[e ++ . _PWM_Red 0 -> -> 1 `i `uc ]
-[; ;PWM_Driver.c: 71: PWM_Green.duty_cnt++;
-"71
-[e ++ . _PWM_Green 0 -> -> 1 `i `uc ]
-[; ;PWM_Driver.c: 72: PWM_Blue.duty_cnt++;
-"72
-[e ++ . _PWM_Blue 0 -> -> 1 `i `uc ]
-[; ;PWM_Driver.c: 73: }
-"73
-[e :UE 329 ]
-}
+[; ;PWM_Driver.c: 75: PORTBbits.RB2 = 0;
 "75
-[v _flash `(v ~T0 @X0 1 ef ]
-{
-[; ;PWM_Driver.c: 75: void flash(void) {
-[e :U _flash ]
-[f ]
+[e = . . _PORTBbits 0 2 -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 76: PORTBbits.RB3 = 0;
 "76
-[v F3750 `uc ~T0 @X0 1 s count ]
+[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 77: PORTBbits.RB1 = 0;
 "77
-[v F3751 `uc ~T0 @X0 1 s color ]
-[; ;PWM_Driver.c: 76: static uint8_t count;
-[; ;PWM_Driver.c: 77: static uint8_t color;
-[; ;PWM_Driver.c: 79: if (count >= (0xFF >> scale)) {
-"79
-[e $ ! >= -> F3750 `i >> -> 255 `i _scale 337  ]
-{
-[; ;PWM_Driver.c: 80: count = 0;
-"80
-[e = F3750 -> -> 0 `i `uc ]
-"81
+[e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
+"78
 }
 [e :U 337 ]
-[; ;PWM_Driver.c: 81: }
-[; ;PWM_Driver.c: 82: if (count == 0) {
+[; ;PWM_Driver.c: 78: }
+[; ;PWM_Driver.c: 79: }
+"79
+[e :UE 329 ]
+}
+"81
+[v _flash `(v ~T0 @X0 1 ef ]
+{
+[; ;PWM_Driver.c: 81: void flash(void) {
+[e :U _flash ]
+[f ]
 "82
-[e $ ! == -> F3750 `i -> 0 `i 338  ]
-{
-[; ;PWM_Driver.c: 83: switch(color) {
+[v F3752 `uc ~T0 @X0 1 s count ]
 "83
-[e $U 340  ]
-{
-[; ;PWM_Driver.c: 84: case 0:
-"84
-[e :U 341 ]
-[; ;PWM_Driver.c: 85: setRGB(255, 0, 0);
+[v F3753 `uc ~T0 @X0 1 s color ]
+[; ;PWM_Driver.c: 82: static uint8_t count;
+[; ;PWM_Driver.c: 83: static uint8_t color;
+[; ;PWM_Driver.c: 85: if (count >= (0xFF >> scale)) {
 "85
-[e ( _setRGB (3 , , -> -> 255 `i `uc -> -> 0 `i `uc -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 86: color = 1;
+[e $ ! >= -> F3752 `i >> -> 255 `i _scale 339  ]
+{
+[; ;PWM_Driver.c: 86: count = 0;
 "86
-[e = F3751 -> -> 1 `i `uc ]
-[; ;PWM_Driver.c: 87: break;
+[e = F3752 -> -> 0 `i `uc ]
 "87
-[e $U 339  ]
-[; ;PWM_Driver.c: 88: case 1:
-"88
-[e :U 342 ]
-[; ;PWM_Driver.c: 89: setRGB(0, 255, 0);
-"89
-[e ( _setRGB (3 , , -> -> 0 `i `uc -> -> 255 `i `uc -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 90: color = 2;
-"90
-[e = F3751 -> -> 2 `i `uc ]
-[; ;PWM_Driver.c: 91: break;
-"91
-[e $U 339  ]
-[; ;PWM_Driver.c: 92: case 2:
-"92
-[e :U 343 ]
-[; ;PWM_Driver.c: 93: setRGB(0, 0, 255);
-"93
-[e ( _setRGB (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> -> 255 `i `uc ]
-[; ;PWM_Driver.c: 94: color = 3;
-"94
-[e = F3751 -> -> 3 `i `uc ]
-[; ;PWM_Driver.c: 95: break;
-"95
-[e $U 339  ]
-[; ;PWM_Driver.c: 96: case 3:
-"96
-[e :U 344 ]
-[; ;PWM_Driver.c: 97: setRGB(255, 255, 255);
-"97
-[e ( _setRGB (3 , , -> -> 255 `i `uc -> -> 255 `i `uc -> -> 255 `i `uc ]
-[; ;PWM_Driver.c: 98: color = 0;
-"98
-[e = F3751 -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 99: break;
-"99
-[e $U 339  ]
-"100
 }
-[; ;PWM_Driver.c: 100: }
-[e $U 339  ]
-"83
-[e :U 340 ]
-[e [\ F3751 , $ -> -> 0 `i `uc 341
- , $ -> -> 1 `i `uc 342
- , $ -> -> 2 `i `uc 343
- , $ -> -> 3 `i `uc 344
- 339 ]
-"100
 [e :U 339 ]
+[; ;PWM_Driver.c: 87: }
+[; ;PWM_Driver.c: 88: if (count == 0) {
+"88
+[e $ ! == -> F3752 `i -> 0 `i 340  ]
+{
+[; ;PWM_Driver.c: 89: switch(color) {
+"89
+[e $U 342  ]
+{
+[; ;PWM_Driver.c: 90: case 0:
+"90
+[e :U 343 ]
+[; ;PWM_Driver.c: 91: setRGB(255, 0, 0);
+"91
+[e ( _setRGB (3 , , -> -> 255 `i `uc -> -> 0 `i `uc -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 92: color = 1;
+"92
+[e = F3753 -> -> 1 `i `uc ]
+[; ;PWM_Driver.c: 93: break;
+"93
+[e $U 341  ]
+[; ;PWM_Driver.c: 94: case 1:
+"94
+[e :U 344 ]
+[; ;PWM_Driver.c: 95: setRGB(0, 255, 0);
+"95
+[e ( _setRGB (3 , , -> -> 0 `i `uc -> -> 255 `i `uc -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 96: color = 2;
+"96
+[e = F3753 -> -> 2 `i `uc ]
+[; ;PWM_Driver.c: 97: break;
+"97
+[e $U 341  ]
+[; ;PWM_Driver.c: 98: case 2:
+"98
+[e :U 345 ]
+[; ;PWM_Driver.c: 99: setRGB(0, 0, 255);
+"99
+[e ( _setRGB (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> -> 255 `i `uc ]
+[; ;PWM_Driver.c: 100: color = 3;
+"100
+[e = F3753 -> -> 3 `i `uc ]
+[; ;PWM_Driver.c: 101: break;
 "101
-}
-[e :U 338 ]
-[; ;PWM_Driver.c: 101: }
-[; ;PWM_Driver.c: 103: count++;
+[e $U 341  ]
+[; ;PWM_Driver.c: 102: case 3:
+"102
+[e :U 346 ]
+[; ;PWM_Driver.c: 103: setRGB(255, 255, 255);
 "103
-[e ++ F3750 -> -> 1 `i `uc ]
-[; ;PWM_Driver.c: 104: }
+[e ( _setRGB (3 , , -> -> 255 `i `uc -> -> 255 `i `uc -> -> 255 `i `uc ]
+[; ;PWM_Driver.c: 104: color = 0;
 "104
-[e :UE 336 ]
-}
+[e = F3753 -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 105: break;
+"105
+[e $U 341  ]
 "106
+}
+[; ;PWM_Driver.c: 106: }
+[e $U 341  ]
+"89
+[e :U 342 ]
+[e [\ F3753 , $ -> -> 0 `i `uc 343
+ , $ -> -> 1 `i `uc 344
+ , $ -> -> 2 `i `uc 345
+ , $ -> -> 3 `i `uc 346
+ 341 ]
+"106
+[e :U 341 ]
+"107
+}
+[e :U 340 ]
+[; ;PWM_Driver.c: 107: }
+[; ;PWM_Driver.c: 109: count++;
+"109
+[e ++ F3752 -> -> 1 `i `uc ]
+[; ;PWM_Driver.c: 110: }
+"110
+[e :UE 338 ]
+}
+"112
 [v _strobe `(v ~T0 @X0 1 ef ]
 {
-[; ;PWM_Driver.c: 106: void strobe(void) {
+[; ;PWM_Driver.c: 112: void strobe(void) {
 [e :U _strobe ]
 [f ]
-"107
-[v F3753 `uc ~T0 @X0 1 s cnt ]
-"108
-[v F3754 `uc ~T0 @X0 1 s up ]
-[; ;PWM_Driver.c: 107: static uint8_t cnt;
-[; ;PWM_Driver.c: 108: static bool up;
-[; ;PWM_Driver.c: 110: if (cnt > 0xF7) {
-"110
-[e $ ! > -> F3753 `i -> 247 `i 346  ]
-{
-[; ;PWM_Driver.c: 111: up = 0;
-"111
-[e = F3754 -> -> 0 `i `uc ]
-"112
-}
-[e :U 346 ]
-[; ;PWM_Driver.c: 112: }
-[; ;PWM_Driver.c: 113: if (cnt < 8) {
 "113
-[e $ ! < -> F3753 `i -> 8 `i 347  ]
-{
-[; ;PWM_Driver.c: 114: up = 1;
+[v F3755 `uc ~T0 @X0 1 s cnt ]
 "114
-[e = F3754 -> -> 1 `i `uc ]
-"115
-}
-[e :U 347 ]
-[; ;PWM_Driver.c: 115: }
-[; ;PWM_Driver.c: 117: if (up) {
+[v F3756 `uc ~T0 @X0 1 s up ]
+[; ;PWM_Driver.c: 113: static uint8_t cnt;
+[; ;PWM_Driver.c: 114: static bool up;
+[; ;PWM_Driver.c: 116: if (cnt > 0xF7) {
+"116
+[e $ ! > -> F3755 `i -> 247 `i 348  ]
+{
+[; ;PWM_Driver.c: 117: up = 0;
 "117
-[e $ ! != -> F3754 `i -> -> -> 0 `i `uc `i 348  ]
-{
-[; ;PWM_Driver.c: 118: cnt+=(scale+1);
+[e = F3756 -> -> 0 `i `uc ]
 "118
-[e =+ F3753 -> + -> _scale `i -> 1 `i `uc ]
-"119
 }
-[; ;PWM_Driver.c: 119: } else {
-[e $U 349  ]
 [e :U 348 ]
+[; ;PWM_Driver.c: 118: }
+[; ;PWM_Driver.c: 119: if (cnt < 8) {
+"119
+[e $ ! < -> F3755 `i -> 8 `i 349  ]
 {
-[; ;PWM_Driver.c: 120: cnt-=(scale+1);
+[; ;PWM_Driver.c: 120: up = 1;
 "120
-[e =- F3753 -> + -> _scale `i -> 1 `i `uc ]
+[e = F3756 -> -> 1 `i `uc ]
 "121
 }
 [e :U 349 ]
 [; ;PWM_Driver.c: 121: }
-[; ;PWM_Driver.c: 123: setRGB(cnt, cnt, cnt);
+[; ;PWM_Driver.c: 123: if (up) {
 "123
-[e ( _setRGB (3 , , F3753 F3753 F3753 ]
-[; ;PWM_Driver.c: 124: }
+[e $ ! != -> F3756 `i -> -> -> 0 `i `uc `i 350  ]
+{
+[; ;PWM_Driver.c: 124: cnt+=(scale+1);
 "124
-[e :UE 345 ]
+[e =+ F3755 -> + -> _scale `i -> 1 `i `uc ]
+"125
 }
+[; ;PWM_Driver.c: 125: } else {
+[e $U 351  ]
+[e :U 350 ]
+{
+[; ;PWM_Driver.c: 126: cnt-=(scale+1);
 "126
-[v _strobe2 `(v ~T0 @X0 1 ef ]
-{
-[; ;PWM_Driver.c: 126: void strobe2(void) {
-[e :U _strobe2 ]
-[f ]
+[e =- F3755 -> + -> _scale `i -> 1 `i `uc ]
 "127
-[v F3756 `uc ~T0 @X0 1 s cnt ]
-"128
-[v F3757 `uc ~T0 @X0 1 s on_cnt ]
-"129
-[v F3758 `uc ~T0 @X0 1 s on ]
-[; ;PWM_Driver.c: 127: static uint8_t cnt;
-[; ;PWM_Driver.c: 128: static uint8_t on_cnt;
-[; ;PWM_Driver.c: 129: static bool on;
-[; ;PWM_Driver.c: 131: if (cnt < ((scale<<6)+1)) {
-"131
-[e $ ! < -> F3756 `i + << -> _scale `i -> 6 `i -> 1 `i 351  ]
-{
-[; ;PWM_Driver.c: 132: if (on_cnt < 2) {
-"132
-[e $ ! < -> F3757 `i -> 2 `i 352  ]
-{
-[; ;PWM_Driver.c: 133: setRGB(255,255,255);
-"133
-[e ( _setRGB (3 , , -> -> 255 `i `uc -> -> 255 `i `uc -> -> 255 `i `uc ]
-"134
-}
-[; ;PWM_Driver.c: 134: } else {
-[e $U 353  ]
-[e :U 352 ]
-{
-[; ;PWM_Driver.c: 135: setRGB(0,0,0);
-"135
-[e ( _setRGB (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> -> 0 `i `uc ]
-"136
-}
-[e :U 353 ]
-[; ;PWM_Driver.c: 136: }
-[; ;PWM_Driver.c: 138: on_cnt++;
-"138
-[e ++ F3757 -> -> 1 `i `uc ]
-[; ;PWM_Driver.c: 139: if (on_cnt >= 20) {
-"139
-[e $ ! >= -> F3757 `i -> 20 `i 354  ]
-{
-[; ;PWM_Driver.c: 140: on_cnt = 0;
-"140
-[e = F3757 -> -> 0 `i `uc ]
-"141
-}
-[e :U 354 ]
-"142
 }
 [e :U 351 ]
-[; ;PWM_Driver.c: 141: }
-[; ;PWM_Driver.c: 142: }
-[; ;PWM_Driver.c: 143: cnt += ((scale<<6) + 1);
-"143
-[e =+ F3756 -> + << -> _scale `i -> 6 `i -> 1 `i `uc ]
-[; ;PWM_Driver.c: 144: }
-"144
-[e :UE 350 ]
+[; ;PWM_Driver.c: 127: }
+[; ;PWM_Driver.c: 129: setRGB(cnt, cnt, cnt);
+"129
+[e ( _setRGB (3 , , F3755 F3755 F3755 ]
+[; ;PWM_Driver.c: 130: }
+"130
+[e :UE 347 ]
 }
+"132
+[v _strobe2 `(v ~T0 @X0 1 ef ]
+{
+[; ;PWM_Driver.c: 132: void strobe2(void) {
+[e :U _strobe2 ]
+[f ]
+"133
+[v F3758 `uc ~T0 @X0 1 s cnt ]
+"134
+[v F3759 `uc ~T0 @X0 1 s on_cnt ]
+"135
+[v F3760 `uc ~T0 @X0 1 s on ]
+[; ;PWM_Driver.c: 133: static uint8_t cnt;
+[; ;PWM_Driver.c: 134: static uint8_t on_cnt;
+[; ;PWM_Driver.c: 135: static bool on;
+[; ;PWM_Driver.c: 137: if (cnt < ((scale<<6)+1)) {
+"137
+[e $ ! < -> F3758 `i + << -> _scale `i -> 6 `i -> 1 `i 353  ]
+{
+[; ;PWM_Driver.c: 138: if (on_cnt < 2) {
+"138
+[e $ ! < -> F3759 `i -> 2 `i 354  ]
+{
+[; ;PWM_Driver.c: 139: setRGB(255,255,255);
+"139
+[e ( _setRGB (3 , , -> -> 255 `i `uc -> -> 255 `i `uc -> -> 255 `i `uc ]
+"140
+}
+[; ;PWM_Driver.c: 140: } else {
+[e $U 355  ]
+[e :U 354 ]
+{
+[; ;PWM_Driver.c: 141: setRGB(0,0,0);
+"141
+[e ( _setRGB (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> -> 0 `i `uc ]
+"142
+}
+[e :U 355 ]
+[; ;PWM_Driver.c: 142: }
+[; ;PWM_Driver.c: 144: on_cnt++;
+"144
+[e ++ F3759 -> -> 1 `i `uc ]
+[; ;PWM_Driver.c: 145: if (on_cnt >= 20) {
+"145
+[e $ ! >= -> F3759 `i -> 20 `i 356  ]
+{
+[; ;PWM_Driver.c: 146: on_cnt = 0;
 "146
+[e = F3759 -> -> 0 `i `uc ]
+"147
+}
+[e :U 356 ]
+"148
+}
+[e :U 353 ]
+[; ;PWM_Driver.c: 147: }
+[; ;PWM_Driver.c: 148: }
+[; ;PWM_Driver.c: 149: cnt += ((scale<<6) + 1);
+"149
+[e =+ F3758 -> + << -> _scale `i -> 6 `i -> 1 `i `uc ]
+[; ;PWM_Driver.c: 150: }
+"150
+[e :UE 352 ]
+}
+"152
 [v _fade `(v ~T0 @X0 1 ef ]
 {
-[; ;PWM_Driver.c: 146: void fade(void) {
+[; ;PWM_Driver.c: 152: void fade(void) {
 [e :U _fade ]
 [f ]
-"147
-[v F3760 `uc ~T0 @X0 1 s r_cnt ]
-[i F3760
+"153
+[v F3762 `uc ~T0 @X0 1 s r_cnt ]
+[i F3762
 -> -> 0 `i `uc
 ]
-"148
-[v F3761 `uc ~T0 @X0 1 s g_cnt ]
-[i F3761
+"154
+[v F3763 `uc ~T0 @X0 1 s g_cnt ]
+[i F3763
 -> -> 128 `i `uc
 ]
-"149
-[v F3762 `uc ~T0 @X0 1 s b_cnt ]
-[i F3762
+"155
+[v F3764 `uc ~T0 @X0 1 s b_cnt ]
+[i F3764
 -> -> 255 `i `uc
 ]
-"150
-[v F3763 `uc ~T0 @X0 1 s r_up ]
-"151
-[v F3764 `uc ~T0 @X0 1 s g_up ]
-"152
-[v F3765 `uc ~T0 @X0 1 s b_up ]
-[v F3766 `uc ~T0 @X0 1 s fade ]
-[; ;PWM_Driver.c: 147: static uint8_t r_cnt = 0x00;
-[; ;PWM_Driver.c: 148: static uint8_t g_cnt = 0x80;
-[; ;PWM_Driver.c: 149: static uint8_t b_cnt = 0xFF;
-[; ;PWM_Driver.c: 150: static bool r_up;
-[; ;PWM_Driver.c: 151: static bool g_up;
-[; ;PWM_Driver.c: 152: static bool b_up;
-[; ;PWM_Driver.c: 153: static bool fade;
-[; ;PWM_Driver.c: 155: if (fade) {
-"155
-[e $ ! != -> F3766 `i -> -> -> 0 `i `uc `i 356  ]
-{
-[; ;PWM_Driver.c: 156: fade = 0;
 "156
-[e = F3766 -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 158: if (r_cnt > 0xF7) {
+[v F3765 `uc ~T0 @X0 1 s r_up ]
+"157
+[v F3766 `uc ~T0 @X0 1 s g_up ]
 "158
-[e $ ! > -> F3760 `i -> 247 `i 357  ]
-{
-[; ;PWM_Driver.c: 159: r_up = 0;
-"159
-[e = F3763 -> -> 0 `i `uc ]
-"160
-}
-[e :U 357 ]
-[; ;PWM_Driver.c: 160: }
-[; ;PWM_Driver.c: 161: if (r_cnt < 8) {
+[v F3767 `uc ~T0 @X0 1 s b_up ]
+[v F3768 `uc ~T0 @X0 1 s fade ]
+[; ;PWM_Driver.c: 153: static uint8_t r_cnt = 0x00;
+[; ;PWM_Driver.c: 154: static uint8_t g_cnt = 0x80;
+[; ;PWM_Driver.c: 155: static uint8_t b_cnt = 0xFF;
+[; ;PWM_Driver.c: 156: static bool r_up;
+[; ;PWM_Driver.c: 157: static bool g_up;
+[; ;PWM_Driver.c: 158: static bool b_up;
+[; ;PWM_Driver.c: 159: static bool fade;
+[; ;PWM_Driver.c: 161: if (fade) {
 "161
-[e $ ! < -> F3760 `i -> 8 `i 358  ]
+[e $ ! != -> F3768 `i -> -> -> 0 `i `uc `i 358  ]
 {
-[; ;PWM_Driver.c: 162: r_up = 1;
+[; ;PWM_Driver.c: 162: fade = 0;
 "162
-[e = F3763 -> -> 1 `i `uc ]
-"163
-}
-[e :U 358 ]
-[; ;PWM_Driver.c: 163: }
-[; ;PWM_Driver.c: 165: if (g_cnt > 0xF7) {
-"165
-[e $ ! > -> F3761 `i -> 247 `i 359  ]
+[e = F3768 -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 164: if (r_cnt > 0xF7) {
+"164
+[e $ ! > -> F3762 `i -> 247 `i 359  ]
 {
-[; ;PWM_Driver.c: 166: g_up = 0;
+[; ;PWM_Driver.c: 165: r_up = 0;
+"165
+[e = F3765 -> -> 0 `i `uc ]
 "166
-[e = F3764 -> -> 0 `i `uc ]
-"167
 }
 [e :U 359 ]
-[; ;PWM_Driver.c: 167: }
-[; ;PWM_Driver.c: 168: if (g_cnt < 8) {
-"168
-[e $ ! < -> F3761 `i -> 8 `i 360  ]
+[; ;PWM_Driver.c: 166: }
+[; ;PWM_Driver.c: 167: if (r_cnt < 8) {
+"167
+[e $ ! < -> F3762 `i -> 8 `i 360  ]
 {
-[; ;PWM_Driver.c: 169: g_up = 1;
+[; ;PWM_Driver.c: 168: r_up = 1;
+"168
+[e = F3765 -> -> 1 `i `uc ]
 "169
-[e = F3764 -> -> 1 `i `uc ]
-"170
 }
 [e :U 360 ]
-[; ;PWM_Driver.c: 170: }
-[; ;PWM_Driver.c: 172: if (b_cnt > 0xF7) {
-"172
-[e $ ! > -> F3762 `i -> 247 `i 361  ]
+[; ;PWM_Driver.c: 169: }
+[; ;PWM_Driver.c: 171: if (g_cnt > 0xF7) {
+"171
+[e $ ! > -> F3763 `i -> 247 `i 361  ]
 {
-[; ;PWM_Driver.c: 173: b_up = 0;
+[; ;PWM_Driver.c: 172: g_up = 0;
+"172
+[e = F3766 -> -> 0 `i `uc ]
 "173
-[e = F3765 -> -> 0 `i `uc ]
-"174
 }
 [e :U 361 ]
-[; ;PWM_Driver.c: 174: }
-[; ;PWM_Driver.c: 175: if (b_cnt < 8) {
-"175
-[e $ ! < -> F3762 `i -> 8 `i 362  ]
+[; ;PWM_Driver.c: 173: }
+[; ;PWM_Driver.c: 174: if (g_cnt < 8) {
+"174
+[e $ ! < -> F3763 `i -> 8 `i 362  ]
 {
-[; ;PWM_Driver.c: 176: b_up = 1;
+[; ;PWM_Driver.c: 175: g_up = 1;
+"175
+[e = F3766 -> -> 1 `i `uc ]
 "176
-[e = F3765 -> -> 1 `i `uc ]
-"177
 }
 [e :U 362 ]
-[; ;PWM_Driver.c: 177: }
-[; ;PWM_Driver.c: 179: if (r_up) {
+[; ;PWM_Driver.c: 176: }
+[; ;PWM_Driver.c: 178: if (b_cnt > 0xF7) {
+"178
+[e $ ! > -> F3764 `i -> 247 `i 363  ]
+{
+[; ;PWM_Driver.c: 179: b_up = 0;
 "179
-[e $ ! != -> F3763 `i -> -> -> 0 `i `uc `i 363  ]
-{
-[; ;PWM_Driver.c: 180: r_cnt+=(scale+1);
+[e = F3767 -> -> 0 `i `uc ]
 "180
-[e =+ F3760 -> + -> _scale `i -> 1 `i `uc ]
-"181
 }
-[; ;PWM_Driver.c: 181: } else {
-[e $U 364  ]
 [e :U 363 ]
+[; ;PWM_Driver.c: 180: }
+[; ;PWM_Driver.c: 181: if (b_cnt < 8) {
+"181
+[e $ ! < -> F3764 `i -> 8 `i 364  ]
 {
-[; ;PWM_Driver.c: 182: r_cnt-=(scale+1);
+[; ;PWM_Driver.c: 182: b_up = 1;
 "182
-[e =- F3760 -> + -> _scale `i -> 1 `i `uc ]
+[e = F3767 -> -> 1 `i `uc ]
 "183
 }
 [e :U 364 ]
 [; ;PWM_Driver.c: 183: }
-[; ;PWM_Driver.c: 185: if (g_up) {
+[; ;PWM_Driver.c: 185: if (r_up) {
 "185
-[e $ ! != -> F3764 `i -> -> -> 0 `i `uc `i 365  ]
+[e $ ! != -> F3765 `i -> -> -> 0 `i `uc `i 365  ]
 {
-[; ;PWM_Driver.c: 186: g_cnt+=(scale+1);
+[; ;PWM_Driver.c: 186: r_cnt+=(scale+1);
 "186
-[e =+ F3761 -> + -> _scale `i -> 1 `i `uc ]
+[e =+ F3762 -> + -> _scale `i -> 1 `i `uc ]
 "187
 }
 [; ;PWM_Driver.c: 187: } else {
 [e $U 366  ]
 [e :U 365 ]
 {
-[; ;PWM_Driver.c: 188: g_cnt-=(scale+1);
+[; ;PWM_Driver.c: 188: r_cnt-=(scale+1);
 "188
-[e =- F3761 -> + -> _scale `i -> 1 `i `uc ]
+[e =- F3762 -> + -> _scale `i -> 1 `i `uc ]
 "189
 }
 [e :U 366 ]
 [; ;PWM_Driver.c: 189: }
-[; ;PWM_Driver.c: 191: if (b_up) {
+[; ;PWM_Driver.c: 191: if (g_up) {
 "191
-[e $ ! != -> F3765 `i -> -> -> 0 `i `uc `i 367  ]
+[e $ ! != -> F3766 `i -> -> -> 0 `i `uc `i 367  ]
 {
-[; ;PWM_Driver.c: 192: b_cnt+=(scale+1);
+[; ;PWM_Driver.c: 192: g_cnt+=(scale+1);
 "192
-[e =+ F3762 -> + -> _scale `i -> 1 `i `uc ]
+[e =+ F3763 -> + -> _scale `i -> 1 `i `uc ]
 "193
 }
 [; ;PWM_Driver.c: 193: } else {
 [e $U 368  ]
 [e :U 367 ]
 {
-[; ;PWM_Driver.c: 194: b_cnt-=(scale+1);
+[; ;PWM_Driver.c: 194: g_cnt-=(scale+1);
 "194
-[e =- F3762 -> + -> _scale `i -> 1 `i `uc ]
+[e =- F3763 -> + -> _scale `i -> 1 `i `uc ]
 "195
 }
 [e :U 368 ]
-"196
-}
 [; ;PWM_Driver.c: 195: }
-[; ;PWM_Driver.c: 196: } else {
-[e $U 369  ]
-[e :U 356 ]
-{
-[; ;PWM_Driver.c: 197: fade = 1;
+[; ;PWM_Driver.c: 197: if (b_up) {
 "197
-[e = F3766 -> -> 1 `i `uc ]
+[e $ ! != -> F3767 `i -> -> -> 0 `i `uc `i 369  ]
+{
+[; ;PWM_Driver.c: 198: b_cnt+=(scale+1);
 "198
+[e =+ F3764 -> + -> _scale `i -> 1 `i `uc ]
+"199
 }
+[; ;PWM_Driver.c: 199: } else {
+[e $U 370  ]
 [e :U 369 ]
-[; ;PWM_Driver.c: 198: }
-[; ;PWM_Driver.c: 200: setRGB(r_cnt, g_cnt, b_cnt);
+{
+[; ;PWM_Driver.c: 200: b_cnt-=(scale+1);
 "200
-[e ( _setRGB (3 , , F3760 F3761 F3762 ]
-[; ;PWM_Driver.c: 201: }
+[e =- F3764 -> + -> _scale `i -> 1 `i `uc ]
 "201
-[e :UE 355 ]
 }
+[e :U 370 ]
+"202
+}
+[; ;PWM_Driver.c: 201: }
+[; ;PWM_Driver.c: 202: } else {
+[e $U 371  ]
+[e :U 358 ]
+{
+[; ;PWM_Driver.c: 203: fade = 1;
 "203
-[v _smooth `(v ~T0 @X0 1 ef ]
-{
-[; ;PWM_Driver.c: 203: void smooth(void) {
-[e :U _smooth ]
-[f ]
+[e = F3768 -> -> 1 `i `uc ]
 "204
-[v F3768 `uc ~T0 @X0 1 s count ]
-"205
-[v F3769 `uc ~T0 @X0 1 s color ]
-[; ;PWM_Driver.c: 204: static uint8_t count;
-[; ;PWM_Driver.c: 205: static uint8_t color;
-[; ;PWM_Driver.c: 207: if (count >= (0xFF >> scale)) {
-"207
-[e $ ! >= -> F3768 `i >> -> 255 `i _scale 371  ]
-{
-[; ;PWM_Driver.c: 208: count = 0;
-"208
-[e = F3768 -> -> 0 `i `uc ]
-"209
 }
 [e :U 371 ]
-[; ;PWM_Driver.c: 209: }
-[; ;PWM_Driver.c: 210: if (count == 0) {
+[; ;PWM_Driver.c: 204: }
+[; ;PWM_Driver.c: 206: setRGB(r_cnt, g_cnt, b_cnt);
+"206
+[e ( _setRGB (3 , , F3762 F3763 F3764 ]
+[; ;PWM_Driver.c: 207: }
+"207
+[e :UE 357 ]
+}
+"209
+[v _smooth `(v ~T0 @X0 1 ef ]
+{
+[; ;PWM_Driver.c: 209: void smooth(void) {
+[e :U _smooth ]
+[f ]
 "210
-[e $ ! == -> F3768 `i -> 0 `i 372  ]
-{
-[; ;PWM_Driver.c: 211: switch(color) {
+[v F3770 `uc ~T0 @X0 1 s count ]
 "211
-[e $U 374  ]
-{
-[; ;PWM_Driver.c: 212: case 0:
-"212
-[e :U 375 ]
-[; ;PWM_Driver.c: 213: setRGB(255, 0, 0);
+[v F3771 `uc ~T0 @X0 1 s color ]
+[; ;PWM_Driver.c: 210: static uint8_t count;
+[; ;PWM_Driver.c: 211: static uint8_t color;
+[; ;PWM_Driver.c: 213: if (count >= (0xFF >> scale)) {
 "213
-[e ( _setRGB (3 , , -> -> 255 `i `uc -> -> 0 `i `uc -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 214: color = 1;
+[e $ ! >= -> F3770 `i >> -> 255 `i _scale 373  ]
+{
+[; ;PWM_Driver.c: 214: count = 0;
 "214
-[e = F3769 -> -> 1 `i `uc ]
-[; ;PWM_Driver.c: 215: break;
+[e = F3770 -> -> 0 `i `uc ]
 "215
-[e $U 373  ]
-[; ;PWM_Driver.c: 216: case 1:
-"216
-[e :U 376 ]
-[; ;PWM_Driver.c: 217: setRGB(255, 255, 0);
-"217
-[e ( _setRGB (3 , , -> -> 255 `i `uc -> -> 255 `i `uc -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 218: color = 2;
-"218
-[e = F3769 -> -> 2 `i `uc ]
-[; ;PWM_Driver.c: 219: break;
-"219
-[e $U 373  ]
-[; ;PWM_Driver.c: 220: case 2:
-"220
-[e :U 377 ]
-[; ;PWM_Driver.c: 221: setRGB(0, 255, 0);
-"221
-[e ( _setRGB (3 , , -> -> 0 `i `uc -> -> 255 `i `uc -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 222: color = 3;
-"222
-[e = F3769 -> -> 3 `i `uc ]
-[; ;PWM_Driver.c: 223: break;
-"223
-[e $U 373  ]
-[; ;PWM_Driver.c: 224: case 3:
-"224
-[e :U 378 ]
-[; ;PWM_Driver.c: 225: setRGB(0, 255, 255);
-"225
-[e ( _setRGB (3 , , -> -> 0 `i `uc -> -> 255 `i `uc -> -> 255 `i `uc ]
-[; ;PWM_Driver.c: 226: color = 4;
-"226
-[e = F3769 -> -> 4 `i `uc ]
-[; ;PWM_Driver.c: 227: break;
-"227
-[e $U 373  ]
-[; ;PWM_Driver.c: 228: case 4:
-"228
-[e :U 379 ]
-[; ;PWM_Driver.c: 229: setRGB(0, 0, 255);
-"229
-[e ( _setRGB (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> -> 255 `i `uc ]
-[; ;PWM_Driver.c: 230: color = 5;
-"230
-[e = F3769 -> -> 5 `i `uc ]
-[; ;PWM_Driver.c: 231: break;
-"231
-[e $U 373  ]
-[; ;PWM_Driver.c: 232: case 5:
-"232
-[e :U 380 ]
-[; ;PWM_Driver.c: 233: setRGB(255, 0, 255);
-"233
-[e ( _setRGB (3 , , -> -> 255 `i `uc -> -> 0 `i `uc -> -> 255 `i `uc ]
-[; ;PWM_Driver.c: 234: color = 0;
-"234
-[e = F3769 -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 235: break;
-"235
-[e $U 373  ]
-"236
 }
-[; ;PWM_Driver.c: 236: }
-[e $U 373  ]
-"211
-[e :U 374 ]
-[e [\ F3769 , $ -> -> 0 `i `uc 375
- , $ -> -> 1 `i `uc 376
- , $ -> -> 2 `i `uc 377
- , $ -> -> 3 `i `uc 378
- , $ -> -> 4 `i `uc 379
- , $ -> -> 5 `i `uc 380
- 373 ]
-"236
 [e :U 373 ]
+[; ;PWM_Driver.c: 215: }
+[; ;PWM_Driver.c: 216: if (count == 0) {
+"216
+[e $ ! == -> F3770 `i -> 0 `i 374  ]
+{
+[; ;PWM_Driver.c: 217: switch(color) {
+"217
+[e $U 376  ]
+{
+[; ;PWM_Driver.c: 218: case 0:
+"218
+[e :U 377 ]
+[; ;PWM_Driver.c: 219: setRGB(255, 0, 0);
+"219
+[e ( _setRGB (3 , , -> -> 255 `i `uc -> -> 0 `i `uc -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 220: color = 1;
+"220
+[e = F3771 -> -> 1 `i `uc ]
+[; ;PWM_Driver.c: 221: break;
+"221
+[e $U 375  ]
+[; ;PWM_Driver.c: 222: case 1:
+"222
+[e :U 378 ]
+[; ;PWM_Driver.c: 223: setRGB(255, 255, 0);
+"223
+[e ( _setRGB (3 , , -> -> 255 `i `uc -> -> 255 `i `uc -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 224: color = 2;
+"224
+[e = F3771 -> -> 2 `i `uc ]
+[; ;PWM_Driver.c: 225: break;
+"225
+[e $U 375  ]
+[; ;PWM_Driver.c: 226: case 2:
+"226
+[e :U 379 ]
+[; ;PWM_Driver.c: 227: setRGB(0, 255, 0);
+"227
+[e ( _setRGB (3 , , -> -> 0 `i `uc -> -> 255 `i `uc -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 228: color = 3;
+"228
+[e = F3771 -> -> 3 `i `uc ]
+[; ;PWM_Driver.c: 229: break;
+"229
+[e $U 375  ]
+[; ;PWM_Driver.c: 230: case 3:
+"230
+[e :U 380 ]
+[; ;PWM_Driver.c: 231: setRGB(0, 255, 255);
+"231
+[e ( _setRGB (3 , , -> -> 0 `i `uc -> -> 255 `i `uc -> -> 255 `i `uc ]
+[; ;PWM_Driver.c: 232: color = 4;
+"232
+[e = F3771 -> -> 4 `i `uc ]
+[; ;PWM_Driver.c: 233: break;
+"233
+[e $U 375  ]
+[; ;PWM_Driver.c: 234: case 4:
+"234
+[e :U 381 ]
+[; ;PWM_Driver.c: 235: setRGB(0, 0, 255);
+"235
+[e ( _setRGB (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> -> 255 `i `uc ]
+[; ;PWM_Driver.c: 236: color = 5;
+"236
+[e = F3771 -> -> 5 `i `uc ]
+[; ;PWM_Driver.c: 237: break;
 "237
-}
-[e :U 372 ]
-[; ;PWM_Driver.c: 237: }
-[; ;PWM_Driver.c: 239: count++;
+[e $U 375  ]
+[; ;PWM_Driver.c: 238: case 5:
+"238
+[e :U 382 ]
+[; ;PWM_Driver.c: 239: setRGB(255, 0, 255);
 "239
-[e ++ F3768 -> -> 1 `i `uc ]
-[; ;PWM_Driver.c: 240: }
+[e ( _setRGB (3 , , -> -> 255 `i `uc -> -> 0 `i `uc -> -> 255 `i `uc ]
+[; ;PWM_Driver.c: 240: color = 0;
 "240
-[e :UE 370 ]
-}
+[e = F3771 -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 241: break;
+"241
+[e $U 375  ]
 "242
+}
+[; ;PWM_Driver.c: 242: }
+[e $U 375  ]
+"217
+[e :U 376 ]
+[e [\ F3771 , $ -> -> 0 `i `uc 377
+ , $ -> -> 1 `i `uc 378
+ , $ -> -> 2 `i `uc 379
+ , $ -> -> 3 `i `uc 380
+ , $ -> -> 4 `i `uc 381
+ , $ -> -> 5 `i `uc 382
+ 375 ]
+"242
+[e :U 375 ]
+"243
+}
+[e :U 374 ]
+[; ;PWM_Driver.c: 243: }
+[; ;PWM_Driver.c: 245: count++;
+"245
+[e ++ F3770 -> -> 1 `i `uc ]
+[; ;PWM_Driver.c: 246: }
+"246
+[e :UE 372 ]
+}
+"248
 [v _handleState `(v ~T0 @X0 1 ef ]
 {
-[; ;PWM_Driver.c: 242: void handleState() {
+[; ;PWM_Driver.c: 248: void handleState() {
 [e :U _handleState ]
 [f ]
-"243
-[v F3770 `uc ~T0 @X0 1 s cnt ]
-[; ;PWM_Driver.c: 243: static uint8_t cnt;
-[; ;PWM_Driver.c: 245: switch(state) {
-"245
-[e $U 383  ]
-{
-[; ;PWM_Driver.c: 246: case Color:
-"246
-[e :U 384 ]
-[; ;PWM_Driver.c: 247: pwmColors(scale);
-"247
-[e ( _pwmColors (1 _scale ]
-[; ;PWM_Driver.c: 248: break;
-"248
-[e $U 382  ]
-[; ;PWM_Driver.c: 250: case Flash:
-"250
-[e :U 385 ]
-[; ;PWM_Driver.c: 251: if (cnt == 0) {
+"249
+[v F3772 `uc ~T0 @X0 1 s cnt ]
+[; ;PWM_Driver.c: 249: static uint8_t cnt;
+[; ;PWM_Driver.c: 251: switch(state) {
 "251
-[e $ ! == -> F3770 `i -> 0 `i 386  ]
+[e $U 385  ]
 {
-[; ;PWM_Driver.c: 252: flash();
+[; ;PWM_Driver.c: 252: case Color:
 "252
-[e ( _flash ..  ]
-"253
-}
 [e :U 386 ]
-[; ;PWM_Driver.c: 253: }
-[; ;PWM_Driver.c: 254: pwmColors(7);
+[; ;PWM_Driver.c: 253: pwmColors(scale);
+"253
+[e ( _pwmColors (1 _scale ]
+[; ;PWM_Driver.c: 254: cnt++;
 "254
-[e ( _pwmColors (1 -> -> 7 `i `uc ]
+[e ++ F3772 -> -> 1 `i `uc ]
 [; ;PWM_Driver.c: 255: break;
 "255
-[e $U 382  ]
-[; ;PWM_Driver.c: 257: case Strobe:
+[e $U 384  ]
+[; ;PWM_Driver.c: 257: case Flash:
 "257
 [e :U 387 ]
 [; ;PWM_Driver.c: 258: if (cnt == 0) {
 "258
-[e $ ! == -> F3770 `i -> 0 `i 388  ]
+[e $ ! == -> F3772 `i -> 0 `i 388  ]
 {
-[; ;PWM_Driver.c: 259: strobe2();
+[; ;PWM_Driver.c: 259: flash();
 "259
-[e ( _strobe2 ..  ]
+[e ( _flash ..  ]
 "260
 }
 [e :U 388 ]
@@ -4072,405 +4079,510 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PWM_Driver.c: 261: pwmColors(7);
 "261
 [e ( _pwmColors (1 -> -> 7 `i `uc ]
-[; ;PWM_Driver.c: 262: break;
+[; ;PWM_Driver.c: 262: cnt++;
 "262
-[e $U 382  ]
-[; ;PWM_Driver.c: 264: case Fade:
-"264
-[e :U 389 ]
-[; ;PWM_Driver.c: 265: if (cnt == 0) {
+[e ++ F3772 -> -> 1 `i `uc ]
+[; ;PWM_Driver.c: 263: break;
+"263
+[e $U 384  ]
+[; ;PWM_Driver.c: 265: case Strobe:
 "265
-[e $ ! == -> F3770 `i -> 0 `i 390  ]
-{
-[; ;PWM_Driver.c: 266: fade();
+[e :U 389 ]
+[; ;PWM_Driver.c: 266: if (cnt == 0) {
 "266
-[e ( _fade ..  ]
+[e $ ! == -> F3772 `i -> 0 `i 390  ]
+{
+[; ;PWM_Driver.c: 267: strobe2();
 "267
+[e ( _strobe2 ..  ]
+"268
 }
 [e :U 390 ]
-[; ;PWM_Driver.c: 267: }
-[; ;PWM_Driver.c: 268: pwmColors(7);
-"268
-[e ( _pwmColors (1 -> -> 7 `i `uc ]
-[; ;PWM_Driver.c: 269: break;
+[; ;PWM_Driver.c: 268: }
+[; ;PWM_Driver.c: 269: pwmColors(7);
 "269
-[e $U 382  ]
-[; ;PWM_Driver.c: 271: case Smooth:
+[e ( _pwmColors (1 -> -> 7 `i `uc ]
+[; ;PWM_Driver.c: 270: cnt++;
+"270
+[e ++ F3772 -> -> 1 `i `uc ]
+[; ;PWM_Driver.c: 271: break;
 "271
-[e :U 391 ]
-[; ;PWM_Driver.c: 272: if (cnt == 0) {
-"272
-[e $ ! == -> F3770 `i -> 0 `i 392  ]
-{
-[; ;PWM_Driver.c: 273: smooth();
+[e $U 384  ]
+[; ;PWM_Driver.c: 273: case Fade:
 "273
-[e ( _smooth ..  ]
+[e :U 391 ]
+[; ;PWM_Driver.c: 274: if (cnt == 0) {
 "274
+[e $ ! == -> F3772 `i -> 0 `i 392  ]
+{
+[; ;PWM_Driver.c: 275: fade();
+"275
+[e ( _fade ..  ]
+"276
 }
 [e :U 392 ]
-[; ;PWM_Driver.c: 274: }
-[; ;PWM_Driver.c: 275: pwmColors(7);
-"275
+[; ;PWM_Driver.c: 276: }
+[; ;PWM_Driver.c: 277: pwmColors(7);
+"277
 [e ( _pwmColors (1 -> -> 7 `i `uc ]
-[; ;PWM_Driver.c: 276: break;
-"276
-[e $U 382  ]
-[; ;PWM_Driver.c: 278: default:
+[; ;PWM_Driver.c: 278: cnt++;
 "278
-[e :U 393 ]
+[e ++ F3772 -> -> 1 `i `uc ]
 [; ;PWM_Driver.c: 279: break;
 "279
-[e $U 382  ]
-"280
-}
-[; ;PWM_Driver.c: 280: }
-[e $U 382  ]
-"245
-[e :U 383 ]
-[e [\ _state , $ . `E3719 0 384
- , $ . `E3719 1 385
- , $ . `E3719 2 387
- , $ . `E3719 3 389
- , $ . `E3719 4 391
- 393 ]
-"280
-[e :U 382 ]
-[; ;PWM_Driver.c: 281: cnt++;
+[e $U 384  ]
+[; ;PWM_Driver.c: 281: case Smooth:
 "281
-[e ++ F3770 -> -> 1 `i `uc ]
-[; ;PWM_Driver.c: 282: }
+[e :U 393 ]
+[; ;PWM_Driver.c: 282: if (cnt == 0) {
 "282
-[e :UE 381 ]
+[e $ ! == -> F3772 `i -> 0 `i 394  ]
+{
+[; ;PWM_Driver.c: 283: smooth();
+"283
+[e ( _smooth ..  ]
+"284
 }
+[e :U 394 ]
+[; ;PWM_Driver.c: 284: }
+[; ;PWM_Driver.c: 285: pwmColors(7);
+"285
+[e ( _pwmColors (1 -> -> 7 `i `uc ]
+[; ;PWM_Driver.c: 286: cnt++;
+"286
+[e ++ F3772 -> -> 1 `i `uc ]
+[; ;PWM_Driver.c: 287: break;
 "287
+[e $U 384  ]
+[; ;PWM_Driver.c: 289: case Disabled:
+"289
+[e :U 395 ]
+[; ;PWM_Driver.c: 290: break;
+"290
+[e $U 384  ]
+[; ;PWM_Driver.c: 292: default:
+"292
+[e :U 396 ]
+[; ;PWM_Driver.c: 293: break;
+"293
+[e $U 384  ]
+"294
+}
+[; ;PWM_Driver.c: 294: }
+[e $U 384  ]
+"251
+[e :U 385 ]
+[e [\ _state , $ . `E3719 0 386
+ , $ . `E3719 1 387
+ , $ . `E3719 2 389
+ , $ . `E3719 3 391
+ , $ . `E3719 4 393
+ , $ . `E3719 5 395
+ 396 ]
+"294
+[e :U 384 ]
+[; ;PWM_Driver.c: 296: }
+"296
+[e :UE 383 ]
+}
+"301
 [v _D_PWM_Init `(v ~T0 @X0 1 ef ]
 {
-[; ;PWM_Driver.c: 287: void D_PWM_Init(void) {
+[; ;PWM_Driver.c: 301: void D_PWM_Init(void) {
 [e :U _D_PWM_Init ]
 [f ]
-[; ;PWM_Driver.c: 289: PWM_Red.duty_cnt = 0;
-"289
-[e = . _PWM_Red 0 -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 290: PWM_Red.duty_val = 0xFF;
-"290
-[e = . _PWM_Red 1 -> -> 255 `i `uc ]
-[; ;PWM_Driver.c: 292: PWM_Green.duty_cnt = 0;
-"292
-[e = . _PWM_Green 0 -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 293: PWM_Green.duty_val = 0xFF;
-"293
-[e = . _PWM_Green 1 -> -> 255 `i `uc ]
-[; ;PWM_Driver.c: 295: PWM_Blue.duty_cnt = 0;
-"295
-[e = . _PWM_Blue 0 -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 296: PWM_Blue.duty_val = 0xFF;
-"296
-[e = . _PWM_Blue 1 -> -> 255 `i `uc ]
-[; ;PWM_Driver.c: 298: scale = 0;
-"298
-[e = _scale -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 299: state = Color;
-"299
-[e = _state . `E3719 0 ]
-[; ;PWM_Driver.c: 302: D_TIMER0_Init(0);
-"302
-[e ( _D_TIMER0_Init (1 -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 303: D_TIMER0_Enable(0);
+[; ;PWM_Driver.c: 303: PWM_Red.duty_cnt = 0;
 "303
-[e ( _D_TIMER0_Enable (1 -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 306: TRISBbits.TRISB0 = 0;
+[e = . _PWM_Red 0 -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 304: PWM_Red.duty_val = 0xFF;
+"304
+[e = . _PWM_Red 1 -> -> 255 `i `uc ]
+[; ;PWM_Driver.c: 306: PWM_Green.duty_cnt = 0;
 "306
-[e = . . _TRISBbits 0 0 -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 307: TRISBbits.TRISB1 = 0;
+[e = . _PWM_Green 0 -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 307: PWM_Green.duty_val = 0xFF;
 "307
-[e = . . _TRISBbits 0 1 -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 308: TRISBbits.TRISB2 = 0;
-"308
-[e = . . _TRISBbits 0 2 -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 309: }
+[e = . _PWM_Green 1 -> -> 255 `i `uc ]
+[; ;PWM_Driver.c: 309: PWM_Blue.duty_cnt = 0;
 "309
-[e :UE 394 ]
+[e = . _PWM_Blue 0 -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 310: PWM_Blue.duty_val = 0xFF;
+"310
+[e = . _PWM_Blue 1 -> -> 255 `i `uc ]
+[; ;PWM_Driver.c: 312: scale = 7;
+"312
+[e = _scale -> -> 7 `i `uc ]
+[; ;PWM_Driver.c: 313: state = Color;
+"313
+[e = _state . `E3719 0 ]
+[; ;PWM_Driver.c: 314: saved_state = state;
+"314
+[e = _saved_state _state ]
+[; ;PWM_Driver.c: 317: D_TIMER0_Init(0);
+"317
+[e ( _D_TIMER0_Init (1 -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 318: D_TIMER0_Enable(0);
+"318
+[e ( _D_TIMER0_Enable (1 -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 321: TRISBbits.TRISB0 = 0;
+"321
+[e = . . _TRISBbits 0 0 -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 322: TRISBbits.TRISB1 = 0;
+"322
+[e = . . _TRISBbits 0 1 -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 323: TRISBbits.TRISB2 = 0;
+"323
+[e = . . _TRISBbits 0 2 -> -> 0 `i `uc ]
+[; ;PWM_Driver.c: 324: }
+"324
+[e :UE 397 ]
 }
-"311
+"326
 [v _D_PWM_Enable `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;PWM_Driver.c: 311: void D_PWM_Enable(bool enable) {
+[; ;PWM_Driver.c: 326: void D_PWM_Enable(bool enable) {
 [e :U _D_PWM_Enable ]
 [v _enable `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;PWM_Driver.c: 312: D_TIMER0_Enable(enable);
-"312
-[e ( _D_TIMER0_Enable (1 _enable ]
-[; ;PWM_Driver.c: 313: }
-"313
-[e :UE 395 ]
+[; ;PWM_Driver.c: 327: if (enable) {
+"327
+[e $ ! != -> _enable `i -> -> -> 0 `i `uc `i 399  ]
+{
+[; ;PWM_Driver.c: 328: state = saved_state;
+"328
+[e = _state _saved_state ]
+"329
 }
-"315
+[; ;PWM_Driver.c: 329: } else {
+[e $U 400  ]
+[e :U 399 ]
+{
+[; ;PWM_Driver.c: 330: saved_state = state;
+"330
+[e = _saved_state _state ]
+[; ;PWM_Driver.c: 331: state = Disabled;
+"331
+[e = _state . `E3719 5 ]
+[; ;PWM_Driver.c: 332: pwmColors(scale);
+"332
+[e ( _pwmColors (1 _scale ]
+"333
+}
+[e :U 400 ]
+[; ;PWM_Driver.c: 333: }
+[; ;PWM_Driver.c: 334: D_TIMER0_Enable(enable);
+"334
+[e ( _D_TIMER0_Enable (1 _enable ]
+[; ;PWM_Driver.c: 335: }
+"335
+[e :UE 398 ]
+}
+"337
 [v _D_PWM_SetDuty `(v ~T0 @X0 1 ef2`uc`uc ]
 {
-[; ;PWM_Driver.c: 315: void D_PWM_SetDuty(uint8_t which, uint8_t duty) {
+[; ;PWM_Driver.c: 337: void D_PWM_SetDuty(uint8_t which, uint8_t duty) {
 [e :U _D_PWM_SetDuty ]
 [v _which `uc ~T0 @X0 1 r1 ]
 [v _duty `uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;PWM_Driver.c: 316: switch(which) {
-"316
-[e $U 398  ]
+[; ;PWM_Driver.c: 338: switch(which) {
+"338
+[e $U 403  ]
 {
-[; ;PWM_Driver.c: 317: case 0:
-"317
-[e :U 399 ]
-[; ;PWM_Driver.c: 318: PWM_Red.duty_val = duty;
-"318
+[; ;PWM_Driver.c: 339: case 0:
+"339
+[e :U 404 ]
+[; ;PWM_Driver.c: 340: PWM_Red.duty_val = duty;
+"340
 [e = . _PWM_Red 1 _duty ]
-[; ;PWM_Driver.c: 319: break;
-"319
-[e $U 397  ]
-[; ;PWM_Driver.c: 321: case 1:
-"321
-[e :U 400 ]
-[; ;PWM_Driver.c: 322: PWM_Green.duty_val = duty;
-"322
+[; ;PWM_Driver.c: 341: break;
+"341
+[e $U 402  ]
+[; ;PWM_Driver.c: 343: case 1:
+"343
+[e :U 405 ]
+[; ;PWM_Driver.c: 344: PWM_Green.duty_val = duty;
+"344
 [e = . _PWM_Green 1 _duty ]
-[; ;PWM_Driver.c: 323: break;
-"323
-[e $U 397  ]
-[; ;PWM_Driver.c: 325: case 2:
-"325
-[e :U 401 ]
-[; ;PWM_Driver.c: 326: PWM_Blue.duty_val = duty;
-"326
+[; ;PWM_Driver.c: 345: break;
+"345
+[e $U 402  ]
+[; ;PWM_Driver.c: 347: case 2:
+"347
+[e :U 406 ]
+[; ;PWM_Driver.c: 348: PWM_Blue.duty_val = duty;
+"348
 [e = . _PWM_Blue 1 _duty ]
-[; ;PWM_Driver.c: 327: break;
-"327
-[e $U 397  ]
-"328
+[; ;PWM_Driver.c: 349: break;
+"349
+[e $U 402  ]
+"350
 }
-[; ;PWM_Driver.c: 328: }
-[e $U 397  ]
-"316
-[e :U 398 ]
-[e [\ _which , $ -> -> 0 `i `uc 399
- , $ -> -> 1 `i `uc 400
- , $ -> -> 2 `i `uc 401
- 397 ]
-"328
-[e :U 397 ]
-[; ;PWM_Driver.c: 329: }
-"329
-[e :UE 396 ]
+[; ;PWM_Driver.c: 350: }
+[e $U 402  ]
+"338
+[e :U 403 ]
+[e [\ _which , $ -> -> 0 `i `uc 404
+ , $ -> -> 1 `i `uc 405
+ , $ -> -> 2 `i `uc 406
+ 402 ]
+"350
+[e :U 402 ]
+[; ;PWM_Driver.c: 351: }
+"351
+[e :UE 401 ]
 }
-"331
+"353
 [v _D_PWM_SetRGB `(v ~T0 @X0 1 ef3`uc`uc`uc ]
 {
-[; ;PWM_Driver.c: 331: void D_PWM_SetRGB(uint8_t r, uint8_t g, uint8_t b) {
+[; ;PWM_Driver.c: 353: void D_PWM_SetRGB(uint8_t r, uint8_t g, uint8_t b) {
 [e :U _D_PWM_SetRGB ]
 [v _r `uc ~T0 @X0 1 r1 ]
 [v _g `uc ~T0 @X0 1 r2 ]
 [v _b `uc ~T0 @X0 1 r3 ]
 [f ]
-[; ;PWM_Driver.c: 332: setRGB(r, g, b);
-"332
-[e ( _setRGB (3 , , _r _g _b ]
-[; ;PWM_Driver.c: 333: state = Color;
-"333
-[e = _state . `E3719 0 ]
-[; ;PWM_Driver.c: 334: }
-"334
-[e :UE 402 ]
-}
-"336
-[v _D_PWM_GetRed `(uc ~T0 @X0 1 ef ]
-{
-[; ;PWM_Driver.c: 336: uint8_t D_PWM_GetRed(void) {
-[e :U _D_PWM_GetRed ]
-[f ]
-[; ;PWM_Driver.c: 337: return PWM_Red.duty_val;
-"337
-[e ) . _PWM_Red 1 ]
-[e $UE 403  ]
-[; ;PWM_Driver.c: 338: }
-"338
-[e :UE 403 ]
-}
-"340
-[v _D_PWM_GetGreen `(uc ~T0 @X0 1 ef ]
-{
-[; ;PWM_Driver.c: 340: uint8_t D_PWM_GetGreen(void) {
-[e :U _D_PWM_GetGreen ]
-[f ]
-[; ;PWM_Driver.c: 341: return PWM_Green.duty_val;
-"341
-[e ) . _PWM_Green 1 ]
-[e $UE 404  ]
-[; ;PWM_Driver.c: 342: }
-"342
-[e :UE 404 ]
-}
-"344
-[v _D_PWM_GetBlue `(uc ~T0 @X0 1 ef ]
-{
-[; ;PWM_Driver.c: 344: uint8_t D_PWM_GetBlue(void) {
-[e :U _D_PWM_GetBlue ]
-[f ]
-[; ;PWM_Driver.c: 345: return PWM_Blue.duty_val;
-"345
-[e ) . _PWM_Blue 1 ]
-[e $UE 405  ]
-[; ;PWM_Driver.c: 346: }
-"346
-[e :UE 405 ]
-}
-"348
-[v _D_PWM_ScaleDown `(v ~T0 @X0 1 ef ]
-{
-[; ;PWM_Driver.c: 348: void D_PWM_ScaleDown(void) {
-[e :U _D_PWM_ScaleDown ]
-[f ]
-[; ;PWM_Driver.c: 349: if (scale > 0) {
-"349
-[e $ ! > -> _scale `i -> 0 `i 407  ]
-{
-[; ;PWM_Driver.c: 350: scale--;
-"350
-[e -- _scale -> -> 1 `i `uc ]
-"351
-}
-[e :U 407 ]
-[; ;PWM_Driver.c: 351: }
-[; ;PWM_Driver.c: 352: }
-"352
-[e :UE 406 ]
-}
+[; ;PWM_Driver.c: 354: setRGB(r, g, b);
 "354
-[v _D_PWM_ScaleUp `(v ~T0 @X0 1 ef ]
-{
-[; ;PWM_Driver.c: 354: void D_PWM_ScaleUp(void) {
-[e :U _D_PWM_ScaleUp ]
-[f ]
-[; ;PWM_Driver.c: 355: if (scale < 7) {
+[e ( _setRGB (3 , , _r _g _b ]
+[; ;PWM_Driver.c: 355: if (state != Disabled) {
 "355
-[e $ ! < -> _scale `i -> 7 `i 409  ]
+[e $ ! != -> _state `i -> . `E3719 5 `i 408  ]
 {
-[; ;PWM_Driver.c: 356: scale++;
+[; ;PWM_Driver.c: 356: state = Color;
 "356
-[e ++ _scale -> -> 1 `i `uc ]
+[e = _state . `E3719 0 ]
 "357
 }
-[e :U 409 ]
+[e :U 408 ]
 [; ;PWM_Driver.c: 357: }
 [; ;PWM_Driver.c: 358: }
 "358
-[e :UE 408 ]
+[e :UE 407 ]
 }
 "360
-[v _D_PWM_GetScale `(uc ~T0 @X0 1 ef ]
+[v _D_PWM_GetRed `(uc ~T0 @X0 1 ef ]
 {
-[; ;PWM_Driver.c: 360: uint8_t D_PWM_GetScale(void) {
-[e :U _D_PWM_GetScale ]
+[; ;PWM_Driver.c: 360: uint8_t D_PWM_GetRed(void) {
+[e :U _D_PWM_GetRed ]
 [f ]
-[; ;PWM_Driver.c: 361: return scale;
+[; ;PWM_Driver.c: 361: return PWM_Red.duty_val;
 "361
-[e ) _scale ]
-[e $UE 410  ]
+[e ) . _PWM_Red 1 ]
+[e $UE 409  ]
 [; ;PWM_Driver.c: 362: }
 "362
-[e :UE 410 ]
+[e :UE 409 ]
 }
 "364
-[v _D_PWM_GetState `(uc ~T0 @X0 1 ef ]
+[v _D_PWM_GetGreen `(uc ~T0 @X0 1 ef ]
 {
-[; ;PWM_Driver.c: 364: uint8_t D_PWM_GetState(void) {
-[e :U _D_PWM_GetState ]
+[; ;PWM_Driver.c: 364: uint8_t D_PWM_GetGreen(void) {
+[e :U _D_PWM_GetGreen ]
 [f ]
-[; ;PWM_Driver.c: 365: return state;
+[; ;PWM_Driver.c: 365: return PWM_Green.duty_val;
 "365
-[e ) -> _state `uc ]
-[e $UE 411  ]
+[e ) . _PWM_Green 1 ]
+[e $UE 410  ]
 [; ;PWM_Driver.c: 366: }
 "366
-[e :UE 411 ]
+[e :UE 410 ]
 }
 "368
-[v _D_PWM_Flash `(v ~T0 @X0 1 ef ]
+[v _D_PWM_GetBlue `(uc ~T0 @X0 1 ef ]
 {
-[; ;PWM_Driver.c: 368: void D_PWM_Flash(void) {
-[e :U _D_PWM_Flash ]
+[; ;PWM_Driver.c: 368: uint8_t D_PWM_GetBlue(void) {
+[e :U _D_PWM_GetBlue ]
 [f ]
-[; ;PWM_Driver.c: 369: state = Flash;
+[; ;PWM_Driver.c: 369: return PWM_Blue.duty_val;
 "369
-[e = _state . `E3719 1 ]
+[e ) . _PWM_Blue 1 ]
+[e $UE 411  ]
 [; ;PWM_Driver.c: 370: }
 "370
-[e :UE 412 ]
+[e :UE 411 ]
 }
 "372
-[v _D_PWM_Strobe `(v ~T0 @X0 1 ef ]
+[v _D_PWM_ScaleDown `(v ~T0 @X0 1 ef ]
 {
-[; ;PWM_Driver.c: 372: void D_PWM_Strobe(void) {
-[e :U _D_PWM_Strobe ]
+[; ;PWM_Driver.c: 372: void D_PWM_ScaleDown(void) {
+[e :U _D_PWM_ScaleDown ]
 [f ]
-[; ;PWM_Driver.c: 373: state = Strobe;
+[; ;PWM_Driver.c: 373: if (scale > 0) {
 "373
-[e = _state . `E3719 2 ]
-[; ;PWM_Driver.c: 374: }
+[e $ ! > -> _scale `i -> 0 `i 413  ]
+{
+[; ;PWM_Driver.c: 374: scale--;
 "374
-[e :UE 413 ]
+[e -- _scale -> -> 1 `i `uc ]
+"375
 }
+[e :U 413 ]
+[; ;PWM_Driver.c: 375: }
+[; ;PWM_Driver.c: 376: }
 "376
-[v _D_PWM_Fade `(v ~T0 @X0 1 ef ]
-{
-[; ;PWM_Driver.c: 376: void D_PWM_Fade(void) {
-[e :U _D_PWM_Fade ]
-[f ]
-[; ;PWM_Driver.c: 377: state = Fade;
-"377
-[e = _state . `E3719 3 ]
-[; ;PWM_Driver.c: 378: }
-"378
-[e :UE 414 ]
+[e :UE 412 ]
 }
-"380
-[v _D_PWM_Smooth `(v ~T0 @X0 1 ef ]
+"378
+[v _D_PWM_ScaleUp `(v ~T0 @X0 1 ef ]
 {
-[; ;PWM_Driver.c: 380: void D_PWM_Smooth(void) {
-[e :U _D_PWM_Smooth ]
+[; ;PWM_Driver.c: 378: void D_PWM_ScaleUp(void) {
+[e :U _D_PWM_ScaleUp ]
 [f ]
-[; ;PWM_Driver.c: 381: state = Smooth;
+[; ;PWM_Driver.c: 379: if (scale < 7) {
+"379
+[e $ ! < -> _scale `i -> 7 `i 415  ]
+{
+[; ;PWM_Driver.c: 380: scale++;
+"380
+[e ++ _scale -> -> 1 `i `uc ]
 "381
-[e = _state . `E3719 4 ]
+}
+[e :U 415 ]
+[; ;PWM_Driver.c: 381: }
 [; ;PWM_Driver.c: 382: }
 "382
-[e :UE 415 ]
+[e :UE 414 ]
 }
-[v F3791 `(v ~T0 @X0 1 tf ]
-"387
-[v _HighISR `IHF3791 ~T0 @X0 1 e ]
+"384
+[v _D_PWM_GetScale `(uc ~T0 @X0 1 ef ]
 {
-[; ;PWM_Driver.c: 387: void interrupt high_priority HighISR(void) {
+[; ;PWM_Driver.c: 384: uint8_t D_PWM_GetScale(void) {
+[e :U _D_PWM_GetScale ]
+[f ]
+[; ;PWM_Driver.c: 385: return scale;
+"385
+[e ) _scale ]
+[e $UE 416  ]
+[; ;PWM_Driver.c: 386: }
+"386
+[e :UE 416 ]
+}
+"388
+[v _D_PWM_GetState `(uc ~T0 @X0 1 ef ]
+{
+[; ;PWM_Driver.c: 388: uint8_t D_PWM_GetState(void) {
+[e :U _D_PWM_GetState ]
+[f ]
+[; ;PWM_Driver.c: 389: return state;
+"389
+[e ) -> _state `uc ]
+[e $UE 417  ]
+[; ;PWM_Driver.c: 390: }
+"390
+[e :UE 417 ]
+}
+"392
+[v _D_PWM_Flash `(v ~T0 @X0 1 ef ]
+{
+[; ;PWM_Driver.c: 392: void D_PWM_Flash(void) {
+[e :U _D_PWM_Flash ]
+[f ]
+[; ;PWM_Driver.c: 393: if (state != Disabled) {
+"393
+[e $ ! != -> _state `i -> . `E3719 5 `i 419  ]
+{
+[; ;PWM_Driver.c: 394: state = Flash;
+"394
+[e = _state . `E3719 1 ]
+"395
+}
+[e :U 419 ]
+[; ;PWM_Driver.c: 395: }
+[; ;PWM_Driver.c: 396: }
+"396
+[e :UE 418 ]
+}
+"398
+[v _D_PWM_Strobe `(v ~T0 @X0 1 ef ]
+{
+[; ;PWM_Driver.c: 398: void D_PWM_Strobe(void) {
+[e :U _D_PWM_Strobe ]
+[f ]
+[; ;PWM_Driver.c: 399: if (state != Disabled) {
+"399
+[e $ ! != -> _state `i -> . `E3719 5 `i 421  ]
+{
+[; ;PWM_Driver.c: 400: state = Strobe;
+"400
+[e = _state . `E3719 2 ]
+"401
+}
+[e :U 421 ]
+[; ;PWM_Driver.c: 401: }
+[; ;PWM_Driver.c: 402: }
+"402
+[e :UE 420 ]
+}
+"404
+[v _D_PWM_Fade `(v ~T0 @X0 1 ef ]
+{
+[; ;PWM_Driver.c: 404: void D_PWM_Fade(void) {
+[e :U _D_PWM_Fade ]
+[f ]
+[; ;PWM_Driver.c: 405: if (state != Disabled) {
+"405
+[e $ ! != -> _state `i -> . `E3719 5 `i 423  ]
+{
+[; ;PWM_Driver.c: 406: state = Fade;
+"406
+[e = _state . `E3719 3 ]
+"407
+}
+[e :U 423 ]
+[; ;PWM_Driver.c: 407: }
+[; ;PWM_Driver.c: 408: }
+"408
+[e :UE 422 ]
+}
+"410
+[v _D_PWM_Smooth `(v ~T0 @X0 1 ef ]
+{
+[; ;PWM_Driver.c: 410: void D_PWM_Smooth(void) {
+[e :U _D_PWM_Smooth ]
+[f ]
+[; ;PWM_Driver.c: 411: if (state != Disabled) {
+"411
+[e $ ! != -> _state `i -> . `E3719 5 `i 425  ]
+{
+[; ;PWM_Driver.c: 412: state = Smooth;
+"412
+[e = _state . `E3719 4 ]
+"413
+}
+[e :U 425 ]
+[; ;PWM_Driver.c: 413: }
+[; ;PWM_Driver.c: 414: }
+"414
+[e :UE 424 ]
+}
+[v F3793 `(v ~T0 @X0 1 tf ]
+"419
+[v _HighISR `IHF3793 ~T0 @X0 1 e ]
+{
+[; ;PWM_Driver.c: 419: void interrupt high_priority HighISR(void) {
 [e :U _HighISR ]
 [f ]
-[; ;PWM_Driver.c: 388: if (INTCONbits.TMR0IF) {
-"388
-[e $ ! != -> . . _INTCONbits 0 2 `i -> -> -> 0 `i `Vuc `i 417  ]
+[; ;PWM_Driver.c: 420: if (INTCONbits.TMR0IF) {
+"420
+[e $ ! != -> . . _INTCONbits 0 2 `i -> -> -> 0 `i `Vuc `i 427  ]
 {
-[; ;PWM_Driver.c: 389: TMR0L = 0;
-"389
+[; ;PWM_Driver.c: 421: TMR0L = 0;
+"421
 [e = _TMR0L -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 390: TMR0H = 0;
-"390
+[; ;PWM_Driver.c: 422: TMR0H = 0;
+"422
 [e = _TMR0H -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 391: INTCONbits.TMR0IF = 0;
-"391
+[; ;PWM_Driver.c: 423: INTCONbits.TMR0IF = 0;
+"423
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-[; ;PWM_Driver.c: 392: handleState();
-"392
+[; ;PWM_Driver.c: 424: handleState();
+"424
 [e ( _handleState ..  ]
-"393
+"425
 }
-[e :U 417 ]
-[; ;PWM_Driver.c: 393: }
-[; ;PWM_Driver.c: 394: }
-"394
-[e :UE 416 ]
+[e :U 427 ]
+[; ;PWM_Driver.c: 425: }
+[; ;PWM_Driver.c: 426: }
+"426
+[e :UE 426 ]
 }

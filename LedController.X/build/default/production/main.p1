@@ -21,7 +21,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _D_UART_ReadFlag `uc ~T0 @X0 0 e ]
 "85
 [v _D_UART_BlockLength `(uc ~T0 @X0 0 ef ]
-"43 main.c
+"45 main.c
 [v _handle_message `(v ~T0 @X0 0 ef1`S323 ]
 "78 Drivers/UART_Driver.h
 [v _D_UART_Read `(S323 ~T0 @X0 0 ef ]
@@ -29,7 +29,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _D_UART_ReadBlock `(S323 ~T0 @X0 0 ef1`uc ]
 "43 /opt/microchip/xc8/v1.40/include/string.h
 [v _strcmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
-"44 main.c
+"46 main.c
 [v _strToInt `(uc ~T0 @X0 0 ef1`*Cuc ]
 "65 Drivers/PWM_Driver.h
 [v _D_PWM_ScaleDown `(v ~T0 @X0 0 ef ]
@@ -3291,433 +3291,463 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PWM_Driver.h: 81: void D_PWM_Strobe(void);
 [; ;PWM_Driver.h: 83: void D_PWM_Fade(void);
 [; ;PWM_Driver.h: 85: void D_PWM_Smooth(void);
-"37 main.c
+"39 main.c
 [v _read `S323 ~T0 @X0 1 e ]
-[; ;main.c: 37: READ_Data read;
-"38
-[v _r `uc ~T0 @X0 1 e ]
-[; ;main.c: 38: uint8_t r;
-"39
-[v _g `uc ~T0 @X0 1 e ]
-[; ;main.c: 39: uint8_t g;
+[; ;main.c: 39: READ_Data read;
 "40
+[v _r `uc ~T0 @X0 1 e ]
+[; ;main.c: 40: uint8_t r;
+"41
+[v _g `uc ~T0 @X0 1 e ]
+[; ;main.c: 41: uint8_t g;
+"42
 [v _b `uc ~T0 @X0 1 e ]
-[; ;main.c: 40: uint8_t b;
-[; ;main.c: 42: void initialize();
-[; ;main.c: 43: void handle_message(READ_Data msg);
-[; ;main.c: 44: uint8_t strToInt(const char* str);
-"46
+[; ;main.c: 42: uint8_t b;
+[; ;main.c: 44: void initialize();
+[; ;main.c: 45: void handle_message(READ_Data msg);
+[; ;main.c: 46: uint8_t strToInt(const char* str);
+"48
 [v _initialize `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 46: void initialize() {
+[; ;main.c: 48: void initialize() {
 [e :U _initialize ]
 [f ]
-[; ;main.c: 47: D_PORT_Init();
-"47
+[; ;main.c: 49: D_PORT_Init();
+"49
 [e ( _D_PORT_Init ..  ]
-[; ;main.c: 50: D_UART_Init("P", 19200, 1);
-"50
+[; ;main.c: 52: D_UART_Init("P", 19200, 1);
+"52
 [e ( _D_UART_Init (3 , , :s 1C -> -> 19200 `i `ui -> -> 1 `i `uc ]
-[; ;main.c: 51: D_UART_Enable(1);
-"51
+[; ;main.c: 53: D_UART_Enable(1);
+"53
 [e ( _D_UART_Enable (1 -> -> 1 `i `uc ]
-[; ;main.c: 54: D_PWM_Init();
-"54
+[; ;main.c: 56: D_PWM_Init();
+"56
 [e ( _D_PWM_Init ..  ]
-[; ;main.c: 55: D_PWM_Enable(1);
-"55
+[; ;main.c: 57: D_PWM_Enable(1);
+"57
 [e ( _D_PWM_Enable (1 -> -> 1 `i `uc ]
-[; ;main.c: 58: r = 255;
-"58
-[e = _r -> -> 255 `i `uc ]
-[; ;main.c: 59: g = 0;
-"59
-[e = _g -> -> 0 `i `uc ]
-[; ;main.c: 60: b = 0;
+[; ;main.c: 60: r = 255;
 "60
-[e = _b -> -> 0 `i `uc ]
-[; ;main.c: 62: D_UART_Write("I", "init");
+[e = _r -> -> 255 `i `uc ]
+[; ;main.c: 61: g = 0;
+"61
+[e = _g -> -> 0 `i `uc ]
+[; ;main.c: 62: b = 0;
 "62
+[e = _b -> -> 0 `i `uc ]
+[; ;main.c: 64: D_UART_Write("I", "init");
+"64
 [e ( _D_UART_Write (2 , :s 2C :s 3C ]
-[; ;main.c: 63: }
-"63
+[; ;main.c: 65: }
+"65
 [e :UE 325 ]
 }
-"65
+"67
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 65: void main(void) {
+[; ;main.c: 67: void main(void) {
 [e :U _main ]
 [f ]
-[; ;main.c: 67: initialize();
-"67
-[e ( _initialize ..  ]
-[; ;main.c: 69: D_PWM_SetRGB(r, g, b);
+[; ;main.c: 69: initialize();
 "69
-[e ( _D_PWM_SetRGB (3 , , _r _g _b ]
-[; ;main.c: 71: while(1) {
+[e ( _initialize ..  ]
+[; ;main.c: 71: D_PWM_SetRGB(r, g, b);
 "71
+[e ( _D_PWM_SetRGB (3 , , _r _g _b ]
+[; ;main.c: 73: while(1) {
+"73
 [e :U 328 ]
 {
-[; ;main.c: 73: if (D_UART_ReadFlag) {
-"73
+[; ;main.c: 75: if (D_UART_ReadFlag) {
+"75
 [e $ ! != -> _D_UART_ReadFlag `i -> -> -> 0 `i `uc `i 330  ]
 {
-[; ;main.c: 74: D_UART_ReadFlag = 0;
-"74
-[e = _D_UART_ReadFlag -> -> 0 `i `uc ]
-"75
-[v _length `uc ~T0 @X0 1 a ]
-[; ;main.c: 75: uint8_t length = D_UART_BlockLength();
-[e = _length ( _D_UART_BlockLength ..  ]
-[; ;main.c: 76: if (length == 1) {
+[; ;main.c: 76: D_UART_ReadFlag = 0;
 "76
+[e = _D_UART_ReadFlag -> -> 0 `i `uc ]
+"77
+[v _length `uc ~T0 @X0 1 a ]
+[; ;main.c: 77: uint8_t length = D_UART_BlockLength();
+[e = _length ( _D_UART_BlockLength ..  ]
+[; ;main.c: 78: if (length == 1) {
+"78
 [e $ ! == -> _length `i -> 1 `i 331  ]
 {
-[; ;main.c: 77: handle_message(D_UART_Read());
-"77
+[; ;main.c: 79: handle_message(D_UART_Read());
+"79
 [e ( _handle_message (1 ( _D_UART_Read ..  ]
-"78
+"80
 }
-[; ;main.c: 78: } else if (length > 1) {
+[; ;main.c: 80: } else if (length > 1) {
 [e $U 332  ]
 [e :U 331 ]
 [e $ ! > -> _length `i -> 1 `i 333  ]
 {
-"79
+"81
 [v _i `uc ~T0 @X0 1 a ]
-[; ;main.c: 79: uint8_t i;
-[; ;main.c: 80: for (i=0; i < length; i++) {
-"80
+[; ;main.c: 81: uint8_t i;
+[; ;main.c: 82: for (i=0; i < length; i++) {
+"82
 {
 [e = _i -> -> 0 `i `uc ]
 [e $U 337  ]
 [e :U 334 ]
 {
-[; ;main.c: 81: handle_message(D_UART_ReadBlock(i));
-"81
+[; ;main.c: 83: handle_message(D_UART_ReadBlock(i));
+"83
 [e ( _handle_message (1 ( _D_UART_ReadBlock (1 _i ]
-"82
+"84
 }
-"80
+"82
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 337 ]
 [e $ < -> _i `i -> _length `i 334  ]
 [e :U 335 ]
-"82
+"84
 }
-"83
+"85
 }
 [e :U 333 ]
-"84
+"86
 [e :U 332 ]
 }
 [e :U 330 ]
-"85
+"87
 }
 [e :U 327 ]
-"71
+"73
 [e $U 328  ]
 [e :U 329 ]
-[; ;main.c: 82: }
-[; ;main.c: 83: }
 [; ;main.c: 84: }
 [; ;main.c: 85: }
-[; ;main.c: 86: return;
-"86
-[e $UE 326  ]
+[; ;main.c: 86: }
 [; ;main.c: 87: }
-"87
+[; ;main.c: 88: return;
+"88
+[e $UE 326  ]
+[; ;main.c: 89: }
+"89
 [e :UE 326 ]
 }
-"90
+"92
 [v _handle_message `(v ~T0 @X0 1 ef1`S323 ]
 {
-[; ;main.c: 90: void handle_message(READ_Data msg) {
+[; ;main.c: 92: void handle_message(READ_Data msg) {
 [e :U _handle_message ]
 [v _msg `S323 ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 91: if (strcmp(msg.command, "R") == 0) {
-"91
+[; ;main.c: 93: if (strcmp(msg.command, "R") == 0) {
+"93
 [e $ ! == ( _strcmp (2 , . _msg 1 :s 4C -> 0 `i 339  ]
 {
-[; ;main.c: 92: r = strToInt(msg.message);
-"92
-[e = _r ( _strToInt (1 . _msg 2 ]
-[; ;main.c: 93: D_PWM_SetRGB(r, g, b);
-"93
-[e ( _D_PWM_SetRGB (3 , , _r _g _b ]
-[; ;main.c: 94: return;
+[; ;main.c: 94: r = strToInt(msg.message);
 "94
-[e $UE 338  ]
+[e = _r ( _strToInt (1 . _msg 2 ]
+[; ;main.c: 95: D_PWM_SetRGB(r, g, b);
 "95
+[e ( _D_PWM_SetRGB (3 , , _r _g _b ]
+[; ;main.c: 96: return;
+"96
+[e $UE 338  ]
+"97
 }
 [e :U 339 ]
-[; ;main.c: 95: }
-[; ;main.c: 97: if (strcmp(msg.command, "G") == 0) {
-"97
+[; ;main.c: 97: }
+[; ;main.c: 99: if (strcmp(msg.command, "G") == 0) {
+"99
 [e $ ! == ( _strcmp (2 , . _msg 1 :s 5C -> 0 `i 340  ]
 {
-[; ;main.c: 98: g = strToInt(msg.message);
-"98
-[e = _g ( _strToInt (1 . _msg 2 ]
-[; ;main.c: 99: D_PWM_SetRGB(r, g, b);
-"99
-[e ( _D_PWM_SetRGB (3 , , _r _g _b ]
-[; ;main.c: 100: return;
+[; ;main.c: 100: g = strToInt(msg.message);
 "100
-[e $UE 338  ]
+[e = _g ( _strToInt (1 . _msg 2 ]
+[; ;main.c: 101: D_PWM_SetRGB(r, g, b);
 "101
+[e ( _D_PWM_SetRGB (3 , , _r _g _b ]
+[; ;main.c: 102: return;
+"102
+[e $UE 338  ]
+"103
 }
 [e :U 340 ]
-[; ;main.c: 101: }
-[; ;main.c: 103: if (strcmp(msg.command, "B") == 0) {
-"103
+[; ;main.c: 103: }
+[; ;main.c: 105: if (strcmp(msg.command, "B") == 0) {
+"105
 [e $ ! == ( _strcmp (2 , . _msg 1 :s 6C -> 0 `i 341  ]
 {
-[; ;main.c: 104: b = strToInt(msg.message);
-"104
-[e = _b ( _strToInt (1 . _msg 2 ]
-[; ;main.c: 105: D_PWM_SetRGB(r, g, b);
-"105
-[e ( _D_PWM_SetRGB (3 , , _r _g _b ]
-[; ;main.c: 106: return;
+[; ;main.c: 106: b = strToInt(msg.message);
 "106
-[e $UE 338  ]
+[e = _b ( _strToInt (1 . _msg 2 ]
+[; ;main.c: 107: D_PWM_SetRGB(r, g, b);
 "107
+[e ( _D_PWM_SetRGB (3 , , _r _g _b ]
+[; ;main.c: 108: return;
+"108
+[e $UE 338  ]
+"109
 }
 [e :U 341 ]
-[; ;main.c: 107: }
-[; ;main.c: 109: if (strcmp(msg.command, "S") == 0) {
-"109
+[; ;main.c: 109: }
+[; ;main.c: 111: if (strcmp(msg.command, "S") == 0) {
+"111
 [e $ ! == ( _strcmp (2 , . _msg 1 :s 7C -> 0 `i 342  ]
 {
-[; ;main.c: 110: if (strcmp(msg.message, "D") == 0) {
-"110
+[; ;main.c: 112: if (strcmp(msg.message, "D") == 0) {
+"112
 [e $ ! == ( _strcmp (2 , . _msg 2 :s 8C -> 0 `i 343  ]
 {
-[; ;main.c: 111: D_PWM_ScaleDown();
-"111
+[; ;main.c: 113: D_PWM_ScaleDown();
+"113
 [e ( _D_PWM_ScaleDown ..  ]
-"112
+"114
 }
 [e :U 343 ]
-[; ;main.c: 112: }
-[; ;main.c: 113: if (strcmp(msg.message, "U") == 0) {
-"113
+[; ;main.c: 114: }
+[; ;main.c: 115: if (strcmp(msg.message, "U") == 0) {
+"115
 [e $ ! == ( _strcmp (2 , . _msg 2 :s 9C -> 0 `i 344  ]
 {
-[; ;main.c: 114: D_PWM_ScaleUp();
-"114
-[e ( _D_PWM_ScaleUp ..  ]
-"115
-}
-[e :U 344 ]
-[; ;main.c: 115: }
-[; ;main.c: 116: return;
+[; ;main.c: 116: D_PWM_ScaleUp();
 "116
-[e $UE 338  ]
+[e ( _D_PWM_ScaleUp ..  ]
 "117
 }
-[e :U 342 ]
+[e :U 344 ]
 [; ;main.c: 117: }
-[; ;main.c: 119: if (strcmp(msg.command, "FL") == 0) {
+[; ;main.c: 118: return;
+"118
+[e $UE 338  ]
 "119
+}
+[e :U 342 ]
+[; ;main.c: 119: }
+[; ;main.c: 121: if (strcmp(msg.command, "FL") == 0) {
+"121
 [e $ ! == ( _strcmp (2 , . _msg 1 :s 10C -> 0 `i 345  ]
 {
-[; ;main.c: 120: D_PWM_Flash();
-"120
-[e ( _D_PWM_Flash ..  ]
-[; ;main.c: 121: return;
-"121
-[e $UE 338  ]
+[; ;main.c: 122: D_PWM_Flash();
 "122
+[e ( _D_PWM_Flash ..  ]
+[; ;main.c: 123: return;
+"123
+[e $UE 338  ]
+"124
 }
 [e :U 345 ]
-[; ;main.c: 122: }
-[; ;main.c: 124: if (strcmp(msg.command, "ST") == 0) {
-"124
+[; ;main.c: 124: }
+[; ;main.c: 126: if (strcmp(msg.command, "ST") == 0) {
+"126
 [e $ ! == ( _strcmp (2 , . _msg 1 :s 11C -> 0 `i 346  ]
 {
-[; ;main.c: 125: D_PWM_Strobe();
-"125
-[e ( _D_PWM_Strobe ..  ]
-[; ;main.c: 126: return;
-"126
-[e $UE 338  ]
+[; ;main.c: 127: D_PWM_Strobe();
 "127
+[e ( _D_PWM_Strobe ..  ]
+[; ;main.c: 128: return;
+"128
+[e $UE 338  ]
+"129
 }
 [e :U 346 ]
-[; ;main.c: 127: }
-[; ;main.c: 129: if (strcmp(msg.command, "FA") == 0) {
-"129
+[; ;main.c: 129: }
+[; ;main.c: 131: if (strcmp(msg.command, "FA") == 0) {
+"131
 [e $ ! == ( _strcmp (2 , . _msg 1 :s 12C -> 0 `i 347  ]
 {
-[; ;main.c: 130: D_PWM_Fade();
-"130
-[e ( _D_PWM_Fade ..  ]
-[; ;main.c: 131: return;
-"131
-[e $UE 338  ]
+[; ;main.c: 132: D_PWM_Fade();
 "132
+[e ( _D_PWM_Fade ..  ]
+[; ;main.c: 133: return;
+"133
+[e $UE 338  ]
+"134
 }
 [e :U 347 ]
-[; ;main.c: 132: }
-[; ;main.c: 134: if (strcmp(msg.command, "SM") == 0) {
-"134
+[; ;main.c: 134: }
+[; ;main.c: 136: if (strcmp(msg.command, "SM") == 0) {
+"136
 [e $ ! == ( _strcmp (2 , . _msg 1 :s 13C -> 0 `i 348  ]
 {
-[; ;main.c: 135: D_PWM_Smooth();
-"135
-[e ( _D_PWM_Smooth ..  ]
-[; ;main.c: 136: return;
-"136
-[e $UE 338  ]
+[; ;main.c: 137: D_PWM_Smooth();
 "137
+[e ( _D_PWM_Smooth ..  ]
+[; ;main.c: 138: return;
+"138
+[e $UE 338  ]
+"139
 }
 [e :U 348 ]
-[; ;main.c: 137: }
-[; ;main.c: 139: if(strcmp(msg.command, "RGB") == 0) {
-"139
+[; ;main.c: 139: }
+[; ;main.c: 141: if (strcmp(msg.command, "OFF") == 0) {
+"141
 [e $ ! == ( _strcmp (2 , . _msg 1 :s 14C -> 0 `i 349  ]
 {
-[; ;main.c: 140: D_UART_WriteInt("R", D_PWM_GetRed());
-"140
-[e ( _D_UART_WriteInt (2 , :s 15C -> ( _D_PWM_GetRed ..  `i ]
-[; ;main.c: 141: _delay((unsigned long)((10)*(48000000/4000000.0)));
-"141
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 142: D_UART_WriteInt("G", D_PWM_GetGreen());
+[; ;main.c: 142: D_PWM_Enable(0);
 "142
-[e ( _D_UART_WriteInt (2 , :s 16C -> ( _D_PWM_GetGreen ..  `i ]
-[; ;main.c: 143: _delay((unsigned long)((10)*(48000000/4000000.0)));
+[e ( _D_PWM_Enable (1 -> -> 0 `i `uc ]
+[; ;main.c: 143: return;
 "143
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 144: D_UART_WriteInt("B", D_PWM_GetBlue());
-"144
-[e ( _D_UART_WriteInt (2 , :s 17C -> ( _D_PWM_GetBlue ..  `i ]
-[; ;main.c: 145: _delay((unsigned long)((10)*(48000000/4000000.0)));
-"145
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 146: return;
-"146
 [e $UE 338  ]
-"147
+"144
 }
 [e :U 349 ]
-[; ;main.c: 147: }
-[; ;main.c: 149: if(strcmp(msg.command, "SCA") == 0) {
-"149
-[e $ ! == ( _strcmp (2 , . _msg 1 :s 18C -> 0 `i 350  ]
+[; ;main.c: 144: }
+[; ;main.c: 146: if (strcmp(msg.command, "ON") == 0) {
+"146
+[e $ ! == ( _strcmp (2 , . _msg 1 :s 15C -> 0 `i 350  ]
 {
-[; ;main.c: 150: D_UART_WriteInt("SCA", D_PWM_GetScale());
-"150
-[e ( _D_UART_WriteInt (2 , :s 19C -> ( _D_PWM_GetScale ..  `i ]
-[; ;main.c: 151: return;
-"151
+[; ;main.c: 147: D_PWM_Enable(1);
+"147
+[e ( _D_PWM_Enable (1 -> -> 1 `i `uc ]
+[; ;main.c: 148: return;
+"148
 [e $UE 338  ]
-"152
+"149
 }
 [e :U 350 ]
-[; ;main.c: 152: }
-[; ;main.c: 154: if(strcmp(msg.command, "STA") == 0) {
-"154
-[e $ ! == ( _strcmp (2 , . _msg 1 :s 20C -> 0 `i 351  ]
+[; ;main.c: 149: }
+[; ;main.c: 151: if(strcmp(msg.command, "RGB") == 0) {
+"151
+[e $ ! == ( _strcmp (2 , . _msg 1 :s 16C -> 0 `i 351  ]
 {
-[; ;main.c: 155: D_UART_WriteInt("STA", D_PWM_GetState());
+[; ;main.c: 152: D_UART_WriteInt("R", D_PWM_GetRed());
+"152
+[e ( _D_UART_WriteInt (2 , :s 17C -> ( _D_PWM_GetRed ..  `i ]
+[; ;main.c: 153: _delay((unsigned long)((10)*(48000000/4000000.0)));
+"153
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 154: D_UART_WriteInt("G", D_PWM_GetGreen());
+"154
+[e ( _D_UART_WriteInt (2 , :s 18C -> ( _D_PWM_GetGreen ..  `i ]
+[; ;main.c: 155: _delay((unsigned long)((10)*(48000000/4000000.0)));
 "155
-[e ( _D_UART_WriteInt (2 , :s 21C -> ( _D_PWM_GetState ..  `i ]
-[; ;main.c: 156: return;
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 156: D_UART_WriteInt("B", D_PWM_GetBlue());
 "156
-[e $UE 338  ]
+[e ( _D_UART_WriteInt (2 , :s 19C -> ( _D_PWM_GetBlue ..  `i ]
+[; ;main.c: 157: _delay((unsigned long)((10)*(48000000/4000000.0)));
 "157
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 158: return;
+"158
+[e $UE 338  ]
+"159
 }
 [e :U 351 ]
-[; ;main.c: 157: }
-[; ;main.c: 158: }
-"158
+[; ;main.c: 159: }
+[; ;main.c: 161: if(strcmp(msg.command, "SCA") == 0) {
+"161
+[e $ ! == ( _strcmp (2 , . _msg 1 :s 20C -> 0 `i 352  ]
+{
+[; ;main.c: 162: D_UART_WriteInt("SCA", D_PWM_GetScale());
+"162
+[e ( _D_UART_WriteInt (2 , :s 21C -> ( _D_PWM_GetScale ..  `i ]
+[; ;main.c: 163: return;
+"163
+[e $UE 338  ]
+"164
+}
+[e :U 352 ]
+[; ;main.c: 164: }
+[; ;main.c: 166: if(strcmp(msg.command, "STA") == 0) {
+"166
+[e $ ! == ( _strcmp (2 , . _msg 1 :s 22C -> 0 `i 353  ]
+{
+[; ;main.c: 167: D_UART_WriteInt("STA", D_PWM_GetState());
+"167
+[e ( _D_UART_WriteInt (2 , :s 23C -> ( _D_PWM_GetState ..  `i ]
+[; ;main.c: 168: return;
+"168
+[e $UE 338  ]
+"169
+}
+[e :U 353 ]
+[; ;main.c: 169: }
+[; ;main.c: 170: }
+"170
 [e :UE 338 ]
 }
-"160
+"172
 [v _strToInt `(uc ~T0 @X0 1 ef1`*Cuc ]
 {
-[; ;main.c: 160: uint8_t strToInt(const char* str) {
+[; ;main.c: 172: uint8_t strToInt(const char* str) {
 [e :U _strToInt ]
 [v _str `*Cuc ~T0 @X0 1 r1 ]
 [f ]
-"161
-[v _val `uc ~T0 @X0 1 a ]
-[; ;main.c: 161: uint8_t val = 0;
-[e = _val -> -> 0 `i `uc ]
-"162
-[v _tmp `uc ~T0 @X0 1 a ]
-[; ;main.c: 162: uint8_t tmp = 0;
-[e = _tmp -> -> 0 `i `uc ]
-"163
-[v _shift `uc ~T0 @X0 1 a ]
-[; ;main.c: 163: uint8_t shift = 0;
-[e = _shift -> -> 0 `i `uc ]
-[; ;main.c: 164: while(*str != '\0') {
-"164
-[e $U 353  ]
-[e :U 354 ]
-{
-[; ;main.c: 165: tmp = *str - 0x30;
-"165
-[e = _tmp -> - -> *U _str `i -> 48 `i `uc ]
-[; ;main.c: 166: if (shift != 0) {
-"166
-[e $ ! != -> _shift `i -> 0 `i 356  ]
-{
-[; ;main.c: 167: val *= 10;
-"167
-[e =* _val -> -> 10 `i `uc ]
-"168
-}
-[e :U 356 ]
-[; ;main.c: 168: }
-[; ;main.c: 169: val += tmp;
-"169
-[e =+ _val _tmp ]
-[; ;main.c: 170: shift++;
-"170
-[e ++ _shift -> -> 1 `i `uc ]
-[; ;main.c: 171: str++;
-"171
-[e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
-"172
-}
-[e :U 353 ]
-"164
-[e $ != -> *U _str `ui -> 0 `ui 354  ]
-[e :U 355 ]
-[; ;main.c: 172: }
-[; ;main.c: 173: return val;
 "173
-[e ) _val ]
-[e $UE 352  ]
-[; ;main.c: 174: }
+[v _val `uc ~T0 @X0 1 a ]
+[; ;main.c: 173: uint8_t val = 0;
+[e = _val -> -> 0 `i `uc ]
 "174
-[e :UE 352 ]
+[v _tmp `uc ~T0 @X0 1 a ]
+[; ;main.c: 174: uint8_t tmp = 0;
+[e = _tmp -> -> 0 `i `uc ]
+"175
+[v _shift `uc ~T0 @X0 1 a ]
+[; ;main.c: 175: uint8_t shift = 0;
+[e = _shift -> -> 0 `i `uc ]
+[; ;main.c: 176: while(*str != '\0') {
+"176
+[e $U 355  ]
+[e :U 356 ]
+{
+[; ;main.c: 177: tmp = *str - 0x30;
+"177
+[e = _tmp -> - -> *U _str `i -> 48 `i `uc ]
+[; ;main.c: 178: if (shift != 0) {
+"178
+[e $ ! != -> _shift `i -> 0 `i 358  ]
+{
+[; ;main.c: 179: val *= 10;
+"179
+[e =* _val -> -> 10 `i `uc ]
+"180
+}
+[e :U 358 ]
+[; ;main.c: 180: }
+[; ;main.c: 181: val += tmp;
+"181
+[e =+ _val _tmp ]
+[; ;main.c: 182: shift++;
+"182
+[e ++ _shift -> -> 1 `i `uc ]
+[; ;main.c: 183: str++;
+"183
+[e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
+"184
+}
+[e :U 355 ]
+"176
+[e $ != -> *U _str `ui -> 0 `ui 356  ]
+[e :U 357 ]
+[; ;main.c: 184: }
+[; ;main.c: 185: return val;
+"185
+[e ) _val ]
+[e $UE 354  ]
+[; ;main.c: 186: }
+"186
+[e :UE 354 ]
 }
 [a 3C 105 110 105 116 0 ]
 [a 9C 85 0 ]
 [a 11C 83 84 0 ]
 [a 7C 83 0 ]
 [a 4C 82 0 ]
-[a 15C 82 0 ]
+[a 17C 82 0 ]
 [a 1C 80 0 ]
+[a 15C 79 78 0 ]
 [a 13C 83 77 0 ]
 [a 10C 70 76 0 ]
 [a 2C 73 0 ]
 [a 5C 71 0 ]
-[a 16C 71 0 ]
+[a 18C 71 0 ]
+[a 14C 79 70 70 0 ]
 [a 8C 68 0 ]
-[a 14C 82 71 66 0 ]
+[a 16C 82 71 66 0 ]
 [a 6C 66 0 ]
-[a 17C 66 0 ]
-[a 20C 83 84 65 0 ]
-[a 21C 83 84 65 0 ]
+[a 19C 66 0 ]
+[a 22C 83 84 65 0 ]
+[a 23C 83 84 65 0 ]
 [a 12C 70 65 0 ]
-[a 18C 83 67 65 0 ]
-[a 19C 83 67 65 0 ]
+[a 20C 83 67 65 0 ]
+[a 21C 83 67 65 0 ]

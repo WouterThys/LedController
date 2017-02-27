@@ -4469,7 +4469,7 @@ void D_PWM_Fade(void);
 
 void D_PWM_Smooth(void);
 
-# 37 "main.c"
+# 39 "main.c"
 READ_Data read;
 uint8_t r;
 uint8_t g;
@@ -4569,6 +4569,16 @@ return;
 
 if (strcmp(msg.command, "SM") == 0) {
 D_PWM_Smooth();
+return;
+}
+
+if (strcmp(msg.command, "OFF") == 0) {
+D_PWM_Enable(0);
+return;
+}
+
+if (strcmp(msg.command, "ON") == 0) {
+D_PWM_Enable(1);
 return;
 }
 

@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=/opt/microchip/xc8/v1.40/dat/en_msgs.txt -cs \
   -h+dist/default/production/LedController.X.production.sym \
   --cmf=dist/default/production/LedController.X.production.cmf -z -Q18F2550 \
-  -o/tmp/xcXU45LUi -Mdist/default/production/LedController.X.production.map \
+  -o/tmp/xcXqIeyJs -Mdist/default/production/LedController.X.production.map \
   -E1 -ver=XC8 -ASTACK=013Fh-07ffh -pstack=STACK -ACODE=00h-07FFFh \
   -ACONST=00h-07FFFh -ASMALLCONST=0800h-08FFhx120 \
   -AMEDIUMCONST=0800h-07FFFh -ACOMRAM=01h-05Fh -AABS1=00h-07FFh \
@@ -22,7 +22,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  /tmp/xcXQtCexU.obj dist/default/production/LedController.X.production.obj 
+  /tmp/xcXHhI07Q.obj dist/default/production/LedController.X.production.obj 
 
 Object code version is 3.11
 
@@ -34,7 +34,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/xcXQtCexU.obj
+/tmp/xcXHhI07Q.obj
                 init                                 B4       B4        4        C       0
                 reset_vec                             0        0        4        0       0
                 idloc                            200000   200000        8   200000       0
@@ -42,74 +42,75 @@ Call graph: (short form)
 dist/default/production/LedController.X.production.obj
                 intcodelo                            18       18       9C        C       0
                 intcode                               8        8        6        4       0
-                temp                                 45       45        1        1       1
-                smallconst                          800      800       68      400       0
-                text55                             2064     2064       2C      434       0
-                text54                             2126     2126       22      434       0
-                text53                             19E0     19E0       8C      434       0
-                text52                             1774     1774       A8      434       0
-                text51                             1952     1952       8E      434       0
-                text50                             151E     151E       D8      434       0
-                text49                             1AF4     1AF4       7A      434       0
-                text48                             1C54     1C54       6E      434       0
-                intcode_body                       1A6C     1A6C       88      434       0
-                text46                             1F5E     1F5E       52      434       0
-                text45                             1EAA     1EAA       5C      434       0
-                text44                             2148     2148       20      434       0
-                text43                             21B4     21B4       12      434       0
-                text42                             2200     2200        A      434       0
-                text41                             10BC     10BC      268      434       0
-                text40                             1BE6     1BE6       6E      434       0
-                text39                              B84      B84      2CE      434       0
-                text38                             2090     2090       2A      434       0
-                text36                             2234     2234        6      434       0
-                text35                             1FB0     1FB0       4A      434       0
-                text34                             1E4E     1E4E       5C      434       0
-                text33                             222E     222E        6      434       0
-                text32                             2228     2228        6      434       0
-                text31                             2222     2222        6      434       0
-                text30                             221C     221C        6      434       0
-                text29                             2216     2216        6      434       0
-                text28                             223E     223E        4      434       0
-                text27                             223A     223A        4      434       0
-                text26                             21F6     21F6        A      434       0
-                text25                             21EC     21EC        A      434       0
-                text24                             2034     2034       30      434       0
-                text23                             20E0     20E0       24      434       0
-                text22                             2186     2186       1A      434       0
-                text21                             2210     2210        6      434       0
-                text20                             220A     220A        6      434       0
-                text19                             1B6E     1B6E       78      434       0
-                text18                             1D8E     1D8E       62      434       0
-                text17                             20BA     20BA       26      434       0
-                text16                             21A0     21A0       14      434       0
-                text15                             21D4     21D4        E      434       0
-                text14                              E52      E52      26A      434       0
-                text13                             143E     143E       E0      434       0
-                text12                             1DF0     1DF0       5E      434       0
-                text11                             1F06     1F06       58      434       0
-                text10                              868      868      31C      434       0
-                text9                              2168     2168       1E      434       0
-                text8                              2104     2104       22      434       0
-                text7                              21C6     21C6        E      434       0
-                text6                              181C     181C       A0      434       0
-                text5                              1FFA     1FFA       3A      434       0
-                text4                              1324     1324      11A      434       0
-                text3                              16CA     16CA       AA      434       0
-                text2                              15F6     15F6       D4      434       0
-                text1                              1D2C     1D2C       62      434       0
-                text0                              18BC     18BC       96      434       0
+                temp                                 46       46        1        1       1
+                smallconst                          800      800       70      400       0
+                text56                             21D8     21D8       2C      438       0
+                text55                             22BC     22BC       22      438       0
+                text54                             1B1A     1B1A       8C      438       0
+                text53                             189E     189E       A8      438       0
+                text52                             157E     157E       D8      438       0
+                text51                             1C2E     1C2E       7A      438       0
+                text50                             19E6     19E6       9E      438       0
+                text49                             1D20     1D20       78      438       0
+                intcode_body                       1BA6     1BA6       88      438       0
+                text47                             20A2     20A2       52      438       0
+                text46                             1FEE     1FEE       5C      438       0
+                text45                             22DE     22DE       20      438       0
+                text44                             2330     2330       12      438       0
+                text43                             23A6     23A6        A      438       0
+                text42                             111C     111C      268      438       0
+                text41                             1D98     1D98       6E      438       0
+                text40                              BE4      BE4      2CE      438       0
+                text39                             2204     2204       2A      438       0
+                text37                             23C2     23C2        6      438       0
+                text36                             20F4     20F4       4A      438       0
+                text35                             1F92     1F92       5C      438       0
+                text34                             229A     229A       22      438       0
+                text33                             172A     172A       CA      438       0
+                text32                             21AC     21AC       2C      438       0
+                text31                             237A     237A        E      438       0
+                text30                             236C     236C        E      438       0
+                text29                             23BC     23BC        6      438       0
+                text28                             23B6     23B6        6      438       0
+                text27                             23B0     23B0        6      438       0
+                text26                             23CC     23CC        4      438       0
+                text25                             23C8     23C8        4      438       0
+                text24                             239C     239C        A      438       0
+                text23                             2392     2392        A      438       0
+                text22                             217C     217C       30      438       0
+                text21                             2254     2254       24      438       0
+                text20                             2278     2278       22      438       0
+                text19                             235E     235E        E      438       0
+                text18                             2350     2350        E      438       0
+                text17                             1CA8     1CA8       78      438       0
+                text16                             1ED2     1ED2       62      438       0
+                text15                             222E     222E       26      438       0
+                text14                             231C     231C       14      438       0
+                text13                             2342     2342        E      438       0
+                text12                              EB2      EB2      26A      438       0
+                text11                             149E     149E       E0      438       0
+                text10                             1F34     1F34       5E      438       0
+                text9                              204A     204A       58      438       0
+                text8                               870      870      374      438       0
+                text7                              22FE     22FE       1E      438       0
+                text6                              1946     1946       A0      438       0
+                text5                              213E     213E       3E      438       0
+                text4                              1384     1384      11A      438       0
+                text3                              17F4     17F4       AA      438       0
+                text2                              1656     1656       D4      438       0
+                text1                              1E70     1E70       62      438       0
+                text0                              1A84     1A84       96      438       0
                 cstackCOMRAM                          1        1       21        1       1
                 cstackBANK0                          60       60       51       60       1
                 bssBANK1                            100      100       3F      100       1
                 dataBANK0                            D7       D7        2       60       1
                 bssBANK0                             B1       B1       23       60       1
-                dataCOMRAM                           3B       3B        A        1       1
-                bssCOMRAM                            22       22       19        1       1
-                cinit                              1CC2     1CC2       6A      434       0
+                dataCOMRAM                           3C       3C        A        1       1
+                bssCOMRAM                            22       22       1A        1       1
+                cinit                              1E06     1E06       6A      438       0
                 nvBANK0                              D4       D4        3       60       1
-                idataBANK0                         2242     2242        2      434       0
-                idataCOMRAM                        21E2     21E2        A      434       0
+                idataBANK0                         23D0     23D0        2      438       0
+                idataCOMRAM                        2388     2388        A      438       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
@@ -119,77 +120,78 @@ TOTAL           Name                               Link     Load   Length     Sp
                 intcode                               8        8        6         0
                 init                                 B4       B4        4         0
                 reset_vec                             0        0        4         0
-                text55                             2064     2064       2C         0
-                text54                             2126     2126       22         0
-                text53                             19E0     19E0       8C         0
-                text52                             1774     1774       A8         0
-                text51                             1952     1952       8E         0
-                text50                             151E     151E       D8         0
-                text49                             1AF4     1AF4       7A         0
-                text48                             1C54     1C54       6E         0
-                intcode_body                       1A6C     1A6C       88         0
-                text46                             1F5E     1F5E       52         0
-                text45                             1EAA     1EAA       5C         0
-                text44                             2148     2148       20         0
-                text43                             21B4     21B4       12         0
-                text42                             2200     2200        A         0
-                text41                             10BC     10BC      268         0
-                text40                             1BE6     1BE6       6E         0
-                text39                              B84      B84      2CE         0
-                text38                             2090     2090       2A         0
-                text36                             2234     2234        6         0
-                text35                             1FB0     1FB0       4A         0
-                text34                             1E4E     1E4E       5C         0
-                text33                             222E     222E        6         0
-                text32                             2228     2228        6         0
-                text31                             2222     2222        6         0
-                text30                             221C     221C        6         0
-                text29                             2216     2216        6         0
-                text28                             223E     223E        4         0
-                text27                             223A     223A        4         0
-                text26                             21F6     21F6        A         0
-                text25                             21EC     21EC        A         0
-                text24                             2034     2034       30         0
-                text23                             20E0     20E0       24         0
-                text22                             2186     2186       1A         0
-                text21                             2210     2210        6         0
-                text20                             220A     220A        6         0
-                text19                             1B6E     1B6E       78         0
-                text18                             1D8E     1D8E       62         0
-                text17                             20BA     20BA       26         0
-                text16                             21A0     21A0       14         0
-                text15                             21D4     21D4        E         0
-                text14                              E52      E52      26A         0
-                text13                             143E     143E       E0         0
-                text12                             1DF0     1DF0       5E         0
-                text11                             1F06     1F06       58         0
-                text10                              868      868      31C         0
-                text9                              2168     2168       1E         0
-                text8                              2104     2104       22         0
-                text7                              21C6     21C6        E         0
-                text6                              181C     181C       A0         0
-                text5                              1FFA     1FFA       3A         0
-                text4                              1324     1324      11A         0
-                text3                              16CA     16CA       AA         0
-                text2                              15F6     15F6       D4         0
-                text1                              1D2C     1D2C       62         0
-                text0                              18BC     18BC       96         0
-                cinit                              1CC2     1CC2       6A         0
-                idataBANK0                         2242     2242        2         0
-                idataCOMRAM                        21E2     21E2        A         0
+                text56                             21D8     21D8       2C         0
+                text55                             22BC     22BC       22         0
+                text54                             1B1A     1B1A       8C         0
+                text53                             189E     189E       A8         0
+                text52                             157E     157E       D8         0
+                text51                             1C2E     1C2E       7A         0
+                text50                             19E6     19E6       9E         0
+                text49                             1D20     1D20       78         0
+                intcode_body                       1BA6     1BA6       88         0
+                text47                             20A2     20A2       52         0
+                text46                             1FEE     1FEE       5C         0
+                text45                             22DE     22DE       20         0
+                text44                             2330     2330       12         0
+                text43                             23A6     23A6        A         0
+                text42                             111C     111C      268         0
+                text41                             1D98     1D98       6E         0
+                text40                              BE4      BE4      2CE         0
+                text39                             2204     2204       2A         0
+                text37                             23C2     23C2        6         0
+                text36                             20F4     20F4       4A         0
+                text35                             1F92     1F92       5C         0
+                text34                             229A     229A       22         0
+                text33                             172A     172A       CA         0
+                text32                             21AC     21AC       2C         0
+                text31                             237A     237A        E         0
+                text30                             236C     236C        E         0
+                text29                             23BC     23BC        6         0
+                text28                             23B6     23B6        6         0
+                text27                             23B0     23B0        6         0
+                text26                             23CC     23CC        4         0
+                text25                             23C8     23C8        4         0
+                text24                             239C     239C        A         0
+                text23                             2392     2392        A         0
+                text22                             217C     217C       30         0
+                text21                             2254     2254       24         0
+                text20                             2278     2278       22         0
+                text19                             235E     235E        E         0
+                text18                             2350     2350        E         0
+                text17                             1CA8     1CA8       78         0
+                text16                             1ED2     1ED2       62         0
+                text15                             222E     222E       26         0
+                text14                             231C     231C       14         0
+                text13                             2342     2342        E         0
+                text12                              EB2      EB2      26A         0
+                text11                             149E     149E       E0         0
+                text10                             1F34     1F34       5E         0
+                text9                              204A     204A       58         0
+                text8                               870      870      374         0
+                text7                              22FE     22FE       1E         0
+                text6                              1946     1946       A0         0
+                text5                              213E     213E       3E         0
+                text4                              1384     1384      11A         0
+                text3                              17F4     17F4       AA         0
+                text2                              1656     1656       D4         0
+                text1                              1E70     1E70       62         0
+                text0                              1A84     1A84       96         0
+                cinit                              1E06     1E06       6A         0
+                idataBANK0                         23D0     23D0        2         0
+                idataCOMRAM                        2388     2388        A         0
 
         CLASS   CONST          
 
         CLASS   SMALLCONST     
-                smallconst                          800      800       68         0
+                smallconst                          800      800       70         0
 
         CLASS   MEDIUMCONST    
 
         CLASS   COMRAM         
-                temp                                 45       45        1         1
+                temp                                 46       46        1         1
                 cstackCOMRAM                          1        1       21         1
-                dataCOMRAM                           3B       3B        A         1
-                bssCOMRAM                            22       22       19         1
+                dataCOMRAM                           3C       3C        A         1
+                bssCOMRAM                            22       22       1A         1
 
         CLASS   ABS1           
 
@@ -235,13 +237,13 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class
 
                 reset_vec                      000000  000004  000004         0       0  CODE    
-                cstackCOMRAM                   000001  000045  000046         1       1  COMRAM  
+                cstackCOMRAM                   000001  000046  000047         1       1  COMRAM  
                 intcode                        000008  000006  00000E         4       0  CODE    
                 intcodelo                      000018  0000A0  0000B8         C       0  CODE    
                 cstackBANK0                    000060  000079  0000D9        60       1  BANK0   
                 bssBANK1                       000100  00003F  00013F       100       1  BANK1   
-                smallconst                     000800  000068  000868       400       0  SMALLCON
-                text10                         000868  0019DC  002244       434       0  CODE    
+                smallconst                     000800  000070  000870       400       0  SMALLCON
+                text8                          000870  001B62  0023D2       438       0  CODE    
                 idloc                          200000  000008  200008    200000       0  IDLOC   
                 config                         300000  00000E  30000E    300000       0  CONFIG  
 
@@ -257,24 +259,24 @@ UNUSED ADDRESS RANGES
         BANK5            000500-0005FF              100
         BANK6            000600-0006FF              100
         BANK7            000700-0007FF              100
-        BIGRAM           000046-00005F               1A
+        BIGRAM           000047-00005F               19
                          0000D9-0000FF               27
                          00013F-0007FF              6C1
         CODE             000004-000007                4
                          00000E-000017                A
                          0000B8-0007FF              748
-                         002244-007FFF             5DBC
-        COMRAM           000046-00005F               1A
+                         0023D2-007FFF             5C2E
+        COMRAM           000047-00005F               19
         CONST            000004-000007                4
                          00000E-000017                A
                          0000B8-0007FF              748
-                         002244-007FFF             5DBC
+                         0023D2-007FFF             5C2E
         EEDATA           F00000-F000FF              100
-        MEDIUMCONST      002244-007FFF             5DBC
+        MEDIUMCONST      0023D2-007FFF             5C2E
         RAM              0000D9-0000FF               27
                          00013F-0007FF              100
         SFR              000F60-000FFF               A0
-        SMALLCONST       002244-007FFF              100
+        SMALLCONST       0023D2-007FFF              100
         STACK            00013F-0007FF              6C1
 
                                   Symbol Table
@@ -289,7 +291,7 @@ UNUSED ADDRESS RANGES
 ?i1___lwdiv                  cstackCOMRAM 00001A
 ?i1___lwmod                  cstackBANK0  000060
 ?i1_printf                   cstackBANK0  000064
-D_PWM_Enable@enable          cstackBANK0  000088
+D_PWM_Enable@enable          cstackBANK0  00008A
 D_PWM_SetDuty@duty           cstackBANK0  000087
 D_PWM_SetDuty@which          cstackBANK0  000088
 D_PWM_SetRGB@b               cstackBANK0  00008D
@@ -310,34 +312,34 @@ D_UART_WriteInt@command      cstackBANK0  0000A3
 D_UART_WriteInt@data         cstackBANK0  0000A5
 _ADCON1                      (abs)        000FC1
 _BAUDCONbits                 (abs)        000FB8
-_D_PORT_Init                 text9        002168
-_D_PWM_Enable                text7        0021C6
-_D_PWM_Fade                  text33       00222E
-_D_PWM_Flash                 text32       002228
-_D_PWM_GetBlue               text31       002222
-_D_PWM_GetGreen              text30       00221C
-_D_PWM_GetRed                text29       002216
-_D_PWM_GetScale              text28       00223E
-_D_PWM_GetState              text27       00223A
-_D_PWM_Init                  text5        001FFA
-_D_PWM_ScaleDown             text26       0021F6
-_D_PWM_ScaleUp               text25       0021EC
-_D_PWM_SetDuty               text24       002034
-_D_PWM_SetRGB                text22       002186
-_D_PWM_Smooth                text21       002210
-_D_PWM_Strobe                text20       00220A
-_D_TIMER0_Enable             text8        002104
+_D_PORT_Init                 text7        0022FE
+_D_PWM_Enable                text32       0021AC
+_D_PWM_Fade                  text31       00237A
+_D_PWM_Flash                 text30       00236C
+_D_PWM_GetBlue               text29       0023BC
+_D_PWM_GetGreen              text28       0023B6
+_D_PWM_GetRed                text27       0023B0
+_D_PWM_GetScale              text26       0023CC
+_D_PWM_GetState              text25       0023C8
+_D_PWM_Init                  text5        00213E
+_D_PWM_ScaleDown             text24       00239C
+_D_PWM_ScaleUp               text23       002392
+_D_PWM_SetDuty               text22       00217C
+_D_PWM_SetRGB                text20       002278
+_D_PWM_Smooth                text19       00235E
+_D_PWM_Strobe                text18       002350
+_D_TIMER0_Enable             text34       00229A
 _D_TIMER0_Flag               bssCOMRAM    000028
-_D_TIMER0_Init               text6        00181C
-_D_UART_BlockLength          text36       002234
-_D_UART_Enable               text17       0020BA
-_D_UART_Init                 text3        0016CA
-_D_UART_Init$1756            cstackBANK0  00009A
-_D_UART_Read                 text35       001FB0
-_D_UART_ReadBlock            text34       001E4E
+_D_TIMER0_Init               text6        001946
+_D_UART_BlockLength          text37       0023C2
+_D_UART_Enable               text15       00222E
+_D_UART_Init                 text3        0017F4
+_D_UART_Init$1760            cstackBANK0  00009A
+_D_UART_Read                 text36       0020F4
+_D_UART_ReadBlock            text35       001F92
 _D_UART_ReadFlag             bssBANK0     0000CE
-_D_UART_Write                text2        0015F6
-_D_UART_WriteInt             text13       00143E
+_D_UART_Write                text2        001656
+_D_UART_WriteInt             text11       00149E
 _HighISR                     intcode      000008
 _INTCON2bits                 (abs)        000FF1
 _INTCONbits                  (abs)        000FF2
@@ -462,13 +464,13 @@ __Hrdata                     rdata        000000
 __Hreset_vec                 reset_vec    000004
 __Hrparam                    rparam       000000
 __Hsfr                       sfr          000000
-__Hsmallconst                smallconst   000868
+__Hsmallconst                smallconst   000870
 __Hspace_0                   (abs)        30000E
 __Hspace_1                   (abs)        00013F
 __Hspace_2                   (abs)        000000
 __Hstack                     stack        000000
 __Hstruct                    struct       000000
-__Htemp                      temp         000046
+__Htemp                      temp         000047
 __Htext                      text         000000
 __Htext0                     text0        000000
 __Htext1                     text1        000000
@@ -501,7 +503,7 @@ __Htext33                    text33       000000
 __Htext34                    text34       000000
 __Htext35                    text35       000000
 __Htext36                    text36       000000
-__Htext38                    text38       000000
+__Htext37                    text37       000000
 __Htext39                    text39       000000
 __Htext4                     text4        000000
 __Htext40                    text40       000000
@@ -511,7 +513,7 @@ __Htext43                    text43       000000
 __Htext44                    text44       000000
 __Htext45                    text45       000000
 __Htext46                    text46       000000
-__Htext48                    text48       000000
+__Htext47                    text47       000000
 __Htext49                    text49       000000
 __Htext5                     text5        000000
 __Htext50                    text50       000000
@@ -520,6 +522,7 @@ __Htext52                    text52       000000
 __Htext53                    text53       000000
 __Htext54                    text54       000000
 __Htext55                    text55       000000
+__Htext56                    text56       000000
 __Htext6                     text6        000000
 __Htext7                     text7        000000
 __Htext8                     text8        000000
@@ -589,7 +592,7 @@ __Lspace_1                   (abs)        000000
 __Lspace_2                   (abs)        000000
 __Lstack                     stack        000000
 __Lstruct                    struct       000000
-__Ltemp                      temp         000045
+__Ltemp                      temp         000046
 __Ltext                      text         000000
 __Ltext0                     text0        000000
 __Ltext1                     text1        000000
@@ -622,7 +625,7 @@ __Ltext33                    text33       000000
 __Ltext34                    text34       000000
 __Ltext35                    text35       000000
 __Ltext36                    text36       000000
-__Ltext38                    text38       000000
+__Ltext37                    text37       000000
 __Ltext39                    text39       000000
 __Ltext4                     text4        000000
 __Ltext40                    text40       000000
@@ -632,7 +635,7 @@ __Ltext43                    text43       000000
 __Ltext44                    text44       000000
 __Ltext45                    text45       000000
 __Ltext46                    text46       000000
-__Ltext48                    text48       000000
+__Ltext47                    text47       000000
 __Ltext49                    text49       000000
 __Ltext5                     text5        000000
 __Ltext50                    text50       000000
@@ -641,6 +644,7 @@ __Ltext52                    text52       000000
 __Ltext53                    text53       000000
 __Ltext54                    text54       000000
 __Ltext55                    text55       000000
+__Ltext56                    text56       000000
 __Ltext6                     text6        000000
 __Ltext7                     text7        000000
 __Ltext8                     text8        000000
@@ -648,7 +652,7 @@ __Ltext9                     text9        000000
 __S0                         (abs)        30000E
 __S1                         (abs)        00013F
 __S2                         (abs)        000000
-___aldiv                     text4        001324
+___aldiv                     text4        001384
 ___aldiv@counter             cstackBANK0  00008F
 ___aldiv@dividend            cstackBANK0  000087
 ___aldiv@divisor             cstackBANK0  00008B
@@ -656,12 +660,12 @@ ___aldiv@quotient            cstackBANK0  000091
 ___aldiv@sign                cstackBANK0  000090
 ___inthi_sp                  stack        000000
 ___intlo_sp                  stack        000000
-___lwdiv                     text19       001B6E
+___lwdiv                     text17       001CA8
 ___lwdiv@counter             cstackBANK0  00008D
 ___lwdiv@dividend            cstackBANK0  000087
 ___lwdiv@divisor             cstackBANK0  000089
 ___lwdiv@quotient            cstackBANK0  00008B
-___lwmod                     text18       001D8E
+___lwmod                     text16       001ED2
 ___lwmod@counter             cstackBANK0  000092
 ___lwmod@dividend            cstackBANK0  00008E
 ___lwmod@divisor             cstackBANK0  000090
@@ -670,136 +674,138 @@ ___rparam_used               (abs)        000001
 ___sp                        stack        000000
 __accesstop                  (abs)        000060
 __activetblptr               (abs)        000002
-__end_of_D_PORT_Init         text9        002186
-__end_of_D_PWM_Enable        text7        0021D4
-__end_of_D_PWM_Fade          text33       002234
-__end_of_D_PWM_Flash         text32       00222E
-__end_of_D_PWM_GetBlue       text31       002228
-__end_of_D_PWM_GetGreen      text30       002222
-__end_of_D_PWM_GetRed        text29       00221C
-__end_of_D_PWM_GetScale      text28       002242
-__end_of_D_PWM_GetState      text27       00223E
-__end_of_D_PWM_Init          text5        002034
-__end_of_D_PWM_ScaleDown     text26       002200
-__end_of_D_PWM_ScaleUp       text25       0021F6
-__end_of_D_PWM_SetDuty       text24       002064
-__end_of_D_PWM_SetRGB        text22       0021A0
-__end_of_D_PWM_Smooth        text21       002216
-__end_of_D_PWM_Strobe        text20       002210
-__end_of_D_TIMER0_Enable     text8        002126
-__end_of_D_TIMER0_Init       text6        0018BC
-__end_of_D_UART_BlockLength  text36       00223A
-__end_of_D_UART_Enable       text17       0020E0
-__end_of_D_UART_Init         text3        001774
-__end_of_D_UART_Read         text35       001FFA
-__end_of_D_UART_ReadBlock    text34       001EAA
-__end_of_D_UART_Write        text2        0016CA
-__end_of_D_UART_WriteInt     text13       00151E
-__end_of_HighISR             intcode_body 001AF4
+__end_of_D_PORT_Init         text7        00231C
+__end_of_D_PWM_Enable        text32       0021D8
+__end_of_D_PWM_Fade          text31       002388
+__end_of_D_PWM_Flash         text30       00237A
+__end_of_D_PWM_GetBlue       text29       0023C2
+__end_of_D_PWM_GetGreen      text28       0023BC
+__end_of_D_PWM_GetRed        text27       0023B6
+__end_of_D_PWM_GetScale      text26       0023D0
+__end_of_D_PWM_GetState      text25       0023CC
+__end_of_D_PWM_Init          text5        00217C
+__end_of_D_PWM_ScaleDown     text24       0023A6
+__end_of_D_PWM_ScaleUp       text23       00239C
+__end_of_D_PWM_SetDuty       text22       0021AC
+__end_of_D_PWM_SetRGB        text20       00229A
+__end_of_D_PWM_Smooth        text19       00236C
+__end_of_D_PWM_Strobe        text18       00235E
+__end_of_D_TIMER0_Enable     text34       0022BC
+__end_of_D_TIMER0_Init       text6        0019E6
+__end_of_D_UART_BlockLength  text37       0023C8
+__end_of_D_UART_Enable       text15       002254
+__end_of_D_UART_Init         text3        00189E
+__end_of_D_UART_Read         text36       00213E
+__end_of_D_UART_ReadBlock    text35       001FEE
+__end_of_D_UART_Write        text2        00172A
+__end_of_D_UART_WriteInt     text11       00157E
+__end_of_HighISR             intcode_body 001C2E
 __end_of_LowISR              intcodelo    0000B4
-__end_of___aldiv             text4        00143E
-__end_of___lwdiv             text19       001BE6
-__end_of___lwmod             text18       001DF0
-__end_of__initialization     cinit        001D1E
-__end_of_acknowledge         text40       001C54
+__end_of___aldiv             text4        00149E
+__end_of___lwdiv             text17       001D20
+__end_of___lwmod             text16       001F34
+__end_of__initialization     cinit        001E62
+__end_of_acknowledge         text41       001E06
 __end_of_dpowers             smallconst   00080B
-__end_of_fade                text53       001A6C
-__end_of_fillDataBuffer      text39       000E52
-__end_of_flash               text52       00181C
-__end_of_handleState         text48       001CC2
-__end_of_handle_message      text10       000B84
+__end_of_fade                text54       001BA6
+__end_of_fillDataBuffer      text40       000EB2
+__end_of_flash               text53       001946
+__end_of_handleState         text49       001D98
+__end_of_handle_message      text8        000BE4
 __end_of_hexpowers           smallconst   000813
-__end_of_initialize          text1        001D8E
-__end_of_main                text0        001952
-__end_of_printf              text14       0010BC
-__end_of_putch               text15       0021E2
-__end_of_pwmColors           text51       0019E0
-__end_of_readByte            text38       0020BA
-__end_of_setRGB              text23       002104
-__end_of_smooth              text50       0015F6
-__end_of_strToInt            text12       001E4E
-__end_of_strcmp              text11       001F5E
-__end_of_strobe2             text49       001B6E
-__end_of_writeByte           text16       0021B4
-__end_ofi1_D_UART_Enable     text44       002168
-__end_ofi1___lwdiv           text46       001FB0
-__end_ofi1___lwmod           text45       001F06
-__end_ofi1_printf            text41       001324
-__end_ofi1_putch             text42       00220A
-__end_ofi1_writeByte         text43       0021C6
-__end_ofi2_D_PWM_SetDuty     text55       002090
-__end_ofi2_setRGB            text54       002148
-__initialization             cinit        001CC2
+__end_of_initialize          text1        001ED2
+__end_of_main                text0        001B1A
+__end_of_printf              text12       00111C
+__end_of_putch               text13       002350
+__end_of_pwmColors           text33       0017F4
+__end_of_readByte            text39       00222E
+__end_of_setRGB              text21       002278
+__end_of_smooth              text52       001656
+__end_of_strToInt            text10       001F92
+__end_of_strcmp              text9        0020A2
+__end_of_strobe2             text51       001CA8
+__end_of_writeByte           text14       002330
+__end_ofi1_D_UART_Enable     text45       0022FE
+__end_ofi1___lwdiv           text47       0020F4
+__end_ofi1___lwmod           text46       00204A
+__end_ofi1_printf            text42       001384
+__end_ofi1_putch             text43       0023B0
+__end_ofi1_writeByte         text44       002342
+__end_ofi2_D_PWM_SetDuty     text56       002204
+__end_ofi2_pwmColors         text50       001A84
+__end_ofi2_setRGB            text55       0022DE
+__initialization             cinit        001E06
 __mediumconst                mediumconst  000000
 __pbssBANK0                  bssBANK0     0000B1
 __pbssBANK1                  bssBANK1     000100
 __pbssCOMRAM                 bssCOMRAM    000022
-__pcinit                     cinit        001CC2
+__pcinit                     cinit        001E06
 __pcstackBANK0               cstackBANK0  000060
 __pcstackCOMRAM              cstackCOMRAM 000001
 __pdataBANK0                 dataBANK0    0000D7
-__pdataCOMRAM                dataCOMRAM   00003B
-__pidataBANK0                idataBANK0   002242
-__pidataCOMRAM               idataCOMRAM  0021E2
+__pdataCOMRAM                dataCOMRAM   00003C
+__pidataBANK0                idataBANK0   0023D0
+__pidataCOMRAM               idataCOMRAM  002388
 __pintcode                   intcode      000008
-__pintcode_body              intcode_body 001A6C
+__pintcode_body              intcode_body 001BA6
 __pintcodelo                 intcodelo    000018
 __pnvBANK0                   nvBANK0      0000D4
 __psmallconst                smallconst   000800
-__ptext0                     text0        0018BC
-__ptext1                     text1        001D2C
-__ptext10                    text10       000868
-__ptext11                    text11       001F06
-__ptext12                    text12       001DF0
-__ptext13                    text13       00143E
-__ptext14                    text14       000E52
-__ptext15                    text15       0021D4
-__ptext16                    text16       0021A0
-__ptext17                    text17       0020BA
-__ptext18                    text18       001D8E
-__ptext19                    text19       001B6E
-__ptext2                     text2        0015F6
-__ptext20                    text20       00220A
-__ptext21                    text21       002210
-__ptext22                    text22       002186
-__ptext23                    text23       0020E0
-__ptext24                    text24       002034
-__ptext25                    text25       0021EC
-__ptext26                    text26       0021F6
-__ptext27                    text27       00223A
-__ptext28                    text28       00223E
-__ptext29                    text29       002216
-__ptext3                     text3        0016CA
-__ptext30                    text30       00221C
-__ptext31                    text31       002222
-__ptext32                    text32       002228
-__ptext33                    text33       00222E
-__ptext34                    text34       001E4E
-__ptext35                    text35       001FB0
-__ptext36                    text36       002234
-__ptext38                    text38       002090
-__ptext39                    text39       000B84
-__ptext4                     text4        001324
-__ptext40                    text40       001BE6
-__ptext41                    text41       0010BC
-__ptext42                    text42       002200
-__ptext43                    text43       0021B4
-__ptext44                    text44       002148
-__ptext45                    text45       001EAA
-__ptext46                    text46       001F5E
-__ptext48                    text48       001C54
-__ptext49                    text49       001AF4
-__ptext5                     text5        001FFA
-__ptext50                    text50       00151E
-__ptext51                    text51       001952
-__ptext52                    text52       001774
-__ptext53                    text53       0019E0
-__ptext54                    text54       002126
-__ptext55                    text55       002064
-__ptext6                     text6        00181C
-__ptext7                     text7        0021C6
-__ptext8                     text8        002104
-__ptext9                     text9        002168
+__ptext0                     text0        001A84
+__ptext1                     text1        001E70
+__ptext10                    text10       001F34
+__ptext11                    text11       00149E
+__ptext12                    text12       000EB2
+__ptext13                    text13       002342
+__ptext14                    text14       00231C
+__ptext15                    text15       00222E
+__ptext16                    text16       001ED2
+__ptext17                    text17       001CA8
+__ptext18                    text18       002350
+__ptext19                    text19       00235E
+__ptext2                     text2        001656
+__ptext20                    text20       002278
+__ptext21                    text21       002254
+__ptext22                    text22       00217C
+__ptext23                    text23       002392
+__ptext24                    text24       00239C
+__ptext25                    text25       0023C8
+__ptext26                    text26       0023CC
+__ptext27                    text27       0023B0
+__ptext28                    text28       0023B6
+__ptext29                    text29       0023BC
+__ptext3                     text3        0017F4
+__ptext30                    text30       00236C
+__ptext31                    text31       00237A
+__ptext32                    text32       0021AC
+__ptext33                    text33       00172A
+__ptext34                    text34       00229A
+__ptext35                    text35       001F92
+__ptext36                    text36       0020F4
+__ptext37                    text37       0023C2
+__ptext39                    text39       002204
+__ptext4                     text4        001384
+__ptext40                    text40       000BE4
+__ptext41                    text41       001D98
+__ptext42                    text42       00111C
+__ptext43                    text43       0023A6
+__ptext44                    text44       002330
+__ptext45                    text45       0022DE
+__ptext46                    text46       001FEE
+__ptext47                    text47       0020A2
+__ptext49                    text49       001D20
+__ptext5                     text5        00213E
+__ptext50                    text50       0019E6
+__ptext51                    text51       001C2E
+__ptext52                    text52       00157E
+__ptext53                    text53       00189E
+__ptext54                    text54       001B1A
+__ptext55                    text55       0022BC
+__ptext56                    text56       0021D8
+__ptext6                     text6        001946
+__ptext7                     text7        0022FE
+__ptext8                     text8        000870
+__ptext9                     text9        00204A
 __ramtop                     ramtop       000800
 __size_of_D_PORT_Init        (abs)        000000
 __size_of_D_PWM_Enable       (abs)        000000
@@ -856,75 +862,77 @@ __size_ofi1_printf           (abs)        000000
 __size_ofi1_putch            (abs)        000000
 __size_ofi1_writeByte        (abs)        000000
 __size_ofi2_D_PWM_SetDuty    (abs)        000000
+__size_ofi2_pwmColors        (abs)        000000
 __size_ofi2_setRGB           (abs)        000000
 __smallconst                 smallconst   000800
-_ackCharacter                dataCOMRAM   00003B
-_acknowledge                 text40       001BE6
+_ackCharacter                dataCOMRAM   00003C
+_acknowledge                 text41       001D98
 _b                           bssBANK0     0000CF
 _baud                        bssCOMRAM    000029
-_blockCharacter              dataCOMRAM   00003D
+_blockCharacter              dataCOMRAM   00003E
 _blockLength                 bssCOMRAM    00002A
 _bufferCnt                   bssCOMRAM    00002B
 _comMes                      bssBANK0     0000B1
 _deviceName                  nvBANK0      0000D4
 _dpowers                     smallconst   000801
-_fade                        text53       0019E0
-_fillDataBuffer              text39       000B84
-_flash                       text52       001774
+_fade                        text54       001B1A
+_fillDataBuffer              text40       000BE4
+_flash                       text53       00189E
 _g                           bssBANK0     0000D0
-_handleState                 text48       001C54
-_handle_message              text10       000868
+_handleState                 text49       001D20
+_handle_message              text8        000870
 _hexpowers                   smallconst   00080B
-_initialize                  text1        001D2C
-_main                        text0        0018BC
+_initialize                  text1        001E70
+_main                        text0        001A84
 _messageCharacter            dataBANK0    0000D7
-_printf                      text14       000E52
-_putch                       text15       0021D4
-_pwmColors                   text51       001952
+_printf                      text12       000EB2
+_putch                       text13       002342
+_pwmColors                   text33       00172A
 _r                           bssBANK0     0000D1
 _read                        bssCOMRAM    000022
 _readBuffer                  bssBANK1     000100
-_readByte                    text38       002090
+_readByte                    text39       002204
 _readData                    bssBANK0     0000C2
-_scale                       bssCOMRAM    00002C
-_setRGB                      text23       0020E0
-_smooth                      text50       00151E
-_startCharacter              dataCOMRAM   00003F
-_state                       bssCOMRAM    00002D
-_stopCharacter               dataCOMRAM   000041
-_strToInt                    text12       001DF0
-_strcmp                      text11       001F06
-_strobe2                     text49       001AF4
-_writeByte                   text16       0021A0
-btemp                        temp         000045
-end_of_initialization        cinit        001D1E
-fade@b_cnt                   dataCOMRAM   000043
-fade@b_up                    bssCOMRAM    00002E
-fade@fade                    bssCOMRAM    00002F
-fade@g_cnt                   dataCOMRAM   000044
-fade@g_up                    bssCOMRAM    000030
-fade@r_cnt                   bssCOMRAM    000031
-fade@r_up                    bssCOMRAM    000032
+_saved_state                 bssCOMRAM    00002C
+_scale                       bssCOMRAM    00002D
+_setRGB                      text21       002254
+_smooth                      text52       00157E
+_startCharacter              dataCOMRAM   000040
+_state                       bssCOMRAM    00002E
+_stopCharacter               dataCOMRAM   000042
+_strToInt                    text10       001F34
+_strcmp                      text9        00204A
+_strobe2                     text51       001C2E
+_writeByte                   text14       00231C
+btemp                        temp         000046
+end_of_initialization        cinit        001E62
+fade@b_cnt                   dataCOMRAM   000044
+fade@b_up                    bssCOMRAM    00002F
+fade@fade                    bssCOMRAM    000030
+fade@g_cnt                   dataCOMRAM   000045
+fade@g_up                    bssCOMRAM    000031
+fade@r_cnt                   bssCOMRAM    000032
+fade@r_up                    bssCOMRAM    000033
 fillDataBuffer@data          cstackBANK0  000075
 fillDataBuffer@i             cstackBANK0  000074
-flash@color                  bssCOMRAM    000033
-flash@count                  bssCOMRAM    000034
-handleState@cnt              bssCOMRAM    000035
+flash@color                  bssCOMRAM    000034
+flash@count                  bssCOMRAM    000035
+handleState@cnt              bssCOMRAM    000036
 handle_message@msg           cstackBANK0  0000A8
 i1D_UART_Enable@enable       cstackCOMRAM 00001A
-i1_D_UART_Enable             text44       002148
-i1___lwdiv                   text46       001F5E
+i1_D_UART_Enable             text45       0022DE
+i1___lwdiv                   text47       0020A2
 i1___lwdiv@counter           cstackCOMRAM 00001E
 i1___lwdiv@dividend          cstackCOMRAM 00001A
 i1___lwdiv@divisor           cstackCOMRAM 00001C
 i1___lwdiv@quotient          cstackCOMRAM 00001F
-i1___lwmod                   text45       001EAA
+i1___lwmod                   text46       001FEE
 i1___lwmod@counter           cstackCOMRAM 000021
 i1___lwmod@dividend          cstackBANK0  000060
 i1___lwmod@divisor           cstackBANK0  000062
-i1_printf                    text41       0010BC
-i1_putch                     text42       002200
-i1_writeByte                 text43       0021B4
+i1_printf                    text42       00111C
+i1_putch                     text43       0023A6
+i1_writeByte                 text44       002330
 i1printf@ap                  cstackBANK0  00006D
 i1printf@c                   cstackBANK0  000073
 i1printf@f                   cstackBANK0  000064
@@ -936,13 +944,15 @@ i1putch@data                 cstackCOMRAM 00001C
 i1writeByte@data             cstackCOMRAM 00001B
 i2D_PWM_SetDuty@duty         cstackCOMRAM 000001
 i2D_PWM_SetDuty@which        cstackCOMRAM 000002
-i2_D_PWM_SetDuty             text55       002064
-i2_setRGB                    text54       002126
+i2_D_PWM_SetDuty             text56       0021D8
+i2_pwmColors                 text50       0019E6
+i2_setRGB                    text55       0022BC
+i2pwmColors@birghtness       cstackCOMRAM 000003
 i2setRGB@b                   cstackCOMRAM 000004
 i2setRGB@g                   cstackCOMRAM 000003
 i2setRGB@r                   cstackCOMRAM 000005
-int$flags                    temp         000045
-int_func                     intcode_body 001A6C
+int$flags                    temp         000046
+int_func                     intcode_body 001BA6
 intlevel0                    text         000000
 intlevel1                    text         000000
 intlevel2                    text         000000
@@ -957,17 +967,17 @@ printf@idx                   cstackBANK0  00009B
 printf@prec                  cstackBANK0  00009E
 printf@val                   cstackBANK0  0000A0
 putch@data                   cstackBANK0  000089
-pwmColors@birghtness         cstackCOMRAM 000003
+pwmColors@birghtness         cstackBANK0  000089
 readByte@dum                 cstackCOMRAM 00001B
 setRGB@b                     cstackBANK0  00008A
 setRGB@g                     cstackBANK0  000089
 setRGB@r                     cstackBANK0  00008B
-smooth@color                 bssCOMRAM    000036
-smooth@count                 bssCOMRAM    000037
+smooth@color                 bssCOMRAM    000037
+smooth@count                 bssCOMRAM    000038
 stackhi                      (abs)        0007FF
 stacklo                      (abs)        00013F
 start                        init         0000B4
-start_initialization         cinit        001CC2
+start_initialization         cinit        001E06
 strToInt@shift               cstackBANK0  00008A
 strToInt@str                 cstackBANK0  000087
 strToInt@tmp                 cstackBANK0  000089
@@ -975,8 +985,8 @@ strToInt@val                 cstackBANK0  00008B
 strcmp@r                     cstackBANK0  00008C
 strcmp@s1                    cstackBANK0  000087
 strcmp@s2                    cstackBANK0  000089
-strobe2@cnt                  bssCOMRAM    000038
-strobe2@on_cnt               bssCOMRAM    00003A
+strobe2@cnt                  bssCOMRAM    000039
+strobe2@on_cnt               bssCOMRAM    00003B
 strobe@cnt                   bssBANK0     0000D2
 strobe@up                    bssBANK0     0000D3
 writeByte@data               cstackBANK0  000088
@@ -986,7 +996,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 65 in file "main.c"
+		line 67 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1021,7 +1031,7 @@ Total ram usage:        2 bytes
 
  *************** function _initialize *****************
  Defined at:
-		line 46 in file "main.c"
+		line 48 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1156,7 +1166,7 @@ Total ram usage:       14 bytes
 
  *************** function _D_PWM_Init *****************
  Defined at:
-		line 287 in file "Drivers/PWM_Driver.c"
+		line 301 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1215,68 +1225,6 @@ Total ram usage:        1 bytes
  This function uses a non-reentrant model
 
 
- *************** function _D_PWM_Enable *****************
- Defined at:
-		line 311 in file "Drivers/PWM_Driver.c"
- Parameters:    Size  Location     Type
-  enable          1    wreg     unsigned char 
- Auto vars:     Size  Location     Type
-  enable          1   40[BANK0 ] unsigned char 
- Return value:  Size  Location     Type
-                  1    wreg      void 
- Registers used:
-		wreg, status,2, cstack
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
-      Params:         0       0       0       0       0       0       0       0       0
-      Locals:         0       1       0       0       0       0       0       0       0
-      Temps:          0       0       0       0       0       0       0       0       0
-      Totals:         0       1       0       0       0       0       0       0       0
-Total ram usage:        1 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:   13
- This function calls:
-		_D_TIMER0_Enable
- This function is called by:
-		_initialize
- This function uses a non-reentrant model
-
-
- *************** function _D_TIMER0_Enable *****************
- Defined at:
-		line 61 in file "Drivers/TIMER0_Driver.c"
- Parameters:    Size  Location     Type
-  enable          1    wreg     unsigned char 
- Auto vars:     Size  Location     Type
-  enable          1   39[BANK0 ] unsigned char 
- Return value:  Size  Location     Type
-                  1    wreg      void 
- Registers used:
-		wreg, status,2
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
-      Params:         0       0       0       0       0       0       0       0       0
-      Locals:         0       1       0       0       0       0       0       0       0
-      Temps:          0       0       0       0       0       0       0       0       0
-      Totals:         0       1       0       0       0       0       0       0       0
-Total ram usage:        1 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:   12
- This function calls:
-		Nothing
- This function is called by:
-		_D_TIMER0_Init
-		_D_PWM_Init
-		_D_PWM_Enable
- This function uses a non-reentrant model
-
-
  *************** function _D_PORT_Init *****************
  Defined at:
 		line 31 in file "Drivers/PORT_Driver.c"
@@ -1309,7 +1257,7 @@ Total ram usage:        0 bytes
 
  *************** function _handle_message *****************
  Defined at:
-		line 90 in file "main.c"
+		line 92 in file "main.c"
  Parameters:    Size  Location     Type
   msg             6   72[BANK0 ] struct .
  Auto vars:     Size  Location     Type
@@ -1331,6 +1279,7 @@ Total ram usage:        7 bytes
  Hardware stack levels used:    1
  Hardware stack levels required when called:   17
  This function calls:
+		_D_PWM_Enable
 		_D_PWM_Fade
 		_D_PWM_Flash
 		_D_PWM_GetBlue
@@ -1358,10 +1307,10 @@ Total ram usage:        7 bytes
   s1              2   39[BANK0 ] PTR const unsigned char 
 		 -> D_UART_ReadBlock@cm(17), D_UART_Read@cm(17), 
   s2              2   41[BANK0 ] PTR const unsigned char 
-		 -> STR_31(4), STR_29(4), STR_25(4), STR_24(3), 
-		 -> STR_23(3), STR_22(3), STR_21(3), STR_20(2), 
-		 -> STR_19(2), STR_18(2), STR_17(2), STR_16(2), 
-		 -> STR_15(2), 
+		 -> STR_33(4), STR_31(4), STR_27(4), STR_26(3), 
+		 -> STR_25(4), STR_24(3), STR_23(3), STR_22(3), 
+		 -> STR_21(3), STR_20(2), STR_19(2), STR_18(2), 
+		 -> STR_17(2), STR_16(2), STR_15(2), 
  Auto vars:     Size  Location     Type
   r               1   44[BANK0 ] char 
  Return value:  Size  Location     Type
@@ -1389,7 +1338,7 @@ Total ram usage:        6 bytes
 
  *************** function _strToInt *****************
  Defined at:
-		line 160 in file "main.c"
+		line 172 in file "main.c"
  Parameters:    Size  Location     Type
   str             2   39[BANK0 ] PTR const unsigned char 
 		 -> D_UART_ReadBlock@cm(17), D_UART_Read@cm(17), 
@@ -1425,8 +1374,8 @@ Total ram usage:        5 bytes
 		line 285 in file "Drivers/UART_Driver.c"
  Parameters:    Size  Location     Type
   command         2   67[BANK0 ] PTR const unsigned char 
-		 -> STR_32(4), STR_30(4), STR_28(2), STR_27(2), 
-		 -> STR_26(2), 
+		 -> STR_34(4), STR_32(4), STR_30(2), STR_29(2), 
+		 -> STR_28(2), 
   data            2   69[BANK0 ] int 
  Auto vars:     Size  Location     Type
 		None
@@ -1458,8 +1407,8 @@ Total ram usage:        5 bytes
 		line 464 in file "/opt/microchip/xc8/v1.40/sources/common/doprnt.c"
  Parameters:    Size  Location     Type
   f               3   51[BANK0 ] PTR const unsigned char 
-		 -> STR_32(4), STR_30(4), STR_28(2), STR_27(2), 
-		 -> STR_26(2), STR_14(5), STR_13(2), STR_12(2), 
+		 -> STR_34(4), STR_32(4), STR_30(2), STR_29(2), 
+		 -> STR_28(2), STR_14(5), STR_13(2), STR_12(2), 
 		 -> STR_11(3), STR_10(2), STR_9(2), STR_8(2), 
 		 -> STR_7(2), STR_6(3), STR_5(4), STR_3(4), 
 		 -> ROM(32767), STR_2(2), STR_1(2), 
@@ -1657,7 +1606,7 @@ Total ram usage:        7 bytes
 
  *************** function _D_PWM_Strobe *****************
  Defined at:
-		line 372 in file "Drivers/PWM_Driver.c"
+		line 398 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1665,7 +1614,7 @@ Total ram usage:        7 bytes
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
-		wreg, status,2
+		wreg, status,2, status,0
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -1687,7 +1636,7 @@ Total ram usage:        0 bytes
 
  *************** function _D_PWM_Smooth *****************
  Defined at:
-		line 380 in file "Drivers/PWM_Driver.c"
+		line 410 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1695,7 +1644,7 @@ Total ram usage:        0 bytes
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
-		wreg, status,2
+		wreg, status,2, status,0
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -1717,7 +1666,7 @@ Total ram usage:        0 bytes
 
  *************** function _D_PWM_SetRGB *****************
  Defined at:
-		line 331 in file "Drivers/PWM_Driver.c"
+		line 353 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
   r               1    wreg     unsigned char 
   g               1   44[BANK0 ] unsigned char 
@@ -1783,7 +1732,7 @@ Total ram usage:        3 bytes
 
  *************** function _D_PWM_SetDuty *****************
  Defined at:
-		line 315 in file "Drivers/PWM_Driver.c"
+		line 337 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
   which           1    wreg     unsigned char 
   duty            1   39[BANK0 ] unsigned char 
@@ -1814,7 +1763,7 @@ Total ram usage:        2 bytes
 
  *************** function _D_PWM_ScaleUp *****************
  Defined at:
-		line 354 in file "Drivers/PWM_Driver.c"
+		line 378 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1844,7 +1793,7 @@ Total ram usage:        0 bytes
 
  *************** function _D_PWM_ScaleDown *****************
  Defined at:
-		line 348 in file "Drivers/PWM_Driver.c"
+		line 372 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1874,7 +1823,7 @@ Total ram usage:        0 bytes
 
  *************** function _D_PWM_GetState *****************
  Defined at:
-		line 364 in file "Drivers/PWM_Driver.c"
+		line 388 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1904,7 +1853,7 @@ Total ram usage:        0 bytes
 
  *************** function _D_PWM_GetScale *****************
  Defined at:
-		line 360 in file "Drivers/PWM_Driver.c"
+		line 384 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1934,7 +1883,7 @@ Total ram usage:        0 bytes
 
  *************** function _D_PWM_GetRed *****************
  Defined at:
-		line 336 in file "Drivers/PWM_Driver.c"
+		line 360 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1964,7 +1913,7 @@ Total ram usage:        0 bytes
 
  *************** function _D_PWM_GetGreen *****************
  Defined at:
-		line 340 in file "Drivers/PWM_Driver.c"
+		line 364 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1994,7 +1943,7 @@ Total ram usage:        0 bytes
 
  *************** function _D_PWM_GetBlue *****************
  Defined at:
-		line 344 in file "Drivers/PWM_Driver.c"
+		line 368 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2024,7 +1973,7 @@ Total ram usage:        0 bytes
 
  *************** function _D_PWM_Flash *****************
  Defined at:
-		line 368 in file "Drivers/PWM_Driver.c"
+		line 392 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2032,7 +1981,7 @@ Total ram usage:        0 bytes
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
-		wreg, status,2
+		wreg, status,2, status,0
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -2054,7 +2003,7 @@ Total ram usage:        0 bytes
 
  *************** function _D_PWM_Fade *****************
  Defined at:
-		line 376 in file "Drivers/PWM_Driver.c"
+		line 404 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2062,7 +2011,7 @@ Total ram usage:        0 bytes
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
-		wreg, status,2
+		wreg, status,2, status,0
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -2079,6 +2028,100 @@ Total ram usage:        0 bytes
 		Nothing
  This function is called by:
 		_handle_message
+ This function uses a non-reentrant model
+
+
+ *************** function _D_PWM_Enable *****************
+ Defined at:
+		line 326 in file "Drivers/PWM_Driver.c"
+ Parameters:    Size  Location     Type
+  enable          1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  enable          1   42[BANK0 ] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       1       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       1       0       0       0       0       0       0       0
+Total ram usage:        1 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:   13
+ This function calls:
+		_D_TIMER0_Enable
+		_pwmColors
+ This function is called by:
+		_initialize
+		_handle_message
+ This function uses a non-reentrant model
+
+
+ *************** function _pwmColors *****************
+ Defined at:
+		line 49 in file "Drivers/PWM_Driver.c"
+ Parameters:    Size  Location     Type
+  birghtness      1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  birghtness      1   41[BANK0 ] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       1       0       0       0       0       0       0       0
+      Temps:          0       2       0       0       0       0       0       0       0
+      Totals:         0       3       0       0       0       0       0       0       0
+Total ram usage:        3 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:   12
+ This function calls:
+		Nothing
+ This function is called by:
+		_D_PWM_Enable
+ This function uses a non-reentrant model
+
+
+ *************** function _D_TIMER0_Enable *****************
+ Defined at:
+		line 61 in file "Drivers/TIMER0_Driver.c"
+ Parameters:    Size  Location     Type
+  enable          1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  enable          1   39[BANK0 ] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       1       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       1       0       0       0       0       0       0       0
+Total ram usage:        1 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:   12
+ This function calls:
+		Nothing
+ This function is called by:
+		_D_TIMER0_Init
+		_D_PWM_Init
+		_D_PWM_Enable
  This function uses a non-reentrant model
 
 
@@ -2300,8 +2343,8 @@ Total ram usage:        0 bytes
 		line 464 in file "/opt/microchip/xc8/v1.40/sources/common/doprnt.c"
  Parameters:    Size  Location     Type
   f               3    4[BANK0 ] PTR const unsigned char 
-		 -> STR_32(4), STR_30(4), STR_28(2), STR_27(2), 
-		 -> STR_26(2), STR_14(5), STR_13(2), STR_12(2), 
+		 -> STR_34(4), STR_32(4), STR_30(2), STR_29(2), 
+		 -> STR_28(2), STR_14(5), STR_13(2), STR_12(2), 
 		 -> STR_11(3), STR_10(2), STR_9(2), STR_8(2), 
 		 -> STR_7(2), STR_6(3), STR_5(4), STR_3(4), 
 		 -> ROM(32767), STR_2(2), STR_1(2), 
@@ -2497,7 +2540,7 @@ Total ram usage:        7 bytes
 
  *************** function _HighISR *****************
  Defined at:
-		line 387 in file "Drivers/PWM_Driver.c"
+		line 419 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2527,7 +2570,7 @@ Total ram usage:       14 bytes
 
  *************** function _handleState *****************
  Defined at:
-		line 242 in file "Drivers/PWM_Driver.c"
+		line 248 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2551,17 +2594,46 @@ Total ram usage:        0 bytes
  This function calls:
 		_fade
 		_flash
-		_pwmColors
 		_smooth
 		_strobe2
+		i2_pwmColors
  This function is called by:
 		_HighISR
  This function uses a non-reentrant model
 
 
+ *************** function i2_pwmColors *****************
+ Defined at:
+		line 49 in file "Drivers/PWM_Driver.c"
+ Parameters:    Size  Location     Type
+  birghtness      1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  birghtness      1    2[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          2       0       0       0       0       0       0       0       0
+      Totals:         3       0       0       0       0       0       0       0       0
+Total ram usage:        3 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_handleState
+ This function uses a non-reentrant model
+
+
  *************** function _strobe2 *****************
  Defined at:
-		line 126 in file "Drivers/PWM_Driver.c"
+		line 132 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2591,7 +2663,7 @@ Total ram usage:        5 bytes
 
  *************** function _smooth *****************
  Defined at:
-		line 203 in file "Drivers/PWM_Driver.c"
+		line 209 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2619,38 +2691,9 @@ Total ram usage:        6 bytes
  This function uses a non-reentrant model
 
 
- *************** function _pwmColors *****************
- Defined at:
-		line 49 in file "Drivers/PWM_Driver.c"
- Parameters:    Size  Location     Type
-  birghtness      1    wreg     unsigned char 
- Auto vars:     Size  Location     Type
-  birghtness      1    2[COMRAM] unsigned char 
- Return value:  Size  Location     Type
-                  1    wreg      void 
- Registers used:
-		wreg, status,2, status,0
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
-      Params:         0       0       0       0       0       0       0       0       0
-      Locals:         1       0       0       0       0       0       0       0       0
-      Temps:          2       0       0       0       0       0       0       0       0
-      Totals:         3       0       0       0       0       0       0       0       0
-Total ram usage:        3 bytes
- Hardware stack levels used:    1
- This function calls:
-		Nothing
- This function is called by:
-		_handleState
- This function uses a non-reentrant model
-
-
  *************** function _flash *****************
  Defined at:
-		line 75 in file "Drivers/PWM_Driver.c"
+		line 81 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2680,7 +2723,7 @@ Total ram usage:        6 bytes
 
  *************** function _fade *****************
  Defined at:
-		line 146 in file "Drivers/PWM_Driver.c"
+		line 152 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2745,7 +2788,7 @@ Total ram usage:        3 bytes
 
  *************** function i2_D_PWM_SetDuty *****************
  Defined at:
-		line 315 in file "Drivers/PWM_Driver.c"
+		line 337 in file "Drivers/PWM_Driver.c"
  Parameters:    Size  Location     Type
   which           1    wreg     unsigned char 
   duty            1    0[COMRAM] unsigned char 
@@ -2778,105 +2821,106 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 Drivers/PORT_Driver.c
-		_D_PORT_Init   		CODE           	2168	0000	31
+		_D_PORT_Init   		CODE           	22FE	0000	31
 
 Drivers/PORT_Driver.c estimated size: 31
 
 Drivers/UART_Driver.c
-		_readByte      		CODE           	2090	0000	43
-		_D_UART_WriteInt		CODE           	143E	0000	225
-		_D_UART_BlockLength		CODE           	2234	0000	7
+		_readByte      		CODE           	2204	0000	43
+		_D_UART_WriteInt		CODE           	149E	0000	225
+		_D_UART_BlockLength		CODE           	23C2	0000	7
 		_LowISR        		CODE           	0018	0000	157
-		_putch         		CODE           	21D4	0000	15
-		_D_UART_Read   		CODE           	1FB0	0000	75
-		_D_UART_Init   		CODE           	16CA	0000	171
-		_fillDataBuffer		CODE           	0B84	0000	719
-		_D_UART_Write  		CODE           	15F6	0000	213
-		_D_UART_ReadBlock		CODE           	1E4E	0000	93
-		_D_UART_Enable 		CODE           	20BA	0000	39
-		_writeByte     		CODE           	21A0	0000	21
-		_acknowledge   		CODE           	1BE6	0000	111
+		_putch         		CODE           	2342	0000	15
+		_D_UART_Read   		CODE           	20F4	0000	75
+		_D_UART_Init   		CODE           	17F4	0000	171
+		_fillDataBuffer		CODE           	0BE4	0000	719
+		_D_UART_Write  		CODE           	1656	0000	213
+		_D_UART_ReadBlock		CODE           	1F92	0000	93
+		_D_UART_Enable 		CODE           	222E	0000	39
+		_writeByte     		CODE           	231C	0000	21
+		_acknowledge   		CODE           	1D98	0000	111
 
 Drivers/UART_Driver.c estimated size: 1889
 
 /opt/microchip/xc8/v1.40/sources/common/lwmod.c
-		___lwmod       		CODE           	1D8E	0000	99
+		___lwmod       		CODE           	1ED2	0000	99
 
 /opt/microchip/xc8/v1.40/sources/common/lwmod.c estimated size: 99
 
 Drivers/TIMER0_Driver.c
-		_D_TIMER0_Init 		CODE           	181C	0000	161
-		_D_TIMER0_Enable		CODE           	2104	0000	35
+		_D_TIMER0_Init 		CODE           	1946	0000	161
+		_D_TIMER0_Enable		CODE           	229A	0000	35
 
 Drivers/TIMER0_Driver.c estimated size: 196
 
 shared
-		i1_printf      		CODE           	10BC	0000	617
-		i2_D_PWM_SetDuty		CODE           	2064	0000	45
-		i1_writeByte   		CODE           	21B4	0000	19
-		i1_putch       		CODE           	2200	0000	11
-		i1___lwdiv     		CODE           	1F5E	0000	83
+		i1_printf      		CODE           	111C	0000	617
+		i2_D_PWM_SetDuty		CODE           	21D8	0000	45
+		i1_writeByte   		CODE           	2330	0000	19
+		i1_putch       		CODE           	23A6	0000	11
+		i1___lwdiv     		CODE           	20A2	0000	83
 		_dpowers       		SMALLCONST     	0801	0000	11
-		i2_setRGB      		CODE           	2126	0000	35
-		i1___lwmod     		CODE           	1EAA	0000	93
-		__initialization		CODE           	1CC2	0000	93
+		i2_setRGB      		CODE           	22BC	0000	35
+		i1___lwmod     		CODE           	1FEE	0000	93
+		__initialization		CODE           	1E06	0000	93
 		_hexpowers     		SMALLCONST     	080B	0000	9
-		i1_D_UART_Enable		CODE           	2148	0000	33
+		i1_D_UART_Enable		CODE           	22DE	0000	33
+		i2_pwmColors   		CODE           	19E6	0000	159
 
-shared estimated size: 1049
+shared estimated size: 1208
 
 /opt/microchip/xc8/v1.40/sources/common/strcmp.c
-		_strcmp        		CODE           	1F06	0000	89
+		_strcmp        		CODE           	204A	0000	89
 
 /opt/microchip/xc8/v1.40/sources/common/strcmp.c estimated size: 89
 
 Drivers/PWM_Driver.c
-		_handleState   		CODE           	1C54	0000	111
-		_D_PWM_Enable  		CODE           	21C6	0000	15
-		_fade          		CODE           	19E0	0000	141
-		_strobe2       		CODE           	1AF4	0000	123
-		_D_PWM_ScaleDown		CODE           	21F6	0000	11
-		_setRGB        		CODE           	20E0	0000	37
-		_flash         		CODE           	1774	0000	169
-		_D_PWM_GetRed  		CODE           	2216	0000	7
-		_D_PWM_GetBlue 		CODE           	2222	0000	7
-		_smooth        		CODE           	151E	0000	217
-		_D_PWM_GetScale		CODE           	223E	0000	5
-		_D_PWM_GetState		CODE           	223A	0000	5
-		_D_PWM_GetGreen		CODE           	221C	0000	7
-		_D_PWM_SetRGB  		CODE           	2186	0000	27
-		_D_PWM_Strobe  		CODE           	220A	0000	7
-		_D_PWM_Smooth  		CODE           	2210	0000	7
-		_D_PWM_Fade    		CODE           	222E	0000	7
-		_D_PWM_Flash   		CODE           	2228	0000	7
-		_pwmColors     		CODE           	1952	0000	143
-		_D_PWM_ScaleUp 		CODE           	21EC	0000	11
-		_D_PWM_Init    		CODE           	1FFA	0000	59
-		_D_PWM_SetDuty 		CODE           	2034	0000	49
+		_handleState   		CODE           	1D20	0000	121
+		_D_PWM_Enable  		CODE           	21AC	0000	45
+		_fade          		CODE           	1B1A	0000	141
+		_strobe2       		CODE           	1C2E	0000	123
+		_D_PWM_ScaleDown		CODE           	239C	0000	11
+		_setRGB        		CODE           	2254	0000	37
+		_flash         		CODE           	189E	0000	169
+		_D_PWM_GetRed  		CODE           	23B0	0000	7
+		_D_PWM_GetBlue 		CODE           	23BC	0000	7
+		_smooth        		CODE           	157E	0000	217
+		_D_PWM_GetScale		CODE           	23CC	0000	5
+		_D_PWM_GetState		CODE           	23C8	0000	5
+		_D_PWM_GetGreen		CODE           	23B6	0000	7
+		_D_PWM_SetRGB  		CODE           	2278	0000	35
+		_D_PWM_Strobe  		CODE           	2350	0000	15
+		_D_PWM_Smooth  		CODE           	235E	0000	15
+		_D_PWM_Fade    		CODE           	237A	0000	15
+		_D_PWM_Flash   		CODE           	236C	0000	15
+		_pwmColors     		CODE           	172A	0000	203
+		_D_PWM_ScaleUp 		CODE           	2392	0000	11
+		_D_PWM_Init    		CODE           	213E	0000	63
+		_D_PWM_SetDuty 		CODE           	217C	0000	49
 		_HighISR       		CODE           	0008	0000	143
 
-Drivers/PWM_Driver.c estimated size: 1315
+Drivers/PWM_Driver.c estimated size: 1459
 
 /opt/microchip/xc8/v1.40/sources/common/doprnt.c
-		_printf        		CODE           	0E52	0000	619
+		_printf        		CODE           	0EB2	0000	619
 
 /opt/microchip/xc8/v1.40/sources/common/doprnt.c estimated size: 619
 
 /opt/microchip/xc8/v1.40/sources/common/lwdiv.c
-		___lwdiv       		CODE           	1B6E	0000	121
+		___lwdiv       		CODE           	1CA8	0000	121
 
 /opt/microchip/xc8/v1.40/sources/common/lwdiv.c estimated size: 121
 
 main.c
-		_main          		CODE           	18BC	0000	151
-		_handle_message		CODE           	0868	0000	797
-		_initialize    		CODE           	1D2C	0000	99
-		_strToInt      		CODE           	1DF0	0000	95
+		_main          		CODE           	1A84	0000	151
+		_handle_message		CODE           	0870	0000	885
+		_initialize    		CODE           	1E70	0000	99
+		_strToInt      		CODE           	1F34	0000	95
 
-main.c estimated size: 1142
+main.c estimated size: 1230
 
 /opt/microchip/xc8/v1.40/sources/common/aldiv.c
-		___aldiv       		CODE           	1324	0000	283
+		___aldiv       		CODE           	1384	0000	283
 
 /opt/microchip/xc8/v1.40/sources/common/aldiv.c estimated size: 283
 

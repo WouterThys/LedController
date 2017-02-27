@@ -4,7 +4,7 @@ from Queue import Queue
 from threading import Event
 
 from Serial.SerialExeptions import SerialReadException, SerialPortNotOpenException, SerialInitialisationException, \
-    SerialWriteException, SerialMessageConversionException
+    SerialWriteException, SerialMessageConversionException, SerialAcknowledgeException
 from Serial.SerialThreads import ReadThread
 from Settings import read_settings, UART_SETTINGS
 
@@ -103,12 +103,12 @@ class SerialInterface:
 
                 if not c:
                     raise SerialReadException("Error reading input characters",
-                                                   "Read buffer exceeded 'READ_BUFFER_CHAR_LENGTH' characters")
+                                              "Read buffer exceeded 'READ_BUFFER_CHAR_LENGTH' characters")
                 out += c
                 cnt += 1
                 if cnt > READ_BUFFER_CHAR_LENGTH:  # Takes way to long before stop character came
                     raise SerialReadException("Error reading input characters",
-                                                   "Read buffer exceeded 'READ_BUFFER_CHAR_LENGTH' characters")
+                                              "Read buffer exceeded 'READ_BUFFER_CHAR_LENGTH' characters")
             return str(out)
         else:
             raise SerialPortNotOpenException("Serial port not open")
@@ -147,14 +147,18 @@ class SerialInterface:
         if (self.my_serial is not None) and self.my_serial.isOpen:
             if len(self.write_buffer) > 9:
                 return -1  # TODO: throw
-            self.ack_id = ack_id
+            if ack_id >= 0:
+                self.ack_id = ack_id
             if self.ack_id > 9:
-                self.ack_id = 0
-            txt = self.construct_message("message", command, message, self.ack_id)
-            self.write_buffer.append(txt)
-            if self.can_write:
-                self.check_write_buffer()
-            return self.ack_id
+                self.ack_id = ack_id = 0
+            txt = self.construct_message("message", command, message, ack_id)
+            if ack_id >= 0:
+                self.write_buffer.append(txt)
+                if self.can_write:
+                    self.check_write_buffer()
+                return self.ack_id
+            else:
+                self.dry_write(txt)
         else:
             raise SerialPortNotOpenException("Serial port not open")
 
@@ -176,12 +180,14 @@ class SerialInterface:
                 break
 
         if not found_ack_id:
-            raise
+            raise SerialAcknowledgeException("Invalid acknowledge ID")
 
     def construct_message(self, type, command, message, ack_id):
         send_txt = ""
         if pMESSAGE.__contains__(type):
             if ack_id > 9:
+                ack_id = 0
+            if ack_id < 0:
                 ack_id = 0
             self.ack_id = ack_id
             send_txt = START_CHAR + pMESSAGE.get(

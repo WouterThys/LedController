@@ -4534,8 +4534,8 @@ void D_TIMER0_Enable(bool enable);
 # 25 "Drivers/PWM_Driver.c"
 static pwm_t PWM_Red, PWM_Green, PWM_Blue;
 static uint8_t scale;
-typedef enum {Color, Flash, Strobe, Fade, Smooth} states_t;
-static states_t state;
+typedef enum {Color, Flash, Strobe, Fade, Smooth, Disabled} states_t;
+static states_t state, saved_state;
 
 # 33
 void setRGB(uint8_t r, uint8_t g, uint8_t b);
@@ -4556,6 +4556,7 @@ D_PWM_SetDuty(2, b);
 
 void pwmColors(uint8_t birghtness) {
 
+if (state != Disabled) {
 if (PWM_Red.duty_cnt >= (PWM_Red.duty_val >> (7-birghtness))) {
 PORTBbits.RB2 = 0;
 } else {
@@ -4578,6 +4579,11 @@ PORTBbits.RB1 = 1;
 PWM_Red.duty_cnt++;
 PWM_Green.duty_cnt++;
 PWM_Blue.duty_cnt++;
+} else {
+PORTBbits.RB2 = 0;
+PORTBbits.RB3 = 0;
+PORTBbits.RB1 = 0;
+}
 }
 
 void flash(void) {
@@ -4753,6 +4759,7 @@ static uint8_t cnt;
 switch(state) {
 case Color:
 pwmColors(scale);
+cnt++;
 break;
 
 case Flash:
@@ -4760,6 +4767,7 @@ if (cnt == 0) {
 flash();
 }
 pwmColors(7);
+cnt++;
 break;
 
 case Strobe:
@@ -4767,6 +4775,7 @@ if (cnt == 0) {
 strobe2();
 }
 pwmColors(7);
+cnt++;
 break;
 
 case Fade:
@@ -4774,6 +4783,7 @@ if (cnt == 0) {
 fade();
 }
 pwmColors(7);
+cnt++;
 break;
 
 case Smooth:
@@ -4781,15 +4791,19 @@ if (cnt == 0) {
 smooth();
 }
 pwmColors(7);
+cnt++;
+break;
+
+case Disabled:
 break;
 
 default:
 break;
 }
-cnt++;
+
 }
 
-# 287
+# 301
 void D_PWM_Init(void) {
 
 PWM_Red.duty_cnt = 0;
@@ -4801,8 +4815,9 @@ PWM_Green.duty_val = 0xFF;
 PWM_Blue.duty_cnt = 0;
 PWM_Blue.duty_val = 0xFF;
 
-scale = 0;
+scale = 7;
 state = Color;
+saved_state = state;
 
 
 D_TIMER0_Init(0);
@@ -4815,6 +4830,13 @@ TRISBbits.TRISB2 = 0;
 }
 
 void D_PWM_Enable(bool enable) {
+if (enable) {
+state = saved_state;
+} else {
+saved_state = state;
+state = Disabled;
+pwmColors(scale);
+}
 D_TIMER0_Enable(enable);
 }
 
@@ -4836,7 +4858,9 @@ break;
 
 void D_PWM_SetRGB(uint8_t r, uint8_t g, uint8_t b) {
 setRGB(r, g, b);
+if (state != Disabled) {
 state = Color;
+}
 }
 
 uint8_t D_PWM_GetRed(void) {
@@ -4872,22 +4896,30 @@ return state;
 }
 
 void D_PWM_Flash(void) {
+if (state != Disabled) {
 state = Flash;
+}
 }
 
 void D_PWM_Strobe(void) {
+if (state != Disabled) {
 state = Strobe;
+}
 }
 
 void D_PWM_Fade(void) {
+if (state != Disabled) {
 state = Fade;
+}
 }
 
 void D_PWM_Smooth(void) {
+if (state != Disabled) {
 state = Smooth;
 }
+}
 
-# 387
+# 419
 void interrupt high_priority HighISR(void) {
 if (INTCONbits.TMR0IF) {
 TMR0L = 0;

@@ -14,16 +14,15 @@ class ReadThread(Thread):
 
     def run(self):
         while not self.event.is_set():
-            start_time = time.time()
-
             try:
+                start_time = time.time()
                 if self.serial_interface.has_input() > 0:
                     msg = self.serial_interface.serial_read()
                     self.queue.put(msg)
                     print "Input: " + msg  # TODO: Logs
             except Exception as e:
+                start_time = 0
                 self.serial_interface.enable_read_thread(False)
-                #raise SerialReadThreadException("Exception in thread: " + e.message)
 
             time_delta = time.time() - start_time
             if time_delta < self.read_interval:

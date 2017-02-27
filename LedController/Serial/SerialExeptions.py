@@ -94,7 +94,7 @@ class SerialReadThreadException(SerialError):
         self.reason = reason
 
     def __str__(self):
-        ret = "[ACK ERROR] %s\n" % str(self.message)
+        ret = "[TRD ERROR] %s\n" % str(self.message)
         if self.reason is not None:
             ret += "[REASON] %s\n" % str(self.reason)
         return ret

@@ -25,6 +25,8 @@
 #define COMMAND_RGB "RGB" /* Get RGB */
 #define COMMAND_SCA "SCA" /* Get Scale */
 #define COMMAND_STA "STA" /* Get State */
+#define COMMAND_OFF "OFF" /* Disable */
+#define COMMAND_ON  "ON"  /* Enable  */
 
 #define COMMAND_FL "FL" /* Flash */
 #define COMMAND_ST "ST" /* Strobe */
@@ -135,6 +137,16 @@ void handle_message(READ_Data msg) {
         D_PWM_Smooth();
         return;
     } 
+    
+    if (strcmp(msg.command, COMMAND_OFF) == 0) {
+        D_PWM_Enable(false);
+        return;
+    }
+    
+    if (strcmp(msg.command, COMMAND_ON) == 0) {
+        D_PWM_Enable(true);
+        return;
+    }
     
     if(strcmp(msg.command, COMMAND_RGB) == 0) {
         D_UART_WriteInt(COMMAND_R, D_PWM_GetRed());
