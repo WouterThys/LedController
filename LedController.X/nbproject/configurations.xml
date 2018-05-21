@@ -9,7 +9,9 @@
         <itemPath>Drivers/TIMER0_Driver.h</itemPath>
         <itemPath>Drivers/UART_Driver.h</itemPath>
         <itemPath>Drivers/PWM_Driver.h</itemPath>
+        <itemPath>Drivers/SYSTEM_Driver.h</itemPath>
       </logicalFolder>
+      <itemPath>../../dsPIC_Uart_Driver/PIC/UartDriver.X/Settings.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -35,6 +37,7 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>Drivers</Elem>
+    <Elem>../../dsPIC_Uart_Driver/PIC/UartDriver.X</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

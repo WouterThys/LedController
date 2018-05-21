@@ -1,7 +1,7 @@
 CirclePwmColors:
-  circle_11: (255, 19, 1)
-  circle_12: (4, 214, 44)
-  circle_13: (10, 65, 237)
+  circle_11: (255, 82, 1)
+  circle_12: (223, 214, 44)
+  circle_13: (182, 0, 0)
   circle_21: (255, 40, 5)
   circle_22: (110, 220, 220)
   circle_23: (25, 0, 51)
