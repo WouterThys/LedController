@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Led Controller
+Comment=Serial controller for LED-strip interface.
+Exec=python /home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController/main.py
+Path=/home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController/
+Icon=/home/waldo/Documents/Geeken/Projects/LEDCONTROLLER/LedController/ledcontroller.png
+Terminal=false
+Type=Application
+Categories=GTK;GNOME;Graphics;
